@@ -8,7 +8,6 @@
             type="text"
             v-model="user.userName"
             id="userName"
-            v-validate="'required'"
             name="userName"
             class="form-control"
             :class="{ 'is-invalid': submitted && errors.has('userName') }"
@@ -24,7 +23,6 @@
           <input
             type="password"
             v-model="user.password"
-            v-validate="{ required: true, min: 6 }"
             name="password"
             class="form-control"
             :class="{ 'is-invalid': submitted && errors.has('password') }"
@@ -36,8 +34,8 @@
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" :disabled="status.registering">Register</button>
-        <img alt="imageRegister" v-show="status.registering" src="" />
+        <button class="btn btn-primary">Register</button>
+
         <router-link to="/login" class="btn btn-link">Cancel</router-link>
       </div>
     </form>
@@ -65,11 +63,12 @@ export default {
     ...mapActions('account', ['register']),
     handleSubmit(e) {
       this.submitted = true;
-      this.$validator.validate().then((valid) => {
-        if (valid) {
-          this.register(this.user);
-        }
-      });
+      this.register(this.user);
+      // this.$validator.validate().then((valid) => {
+      //   if (valid) {
+
+      //   }
+      // });
     },
   },
 };

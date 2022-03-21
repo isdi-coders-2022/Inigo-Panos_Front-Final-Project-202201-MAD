@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --open",
     "build": "webpack --mode production",
     "serve": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit",
