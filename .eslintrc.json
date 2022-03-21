@@ -6,7 +6,8 @@
   "extends": [
     "plugin:vue/vue3-essential",
     "@vue/airbnb",
-    "@vue/typescript/recommended"
+    "@vue/typescript/recommended",
+    "prettier"
   ],
   "parserOptions": {
     "ecmaVersion": 2020
@@ -16,7 +17,10 @@
     "no-use-before-define": "off",
     "no-restricted-globals": "off",
     "import/prefer-default-export": "off",
-    "newline-per-chained-call": "off"
+    "newline-per-chained-call": "off",
+    // "comma-dangle": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-console": "off"
   },
   "overrides": [
     {

@@ -2,11 +2,16 @@ import { authHeader } from '../_helpers/auth.header';
 
 const USERS_API = 'http://localhost:4500';
 
-const userService = {
+export const usersService = {
   login,
   logout,
+  register,
 };
-export default userService;
+
+interface UserRegisterI {
+  userName: string;
+  password: string;
+}
 
 function handleResponse(response: any) {
   return response.text().then((text: string) => {
@@ -24,6 +29,16 @@ function handleResponse(response: any) {
 
     return data;
   });
+}
+
+function register(user: UserRegisterI) {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user),
+  };
+
+  return fetch(`${USERS_API}/users/register`, requestOptions).then(handleResponse);
 }
 
 function login(userName: string, password: string) {

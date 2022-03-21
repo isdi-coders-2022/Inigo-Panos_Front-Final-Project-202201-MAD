@@ -4,34 +4,14 @@
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
         <label for="userName">
-          <input
-            type="text"
-            v-model="user.userName"
-            id="userName"
-            name="userName"
-            class="form-control"
-            :class="{ 'is-invalid': submitted && errors.has('userName') }"
-          />First Name
+          <input type="text" v-model="user.userName" id="userName" name="userName" />Username
         </label>
-        <div v-if="submitted && errors.has('userName')" class="invalid-feedback">
-          {{ errors.first('userName') }}
-        </div>
       </div>
 
       <div class="form-group">
         <label for="password">
-          <input
-            type="password"
-            v-model="user.password"
-            name="password"
-            class="form-control"
-            :class="{ 'is-invalid': submitted && errors.has('password') }"
-          />Password</label
+          <input type="password" v-model="user.password" name="password" />Password</label
         >
-
-        <div v-if="submitted && errors.has('password')" class="invalid-feedback">
-          {{ errors.first('password') }}
-        </div>
       </div>
       <div class="form-group">
         <button class="btn btn-primary">Register</button>
@@ -64,11 +44,7 @@ export default {
     handleSubmit(e) {
       this.submitted = true;
       this.register(this.user);
-      // this.$validator.validate().then((valid) => {
-      //   if (valid) {
-
-      //   }
-      // });
+      console.log('Se ha registrado al usuario:', this.user);
     },
   },
 };
