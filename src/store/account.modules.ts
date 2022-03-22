@@ -69,15 +69,14 @@ const mutations = {
   getUserSuccess(state: any, user: any) {
     console.log(user, ' user');
 
-    // state.user = user;
+    state.userInformation = {
+      userName: user.data.userName,
+      favorites: user.data.favorites,
+      visited: user.data.visited,
+      comments: user.data.comments,
+    };
 
-    console.log(state.user, ' estado del usuario ya logeado');
-  },
-
-  loginRequest(state: any, user: any) {
-    console.log(state.status, 'estado login request');
-    state.status = { loggingIn: true };
-    state.user = user;
+    console.log(state.userInformation, ' datos de un usuario traídos de getUsers');
   },
 
   loginSuccess(state: any, user: any) {
@@ -87,6 +86,12 @@ const mutations = {
     state.user = user;
 
     console.log(state.user, ' estado del usuario ya logeado');
+  },
+
+  loginRequest(state: any, user: any) {
+    console.log(state.status, 'estado login request');
+    state.status = { loggingIn: true };
+    state.user = user;
   },
 
   loginFailure(state: any) {
@@ -115,6 +120,9 @@ const mutations = {
 const getters = {
   userInfo(state: any) {
     return state.user;
+  },
+  userData(state: any) {
+    return state.userInformation;
   },
 };
 
