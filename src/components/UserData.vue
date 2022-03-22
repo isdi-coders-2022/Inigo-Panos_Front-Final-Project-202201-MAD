@@ -33,6 +33,15 @@ export default {
   },
 
   mounted() {
+    if (localStorage.getItem('token')) {
+      let tokenUser = localStorage.getItem('token');
+      tokenUser = JSON.parse(tokenUser);
+      console.log(tokenUser, 'TOKENUSER 2.0 USERDATA');
+      this.getUserData(tokenUser);
+    }
+  },
+
+  updated() {
     console.log(this.userInfo.userId, ' userid en UserData');
     this.getUserData(this.userInfo.userId);
 

@@ -13,6 +13,7 @@ const actions = {
 
     usersService.login(user).then(
       (userData) => {
+        localStorage.setItem('token', JSON.stringify(userData.data.userId));
         commit('loginSuccess', userData.data);
         router.push('/userData');
       },
@@ -23,7 +24,7 @@ const actions = {
     );
   },
 
-  getUserData({ dispatch, commit }: { dispatch: any; commit: any }, id: string) {
+  getUserData({ dispatch, commit }: { dispatch: any; commit: any }, id: any) {
     console.log('Se llama getUserData');
 
     usersService.getData(id).then(
