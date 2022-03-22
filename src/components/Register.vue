@@ -15,8 +15,10 @@
       </div>
       <div class="form-group">
         <button class="btn btn-primary">Register</button>
-
-        <router-link to="/login" class="btn btn-link">Cancel</router-link>
+        <div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
+        |
+        <router-link to="/login" class="btn btn-link">Login</router-link> |
+        <router-link to="/" class="btn btn-link">Cancel</router-link>
       </div>
     </form>
   </div>
@@ -42,9 +44,12 @@ export default {
   methods: {
     ...mapActions('account', ['register']),
     handleSubmit(e) {
-      this.submitted = true;
-      this.register(this.user);
-      console.log('Se ha registrado al usuario:', this.user);
+      if (this.userName === undefined || this.password === undefined) {
+        console.log('Error, ha introducido un valor incorrecto', this.userName, this.password);
+      } else {
+        this.submitted = true;
+        this.register(this.user);
+      }
     },
   },
 };

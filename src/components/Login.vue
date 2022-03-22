@@ -30,6 +30,7 @@
       </div>
       <div class="form-group">
         <button class="btn btn-primary">Login</button>
+        <!-- v-if="!isLoggedIn" to="/login"><button>Login</button> -->
 
         <router-link to="/register" class="btn btn-link">Register</router-link>
       </div>

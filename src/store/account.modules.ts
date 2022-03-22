@@ -57,9 +57,12 @@ const mutations = {
     state.user = user;
   },
   loginSuccess(state: any, user: any) {
-    console.log(state.status, 'estado login success');
+    console.log(state, 'estado login success');
     state.status = { loggedIn: true };
     state.user = user;
+    console.log(user.token.token, ' token del usuario ya logeado');
+    // state.token = user.token;
+    // console.log(state.token);
   },
   loginFailure(state: any) {
     console.log(state.status, 'estado login failure');
