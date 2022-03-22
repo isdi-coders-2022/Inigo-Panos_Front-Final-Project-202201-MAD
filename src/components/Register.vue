@@ -6,16 +6,18 @@
         <label for="userName">
           <input type="text" v-model="user.userName" id="userName" name="userName" />Username
         </label>
+        <div v-show="submitted && !userName" class="invalid-feedback">userName is required</div>
       </div>
 
       <div class="form-group">
         <label for="password">
           <input type="password" v-model="user.password" name="password" />Password</label
         >
+        <div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
       </div>
+
       <div class="form-group">
         <button class="btn btn-primary">Register</button>
-        <div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
         |
         <router-link to="/login" class="btn btn-link">Login</router-link> |
         <router-link to="/" class="btn btn-link">Cancel</router-link>
@@ -44,11 +46,12 @@ export default {
   methods: {
     ...mapActions('account', ['register']),
     handleSubmit(e) {
-      if (this.userName === undefined || this.password === undefined) {
-        console.log('Error, ha introducido un valor incorrecto', this.userName, this.password);
-      } else {
-        this.submitted = true;
+      this.submitted = true;
+      if (this.userName !== undefined && this.password !== undefined) {
         this.register(this.user);
+        console.log('Se llama a register');
+      } else {
+        console.log(`UserName (${this.userName}) o password (${this.password}) incorrecto`);
       }
     },
   },
