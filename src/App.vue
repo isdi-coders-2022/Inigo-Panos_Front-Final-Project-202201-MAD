@@ -3,7 +3,8 @@
     <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
     <router-link to="/register">Register</router-link> |
     <router-link to="/login">Login</router-link> |
-    <router-link to="/ruins">List of Ruins</router-link>
+    <router-link to="/ruins">List of Ruins</router-link> |
+    <router-link to="/userData">Detalles de usuario</router-link>
   </nav>
   <router-view />
   <main></main>

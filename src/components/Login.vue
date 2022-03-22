@@ -64,6 +64,7 @@ export default {
       const { userName, password } = this;
       if (userName && password) {
         this.login({ userName, password });
+        console.log('this.login 1');
       }
     },
   },

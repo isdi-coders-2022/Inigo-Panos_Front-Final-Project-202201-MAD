@@ -7,7 +7,7 @@ export const usersService = {
   login,
   logout,
   register,
-  // getData,
+  getData,
 };
 
 function handleResponse(response: any) {
@@ -41,6 +41,10 @@ function logout() {
   localStorage.removeItem('user');
 }
 
-// function getData(data: object) {
-//   return axios.get();
-// }
+function getData(id: any) {
+  console.log(
+    'Se ha llamado a getData de users.services con la dirección',
+    `${USERS_API}/users/${id}`,
+  );
+  return axios.get(`${USERS_API}/users/${id}`);
+}

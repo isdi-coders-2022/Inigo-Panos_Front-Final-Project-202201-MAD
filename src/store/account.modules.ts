@@ -9,16 +9,31 @@ import router from '../router/index';
 const actions = {
   login({ dispatch, commit }: { dispatch: any; commit: any }, user: UserI) {
     commit('loginRequest', {});
-
     commit('loginRequest', user);
+
     usersService.login(user).then(
       (userData) => {
         commit('loginSuccess', userData.data);
-        console.log(userData, ' userData');
-        router.push('/');
+        router.push('/userData');
       },
       (error) => {
         commit('loginFailure', error);
+        dispatch('alert/error', error, { root: true });
+      },
+    );
+  },
+
+  getUserData({ dispatch, commit }: { dispatch: any; commit: any }, id: string) {
+    console.log('Se llama getUserData');
+
+    usersService.getData(id).then(
+      (userData) => {
+        commit('getUserSuccess', userData);
+        console.log(userData, ' userData en accountModules');
+        router.push('/userData');
+      },
+
+      (error) => {
         dispatch('alert/error', error, { root: true });
       },
     );
@@ -51,6 +66,14 @@ const actions = {
 };
 
 const mutations = {
+  getUserSuccess(state: any, user: any) {
+    console.log(user, ' user');
+
+    // state.user = user;
+
+    console.log(state.user, ' estado del usuario ya logeado');
+  },
+
   loginRequest(state: any, user: any) {
     console.log(state.status, 'estado login request');
     state.status = { loggingIn: true };
@@ -89,8 +112,15 @@ const mutations = {
   },
 };
 
+const getters = {
+  userInfo(state: any) {
+    return state.user;
+  },
+};
+
 export const account = {
   namespaced: true,
   actions,
   mutations,
+  getters,
 };
