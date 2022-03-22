@@ -13,6 +13,7 @@ const actions = {
 
     usersService.login(userName, password).then(
       (userData) => {
+        console.log(userData.token.token);
         commit('loginSuccess', userData);
         router.push('/');
       },
@@ -51,14 +52,17 @@ const actions = {
 
 const mutations = {
   loginRequest(state: any, user: any) {
+    console.log(state.status, 'estado login request');
     state.status = { loggingIn: true };
     state.user = user;
   },
   loginSuccess(state: any, user: any) {
+    console.log(state.status, 'estado login success');
     state.status = { loggedIn: true };
     state.user = user;
   },
   loginFailure(state: any) {
+    console.log(state.status, 'estado login failure');
     state.status = {};
     state.user = null;
   },
