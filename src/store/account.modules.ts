@@ -1,5 +1,4 @@
-import axios, { Axios } from 'axios';
-import { UserLoginI, UserRegisterI, UserI } from '@/_helpers/interfaces';
+import { UserI } from '@/_helpers/interfaces';
 import { usersService } from '../router/users.service';
 import router from '../router/index';
 
@@ -13,7 +12,7 @@ const actions = {
 
     usersService.login(user).then(
       (userData) => {
-        localStorage.setItem('token', JSON.stringify(userData.data.userId));
+        localStorage.setItem('id', JSON.stringify(userData.data.userId));
         commit('loginSuccess', userData.data);
         router.push('/userData');
       },
@@ -41,6 +40,7 @@ const actions = {
   },
 
   logout({ commit }: { commit: any }) {
+    localStorage.setItem('id', '');
     usersService.logout();
     commit('logout');
   },

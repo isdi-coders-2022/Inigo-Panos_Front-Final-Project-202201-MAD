@@ -16,3 +16,11 @@ export interface UserI {
   favorites: string;
   visited: string;
 }
+export interface RuinI {
+  name: string;
+  location: string;
+  description: string;
+  images: string;
+  score: number;
+  comments: string;
+}

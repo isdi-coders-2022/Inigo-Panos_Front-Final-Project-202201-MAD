@@ -10,11 +10,12 @@
       <li>Visitados: {{ this.userData.visited }}</li>
       <li>Comentarios: {{ this.userData.comments }}</li>
     </ul>
+    <router-link to="/login" class="btn btn-link">Logout</router-link>
   </main>
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters, useStore } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'user-data',
@@ -33,22 +34,15 @@ export default {
   },
 
   mounted() {
-    if (localStorage.getItem('token')) {
-      let tokenUser = localStorage.getItem('token');
+    if (localStorage.getItem('id')) {
+      let tokenUser = localStorage.getItem('id');
       tokenUser = JSON.parse(tokenUser);
-      console.log(tokenUser, 'TOKENUSER 2.0 USERDATA');
+
       this.getUserData(tokenUser);
     }
   },
-
-  updated() {
-    console.log(this.userInfo.userId, ' userid en UserData');
-    this.getUserData(this.userInfo.userId);
-
-    console.log('Datos del usuario: ', this.userData);
-  },
   methods: {
-    ...mapActions('account', ['getUserData']),
+    ...mapActions('account', ['getUserData', 'logout']),
   },
 };
 </script>

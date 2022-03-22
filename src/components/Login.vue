@@ -53,9 +53,10 @@ export default {
   computed: {
     ...mapState('account', ['status']),
   },
-  created() {
+  mounted() {
     // reset login status
     this.logout();
+    console.log('Se llama a logout');
   },
   methods: {
     ...mapActions('account', ['login', 'logout']),
