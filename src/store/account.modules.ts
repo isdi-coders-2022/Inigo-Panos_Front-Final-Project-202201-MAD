@@ -13,7 +13,7 @@ const actions = {
     commit('loginRequest', user);
     usersService.login(user).then(
       (userData) => {
-        commit('loginSuccess', userData);
+        commit('loginSuccess', userData.data);
         console.log(userData, ' userData');
         router.push('/');
       },
@@ -61,11 +61,9 @@ const mutations = {
     state.status = { loggedIn: true };
     console.log(user, ' user');
 
-    state.userToken = user.data.result.token.token;
-    state.userId = user.data.result.id;
+    state.user = user;
 
-    console.log(state.userToken, ' token del usuario ya logeado');
-    console.log(state.userId, ' id del usuario ya logeado');
+    console.log(state.user, ' estado del usuario ya logeado');
   },
 
   loginFailure(state: any) {
