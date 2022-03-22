@@ -1,12 +1,14 @@
-import { authHeader } from '../_helpers/auth.header';
+import axios from 'axios';
+import { UserLoginI, UserRegisterI } from '@/_helpers/interfaces';
 
 const USERS_API = 'http://localhost:4500';
 
-const userService = {
+export const usersService = {
   login,
   logout,
+  register,
+  getData,
 };
-export default userService;
 
 function handleResponse(response: any) {
   return response.text().then((text: string) => {
@@ -26,28 +28,23 @@ function handleResponse(response: any) {
   });
 }
 
-function login(userName: string, password: string) {
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ userName, password }),
-  };
-  console.log(USERS_API, 'prueba de conexión a la base de datos', requestOptions);
-  return fetch(`${USERS_API}/users/login`, requestOptions)
-    .then(handleResponse)
-    .then((user) => {
-      // login successful if there's a jwt token in the response
-      if (user.token) {
-        // store user details and jwt token in local storage
-        // to keep user logged in between page refreshes
-        localStorage.setItem('user', JSON.stringify(user));
-      }
+function register(user: UserRegisterI) {
+  return axios.post(`${USERS_API}/users/register`, user);
+}
 
-      return user;
-    });
+function login(user: UserLoginI) {
+  return axios.post(`${USERS_API}/users/login`, user);
 }
 
 function logout() {
   // remove user from local storage to log user out
   localStorage.removeItem('user');
+}
+
+function getData(id: any) {
+  console.log(
+    'Se ha llamado a getData de users.services con la dirección',
+    `${USERS_API}/users/${id}`,
+  );
+  return axios.get(`${USERS_API}/users/${id}`);
 }

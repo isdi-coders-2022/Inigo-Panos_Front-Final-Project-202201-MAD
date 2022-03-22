@@ -4,41 +4,23 @@
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
         <label for="userName">
-          <input
-            type="text"
-            v-model="user.userName"
-            id="userName"
-            v-validate="'required'"
-            name="userName"
-            class="form-control"
-            :class="{ 'is-invalid': submitted && errors.has('userName') }"
-          />First Name
+          <input type="text" v-model="user.userName" id="userName" name="userName" />Username
         </label>
-        <div v-if="submitted && errors.has('userName')" class="invalid-feedback">
-          {{ errors.first('userName') }}
-        </div>
+        <div v-show="submitted && !userName" class="invalid-feedback">userName is required</div>
       </div>
 
       <div class="form-group">
         <label for="password">
-          <input
-            type="password"
-            v-model="user.password"
-            v-validate="{ required: true, min: 6 }"
-            name="password"
-            class="form-control"
-            :class="{ 'is-invalid': submitted && errors.has('password') }"
-          />Password</label
+          <input type="password" v-model="user.password" name="password" />Password</label
         >
-
-        <div v-if="submitted && errors.has('password')" class="invalid-feedback">
-          {{ errors.first('password') }}
-        </div>
+        <div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
       </div>
+
       <div class="form-group">
-        <button class="btn btn-primary" :disabled="status.registering">Register</button>
-        <img alt="imageRegister" v-show="status.registering" src="" />
-        <router-link to="/login" class="btn btn-link">Cancel</router-link>
+        <button class="btn btn-primary">Register</button>
+        |
+        <router-link to="/login" class="btn btn-link">Login</router-link> |
+        <router-link to="/" class="btn btn-link">Cancel</router-link>
       </div>
     </form>
   </div>
@@ -65,11 +47,15 @@ export default {
     ...mapActions('account', ['register']),
     handleSubmit(e) {
       this.submitted = true;
-      this.$validator.validate().then((valid) => {
-        if (valid) {
-          this.register(this.user);
-        }
-      });
+      console.log(this.user.userName, this.password);
+      if (this.user.userName !== undefined && this.user.password !== undefined) {
+        this.register(this.user);
+        console.log('Se llama a register');
+      } else {
+        console.log(
+          `UserName (${this.user.userName}) o password (${this.user.password}) incorrecto`,
+        );
+      }
     },
   },
 };
