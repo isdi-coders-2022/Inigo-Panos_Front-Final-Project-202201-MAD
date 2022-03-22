@@ -1,3 +1,5 @@
+import axios, { Axios } from 'axios';
+import { UserLoginI, UserRegisterI, UserI } from '@/_helpers/interfaces';
 import { usersService } from '../router/users.service';
 import router from '../router/index';
 
@@ -5,15 +7,12 @@ import router from '../router/index';
 // const state = user ? { status: { loggedIn: true }, user } : { status: {}, user: null };
 
 const actions = {
-  login(
-    { dispatch, commit }: { dispatch: any; commit: any },
-    { userName, password }: { userName: string; password: string },
-  ) {
-    commit('loginRequest', { userName });
+  login({ dispatch, commit }: { dispatch: any; commit: any }, user: UserI) {
+    commit('loginRequest', {});
 
-    usersService.login(userName, password).then(
+    commit('loginRequest', user);
+    usersService.login(user).then(
       (userData) => {
-        console.log(userData.token.token);
         commit('loginSuccess', userData);
         router.push('/');
       },
@@ -34,7 +33,7 @@ const actions = {
     commit('registerRequest', user);
 
     usersService.register(user).then(
-      (userData) => {
+      (userData: any) => {
         commit('registerSuccess', userData);
         router.push('/login');
         setTimeout(() => {
@@ -60,9 +59,7 @@ const mutations = {
     console.log(state, 'estado login success');
     state.status = { loggedIn: true };
     state.user = user;
-    console.log(user.token.token, ' token del usuario ya logeado');
-    // state.token = user.token;
-    // console.log(state.token);
+    console.log(user.data.token, ' token del usuario ya logeado');
   },
   loginFailure(state: any) {
     console.log(state.status, 'estado login failure');

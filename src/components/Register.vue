@@ -47,11 +47,14 @@ export default {
     ...mapActions('account', ['register']),
     handleSubmit(e) {
       this.submitted = true;
-      if (this.userName !== undefined && this.password !== undefined) {
+      console.log(this.user.userName, this.password);
+      if (this.user.userName !== undefined && this.user.password !== undefined) {
         this.register(this.user);
         console.log('Se llama a register');
       } else {
-        console.log(`UserName (${this.userName}) o password (${this.password}) incorrecto`);
+        console.log(
+          `UserName (${this.user.userName}) o password (${this.user.password}) incorrecto`,
+        );
       }
     },
   },
