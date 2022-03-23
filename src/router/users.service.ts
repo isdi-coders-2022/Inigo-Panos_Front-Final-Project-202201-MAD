@@ -10,6 +10,14 @@ export const usersService = {
   getData,
 };
 
+// let token = localStorage.getItem('token');
+// token = token === null ? null : token;
+
+let tokenUser = localStorage.getItem('id');
+if (tokenUser) {
+  tokenUser = JSON.parse(tokenUser);
+}
+
 function handleResponse(response: any) {
   return response.text().then((text: string) => {
     const data = text && JSON.parse(text);
@@ -37,7 +45,7 @@ function login(user: UserLoginI) {
 }
 
 function logout() {
-  // remove user from local storage to log user out
+  // remove user from local storage to log user out. Yo tengo id?
   localStorage.removeItem('user');
 }
 

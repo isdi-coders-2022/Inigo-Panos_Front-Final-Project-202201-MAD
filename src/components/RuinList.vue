@@ -8,6 +8,7 @@
         {{ ruin.name }}
       </li>
     </ul>
+
     <router-link to="/login" class="btn btn-link">Logout</router-link>
   </main>
 </template>
