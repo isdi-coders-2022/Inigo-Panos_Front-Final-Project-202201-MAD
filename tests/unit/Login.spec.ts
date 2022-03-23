@@ -1,7 +1,7 @@
 import Vuex from 'vuex';
 
 import { shallowMount, mount } from '@vue/test-utils';
-import Login from '../../../src/components/Login.vue';
+import Login from '@/components/Login.vue';
 
 export const store = new Vuex.Store({
   modules: {

@@ -26,7 +26,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { mapState, mapActions } from 'vuex';
 
 export default {
@@ -45,9 +45,9 @@ export default {
   },
   methods: {
     ...mapActions('account', ['register']),
-    handleSubmit(e) {
+    handleSubmit() {
       this.submitted = true;
-      console.log(this.user.userName, this.password);
+      console.log(this.user.userName, this.user.password);
       if (this.user.userName !== undefined && this.user.password !== undefined) {
         this.register(this.user);
         console.log('Se llama a register');

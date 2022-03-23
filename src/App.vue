@@ -4,11 +4,29 @@
     <router-link to="/register">Register</router-link> |
     <router-link to="/login">Login</router-link> |
     <router-link to="/ruins">List of Ruins</router-link> |
-    <router-link to="/userData">Detalles de usuario</router-link>
+    <router-link to="/userData" v-on="reset - id - event">Detalles de usuario</router-link> |
+    <router-link to="/addRuin">Add new ruin</router-link> |
   </nav>
   <router-view />
   <main></main>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      idUser: '',
+    };
+  },
+
+  methods() {
+    let idUser = localStorage.getItem('id');
+    console.log(idUser, ' id del usuario en local storage');
+    idUser = JSON.parse(idUser);
+    console.log(idUser, ' en App.vue para ocultar detalles del usuario');
+  },
+};
+</script>
 
 <style lang="scss">
 #app {

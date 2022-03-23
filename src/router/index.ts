@@ -4,6 +4,7 @@ import Register from '../components/Register.vue';
 import Login from '../components/Login.vue';
 import RuinList from '../components/RuinList.vue';
 import UserData from '../components/UserData.vue';
+import CreateRuin from '../components/CreateRuin.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -32,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
     component: UserData,
   },
   {
+    path: '/addRuin',
+    name: 'addRuin',
+    component: CreateRuin,
+  },
+  {
     path: '/about',
     name: 'about',
     // route level code-splitting
@@ -46,4 +52,5 @@ const router = createRouter({
   routes,
 });
 
+export { routes };
 export default router;

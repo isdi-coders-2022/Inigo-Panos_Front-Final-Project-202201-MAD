@@ -38,7 +38,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { mapState, mapActions } from 'vuex';
 
 export default {
@@ -55,8 +55,12 @@ export default {
   },
   mounted() {
     // reset login status
-    // this.logout();
-    // console.log('Se llama a logout');
+    this.logout();
+    const id = localStorage.getItem('id');
+    localStorage.setItem('id', '');
+    this.$emit('reset-id-event', id);
+
+    console.log('Se llama a logout', id, ' y queda este id');
   },
   methods: {
     ...mapActions('account', ['login', 'logout']),
