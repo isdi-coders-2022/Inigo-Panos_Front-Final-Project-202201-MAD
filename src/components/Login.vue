@@ -29,7 +29,7 @@
         <div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary">Login</button>
+        <button class="btn btn-primary btn-login" type="submit">Login</button>
         <!-- v-if="!isLoggedIn" to="/login"><button>Login</button> -->
 
         <router-link to="/register" class="btn btn-link">Register</router-link>
@@ -55,17 +55,16 @@ export default {
   },
   mounted() {
     // reset login status
-    this.logout();
-    console.log('Se llama a logout');
+    // this.logout();
+    // console.log('Se llama a logout');
   },
   methods: {
     ...mapActions('account', ['login', 'logout']),
-    handleSubmit(e) {
+    handleSubmit() {
       this.submitted = true;
       const { userName, password } = this;
       if (userName && password) {
         this.login({ userName, password });
-        console.log('this.login 1');
       }
     },
   },

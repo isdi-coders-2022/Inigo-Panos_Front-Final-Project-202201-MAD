@@ -1,6 +1,6 @@
 import Vuex from 'vuex';
 
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, mount } from '@vue/test-utils';
 import Login from '../../../src/components/Login.vue';
 
 export const store = new Vuex.Store({
@@ -9,6 +9,8 @@ export const store = new Vuex.Store({
       state: {},
       actions: {
         login: jest.fn(),
+        logout: jest.fn(),
+        dispatch: jest.fn(),
       },
     },
   },
@@ -19,5 +21,29 @@ describe('LoginPage.vue', () => {
     const wrapper = shallowMount(Login, { global: { plugins: [store] } });
     expect(wrapper.text()).toMatch('userName');
     expect(wrapper.text()).toMatch('Password');
+  });
+  it('has a button', () => {
+    const wrapper = shallowMount(Login, { global: { plugins: [store] } });
+    expect(wrapper.find('button').exists()).toBe(true);
+  });
+
+  describe('When userName and password are introduced', () => {
+    test('It calls login function from modules', async () => {
+      const wrapper = mount(Login, {
+        global: {
+          plugins: [store],
+        },
+      });
+
+      jest.spyOn(wrapper.vm, 'login');
+      wrapper.vm.userName = 'test';
+      wrapper.vm.password = 'test';
+
+      const formToBeSubmited = wrapper.find('form');
+
+      formToBeSubmited.trigger('submit');
+
+      expect(wrapper.vm.login).toHaveBeenCalled();
+    });
   });
 });
