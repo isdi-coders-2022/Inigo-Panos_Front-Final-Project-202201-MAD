@@ -7,6 +7,7 @@
     <router-link to="/userData" v-on="reset - id - event">Detalles de usuario</router-link> |
     <router-link to="/addRuin">Add new ruin</router-link> |
     <router-link to="/ruinDetails">Ruin Details</router-link> |
+    <router-link to="/ruinUpdate">Update Ruin</router-link> |
   </nav>
   <router-view />
   <main></main>

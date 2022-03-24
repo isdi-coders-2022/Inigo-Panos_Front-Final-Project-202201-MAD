@@ -8,10 +8,20 @@ export const ruinsServices = {
   getAllRuins,
   getRuinDetails,
   deleteRuin,
+  updateRuin,
 };
 
 function getToken() {
   return localStorage.getItem('token');
+}
+
+function updateRuin(payload: any) {
+  console.log(payload, ' Payload recibido en updateRuin, servicio de ruinas');
+  return axios.patch(`${RUINS_API}/${payload.idRuina}`, payload.ruin, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  });
 }
 
 function createNewRuin(ruin: CreateRuinI) {

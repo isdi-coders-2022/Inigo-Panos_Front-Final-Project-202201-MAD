@@ -76,6 +76,7 @@ const mutations = {
       favorites: user.data.favorites,
       visited: user.data.visited,
       comments: user.data.comments,
+      isAdmin: user.data.isAdmin,
     };
 
     console.log(state.userInformation, ' datos de un usuario traídos de getUsers');

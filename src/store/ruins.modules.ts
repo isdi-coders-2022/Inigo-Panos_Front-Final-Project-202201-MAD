@@ -56,12 +56,23 @@ const actions = {
       (ruinData: any) => {
         commit('createNewRuinSuccess', ruinData);
         router.push('/ruins');
-        setTimeout(() => {
-          dispatch('alert/success', 'Ruin creation successful', { root: true });
-        });
+        dispatch('alert/success', 'Ruin creation successful', { root: true });
       },
       (error) => {
         commit('createNewRuinFailure', error);
+        dispatch('alert/error', error, { root: true });
+      },
+    );
+  },
+
+  modifyExistingRuin({ dispatch, commit }: { dispatch: any; commit: any }, payload: any) {
+    ruinsServices.updateRuin(payload).then(
+      (listOfRuinsData: any) => {
+        commit('modifyRuinSuccess', listOfRuinsData);
+        router.push('/ruins');
+        // dispatch('alert/success', 'Ruin modification successful', { root: true });
+      },
+      (error) => {
         dispatch('alert/error', error, { root: true });
       },
     );
@@ -74,9 +85,7 @@ const actions = {
       (listOfRuinsData: any) => {
         commit('deleteRuinSuccess', listOfRuinsData);
         router.push('/ruins');
-        setTimeout(() => {
-          dispatch('alert/success', 'Ruin creation successful', { root: true });
-        });
+        dispatch('alert/success', 'Ruin creation successful', { root: true });
       },
       (error) => {
         commit('createNewRuinFailure', error);
@@ -123,6 +132,10 @@ const mutations = {
   createNewRuinFailure(state: any) {
     console.log(state.status);
     state.status = {};
+  },
+
+  modifyRuinSuccess(state: any, listOfRuinsData: any) {
+    state.allRuinsData = [];
   },
 };
 

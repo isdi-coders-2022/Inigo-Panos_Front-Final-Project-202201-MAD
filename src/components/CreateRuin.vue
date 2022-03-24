@@ -6,18 +6,18 @@
         <label for="name">
           <input type="text" id="name" v-model="ruin.name" name="name" placeholder="Nombre" />
         </label>
-        <!-- <div v-show="submitted && !name" class="invalid-feedback">
+        <div v-show="submitted && !name" class="invalid-feedback">
           Es necesario que introduzca un nombre
-        </div> -->
+        </div>
       </div>
 
       <div class="form-group">
         <label for="location">
           <input type="location" v-model="ruin.location" name="location" placeholder="Localización"
         /></label>
-        <!-- <div v-show="submitted && !password" class="invalid-feedback">
+        <div v-show="submitted && !password" class="invalid-feedback">
           Es necesario que introduzca una localización
-        </div> -->
+        </div>
       </div>
 
       <div class="form-group">
@@ -28,18 +28,18 @@
             name="description"
             placeholder="Descripción"
         /></label>
-        <!-- <div v-show="submitted && !password" class="invalid-feedback">
+        <div v-show="submitted && !password" class="invalid-feedback">
           Es necesario que introduzca una descripción
-        </div> -->
+        </div>
       </div>
 
       <div class="form-group">
         <label for="images">
           <input type="images" v-model="ruin.images" name="images" placeholder="Imágenes"
         /></label>
-        <!-- <div v-show="submitted && !password" class="invalid-feedback">
+        <div v-show="submitted && !password" class="invalid-feedback">
           Es necesario que introduzca al menos una imagen
-        </div> -->
+        </div>
       </div>
 
       <div class="form-group">
@@ -53,13 +53,15 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapState, mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+import { useRoute } from 'vue-router';
 
 export default defineComponent({
   name: 'register-form',
   data() {
     return {
       ruin: {
+        id: '',
         name: '',
         location: '',
         description: '',
@@ -67,14 +69,18 @@ export default defineComponent({
         comments: [],
         score: 0,
       },
+      isAdmin: false,
+      id: '',
+      idRuina: '',
       submitted: false,
     };
   },
 
   methods: {
     ...mapActions('ruins', ['createNewRuin']),
+
     handleSubmit() {
-      // this.submitted = true;
+      this.submitted = true;
       console.log(this.ruin, ' creado en CreateRuin');
 
       if (
@@ -87,6 +93,23 @@ export default defineComponent({
         console.log(`Algún campo no está rellenado`);
       }
     },
+  },
+
+  computed: {
+    ...mapGetters('ruins', ['ruinDetails']),
+    ...mapGetters('account', ['userData']),
+  },
+
+  mounted() {
+    if (this.userData.isAdmin) {
+      this.isAdmin = true;
+    }
+
+    const route = useRoute();
+    const { id } = route.params;
+    this.idRuina = id as string;
+
+    console.log(this.userData, 'info de USUARIO EN RUIN DETAILS');
   },
 });
 </script>

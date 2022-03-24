@@ -6,6 +6,7 @@ import RuinList from '../components/RuinList.vue';
 import UserData from '../components/UserData.vue';
 import CreateRuin from '../components/CreateRuin.vue';
 import RuinDetail from '../components/RuinDetail.vue';
+import UpdateRuin from '../components/UpdateRuin.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -32,6 +33,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/ruinDetails/:id',
     name: 'ruinDetails',
     component: RuinDetail,
+  },
+  {
+    path: '/ruinUpdate/:id',
+    name: 'updateRuin',
+    component: UpdateRuin,
   },
   {
     path: '/userData',
