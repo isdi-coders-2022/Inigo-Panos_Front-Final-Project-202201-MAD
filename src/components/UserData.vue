@@ -38,7 +38,9 @@ export default defineComponent({
   mounted() {
     if (localStorage.getItem('id') !== undefined) {
       let tokenUser = localStorage.getItem('id');
-      tokenUser = JSON.parse(tokenUser);
+      if (tokenUser) {
+        tokenUser = JSON.parse(tokenUser);
+      }
 
       this.getUserData(tokenUser);
     } else {
