@@ -19,6 +19,21 @@ const actions = {
     );
   },
 
+  getRuinDetails({ dispatch, commit }: { dispatch: any; commit: any }, id: string) {
+    console.log('Se llama getRuinsDetails');
+
+    ruinsServices.getRuinDetails(id).then(
+      (listOfRuinsData) => {
+        commit('getRuinDetailsSuccess', listOfRuinsData);
+        console.log(listOfRuinsData, ' listOfRuinsData en ruin.modules');
+      },
+
+      (error) => {
+        dispatch('alert/error', error, { root: true });
+      },
+    );
+  },
+
   createNewRuin({ dispatch, commit }: { dispatch: any; commit: any }, ruin: CreateRuinI) {
     console.log('Ruina llegada a createNewRuin en ruins.modules: ', ruin);
     // commit('createNewRuinRequest', ruin);
@@ -53,6 +68,11 @@ const mutations = {
     console.log(state.allRuinsData, ' datos de un usuario traídos de getUsers');
   },
 
+  getRuinDetailsSuccess(state: any, ruinDetails: any) {
+    console.log(ruinDetails, ' detalles de ruina en mutación');
+    state.ruin = ruinDetails.data;
+  },
+
   createNewRuinRequest(state: any) {
     console.log(state.status);
     state.status = { registering: true };
@@ -70,6 +90,9 @@ const mutations = {
 const getters = {
   listOfRuinsData(state: any) {
     return state.allRuinsData;
+  },
+  ruinDetails(state: any) {
+    return state.ruin;
   },
 };
 

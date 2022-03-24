@@ -20,7 +20,8 @@
     "newline-per-chained-call": "off",
     // "comma-dangle": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "no-parsing-error": "off"
   },
   "overrides": [
     {

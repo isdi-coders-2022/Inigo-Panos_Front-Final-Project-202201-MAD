@@ -5,15 +5,15 @@
   <main>
     <ul v-if="this.listOfRuinsData">
       <li v-for="ruin in listOfRuinsData" :key="ruin._id">
-        {{ ruin.name }}
+        <router-link :to="`/ruinDetails/${ruin._id}`">
+          <a>{{ ruin.name }}</a>
+        </router-link>
       </li>
     </ul>
-
-    <router-link to="/login" class="btn btn-link">Logout</router-link>
   </main>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 

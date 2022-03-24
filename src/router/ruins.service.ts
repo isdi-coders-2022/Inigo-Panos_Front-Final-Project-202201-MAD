@@ -6,6 +6,7 @@ const RUINS_API = 'http://localhost:4500/ruins';
 export const ruinsServices = {
   createNewRuin,
   getAllRuins,
+  getRuinDetails,
 };
 
 function createNewRuin(ruin: CreateRuinI) {
@@ -20,4 +21,9 @@ function createNewRuin(ruin: CreateRuinI) {
 function getAllRuins() {
   console.log('Se ha llamado a getData de ruins.service con la dirección', `${RUINS_API}`);
   return axios.get(`${RUINS_API}`);
+}
+
+function getRuinDetails(id: string) {
+  console.log('Se ha llamado a getData de ruins.service con la dirección', `${RUINS_API}`);
+  return axios.get(`${RUINS_API}/${id}`);
 }

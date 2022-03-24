@@ -5,6 +5,7 @@ import Login from '../components/Login.vue';
 import RuinList from '../components/RuinList.vue';
 import UserData from '../components/UserData.vue';
 import CreateRuin from '../components/CreateRuin.vue';
+import RuinDetail from '../components/RuinDetail.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -26,6 +27,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/ruins',
     name: 'ruins',
     component: RuinList,
+  },
+  {
+    path: '/ruinDetails/:id',
+    name: 'ruinDetails',
+    component: RuinDetail,
   },
   {
     path: '/userData',
