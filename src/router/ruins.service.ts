@@ -7,7 +7,12 @@ export const ruinsServices = {
   createNewRuin,
   getAllRuins,
   getRuinDetails,
+  deleteRuin,
 };
+
+function getToken() {
+  return localStorage.getItem('token');
+}
 
 function createNewRuin(ruin: CreateRuinI) {
   console.log(
@@ -15,7 +20,20 @@ function createNewRuin(ruin: CreateRuinI) {
     `${RUINS_API}/add`,
   );
   console.log(ruin);
-  return axios.post(`${RUINS_API}/add`, ruin);
+
+  return axios.post(`${RUINS_API}/add`, ruin, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  });
+}
+
+function deleteRuin(id: string) {
+  return axios.delete(`${RUINS_API}/${id}`, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  });
 }
 
 function getAllRuins() {

@@ -3,7 +3,7 @@
     <h1>Lista de ruinas</h1>
   </div>
   <main>
-    <ul v-if="this.listOfRuinsData">
+    <ul v-if="listOfRuinsData">
       <li v-for="ruin in listOfRuinsData" :key="ruin._id">
         <router-link :to="`/ruinDetails/${ruin._id}`">
           <a>{{ ruin.name }}</a>

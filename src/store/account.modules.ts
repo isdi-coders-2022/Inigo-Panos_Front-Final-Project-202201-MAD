@@ -13,6 +13,7 @@ const actions = {
     usersService.login(user).then(
       (userData) => {
         localStorage.setItem('id', JSON.stringify(userData.data.userId));
+        localStorage.setItem('token', userData.data.token);
         commit('loginSuccess', userData.data);
         router.push('/userData');
       },
