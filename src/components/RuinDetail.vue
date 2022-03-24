@@ -91,14 +91,15 @@ export default defineComponent({
 
     handleSubmit() {
       console.log(this.newComment);
+      console.log(this.userInfo, 'this.UserData en ruinDetails');
 
       const payload = {
-        ruinId: this.idRuina,
-        comentario: this.newComment,
+        author_id: this.userInfo.userId,
+        ruin_id: this.idRuina,
+        text: this.newComment,
       };
       console.log(payload, 'PAYLOAD');
       this.addCommentToRuin(payload);
-      console.log('Se llama a register');
     },
   },
 
