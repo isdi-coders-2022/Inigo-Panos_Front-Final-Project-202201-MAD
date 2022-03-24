@@ -94,20 +94,59 @@ const actions = {
     );
   },
 
+  addCommentToRuin({ dispatch, commit }: { dispatch: any; commit: any }, payload: any) {
+    console.log('Ruina llegada a createNewRuin en ruins.modules: ', payload);
+    // commit('createNewRuinRequest', ruin);
+    console.log(payload, 'DESPUÉS DEL COMMIT');
+
+    ruinsServices.newCommentOnRuin(payload).then(
+      (ruinData: any) => {
+        commit('createNewRuinSuccess', ruinData);
+        router.push('/ruins');
+        dispatch('alert/success', 'Ruin creation successful', { root: true });
+      },
+      (error) => {
+        commit('createNewRuinFailure', error);
+        dispatch('alert/error', error, { root: true });
+      },
+    );
+  },
+
   addRuinToFavorites({ dispatch, commit }: { dispatch: any; commit: any }, id: string) {
-    ruinsServices.addToFavoritesToggle(id).then((listOfRuinsData: any) => {
-      console.log('Se ha añadido/quitado de favoritos con éxito!');
-    });
+    ruinsServices.addToFavoritesToggle(id).then(
+      (ruinData: any) => {
+        commit('addRuinToFavoritesSuccess', ruinData);
+        console.log('Se ha añadido/quitado de favoritos con éxito!');
+      },
+      (error) => {
+        dispatch('alert/error', error, { root: true });
+      },
+    );
   },
 
   addRuinToVisited({ dispatch, commit }: { dispatch: any; commit: any }, id: string) {
-    ruinsServices.addToVisitedToggle(id).then((listOfRuinsData: any) => {
-      console.log('Se ha añadido/quitado de visitados con éxito!');
-    });
+    ruinsServices.addToVisitedToggle(id).then(
+      (ruinData: any) => {
+        commit('addRuinToVisitedSuccess', ruinData);
+        console.log('Se ha añadido/quitado de favoritos con éxito!');
+      },
+      (error) => {
+        dispatch('alert/error', error, { root: true });
+        console.log('Se ha añadido/quitado de visitados con éxito!');
+      },
+    );
   },
 };
 
 const mutations = {
+  addRuinToFavoritesSuccess(state: any, ruinData: any) {
+    console.log('Se ha modificado el favorito de forma exitosa');
+  },
+
+  addRuinToVisitedSuccess(state: any, ruinData: any) {
+    console.log('Se ha modificado el visitado de forma exitosa');
+  },
+
   getAllRuinsSucess(state: any, listOfRuinsData: any) {
     console.log(listOfRuinsData, ' listOfRuinsData');
     state.allRuinsData = [];

@@ -11,6 +11,7 @@ export const ruinsServices = {
   updateRuin,
   addToFavoritesToggle,
   addToVisitedToggle,
+  newCommentOnRuin,
 };
 
 function getToken() {
@@ -24,6 +25,21 @@ function updateRuin(payload: any) {
       Authorization: `Bearer ${getToken()}`,
     },
   });
+}
+
+function newCommentOnRuin(payload: any) {
+  console.log(payload, ' Payload recibido en addComment, servicio de ruinas');
+  const text = payload.comentario;
+  console.log(text);
+  return axios.post(
+    `${RUINS_API}/${payload.ruinId}/comment`,
+    { text },
+    {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    },
+  );
 }
 
 function addToFavoritesToggle(id: string) {

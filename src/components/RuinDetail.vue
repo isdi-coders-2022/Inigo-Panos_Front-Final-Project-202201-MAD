@@ -8,9 +8,20 @@
       <li>Localización: {{ ruinDetails.location }}</li>
       <li>Imágenes: {{ ruinDetails.images }}</li>
       <li>Descripción: {{ ruinDetails.description }}</li>
-      <li>Comentarios: {{ ruinDetails.comments }}</li>
+      Comentarios:
+      <li v-for="comment in ruinDetails.comments" :key="comment.text">
+        {{ comment.text }}
+      </li>
       <li>Score: {{ ruinDetails.score }}</li>
     </ul>
+
+    <form @submit.prevent="handleSubmit">
+      <div class="form-group">
+        <label for="comment">
+          <input type="comment" v-model="this.newComment" name="comment" />{{ ruinDetails }}:
+        </label>
+      </div>
+    </form>
 
     <div>| <button v-on:click="ruinFavorites()">❤</button> |</div>
     <div>| <button v-on:click="ruinVisited()">📍</button> |</div>
@@ -22,7 +33,6 @@
         <a>Actualizar datos</a>
       </router-link>
     </div>
-    <!-- <router-link @click="this.resetStorage()" to="/login" class="btn btn-link">Logout</router-link> -->
   </main>
 </template>
 
@@ -45,6 +55,7 @@ export default defineComponent({
       comments: [],
       isAdmin: false,
       idRuina: '',
+      newComment: '',
     };
   },
 
@@ -59,10 +70,11 @@ export default defineComponent({
       'updateRuin',
       'addRuinToFavorites',
       'addRuinToVisited',
+      'addCommentToRuin',
     ]),
 
     deleteRuinById() {
-      console.log(1, this.idRuina);
+      console.log(this.idRuina);
       this.deleteRuin(this.idRuina);
       console.log('Se ha llamado a la acción borrar Ruina');
     },
@@ -75,6 +87,18 @@ export default defineComponent({
     ruinVisited() {
       this.addRuinToVisited(this.idRuina);
       console.log('Se llama a visitados');
+    },
+
+    handleSubmit() {
+      console.log(this.newComment);
+
+      const payload = {
+        ruinId: this.idRuina,
+        comentario: this.newComment,
+      };
+      console.log(payload, 'PAYLOAD');
+      this.addCommentToRuin(payload);
+      console.log('Se llama a register');
     },
   },
 
