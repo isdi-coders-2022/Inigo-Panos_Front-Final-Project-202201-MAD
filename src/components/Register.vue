@@ -27,9 +27,10 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import { mapState, mapActions } from 'vuex';
 
-export default {
+export default defineComponent({
   name: 'register-form',
   data() {
     return {
@@ -58,5 +59,5 @@ export default {
       }
     },
   },
-};
+});
 </script>

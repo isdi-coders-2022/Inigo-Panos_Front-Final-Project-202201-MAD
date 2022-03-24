@@ -52,9 +52,10 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import { mapState, mapActions } from 'vuex';
 
-export default {
+export default defineComponent({
   name: 'register-form',
   data() {
     return {
@@ -73,7 +74,7 @@ export default {
   methods: {
     ...mapActions('ruins', ['createNewRuin']),
     handleSubmit() {
-      this.submitted = true;
+      // this.submitted = true;
       console.log(this.ruin, ' creado en CreateRuin');
 
       if (
@@ -87,5 +88,5 @@ export default {
       }
     },
   },
-};
+});
 </script>

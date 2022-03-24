@@ -29,7 +29,6 @@ const actions = {
         commit('createNewRuinSuccess', ruinData);
         router.push('/ruins');
         setTimeout(() => {
-          // display success message after route change completes
           dispatch('alert/success', 'Ruin creation successful', { root: true });
         });
       },

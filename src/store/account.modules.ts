@@ -104,15 +104,15 @@ const mutations = {
     state.status = {};
     state.user = null;
   },
-  registerRequest(state: any, user: any) {
+  registerRequest(state: any) {
     console.log(state.status);
     state.status = { registering: true };
   },
-  registerSuccess(state: any, user: any) {
+  registerSuccess(state: any) {
     console.log(state.status);
     state.status = {};
   },
-  registerFailure(state: any, user: any) {
+  registerFailure(state: any) {
     console.log(state.status);
     state.status = {};
   },

@@ -14,9 +14,10 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 
-export default {
+export default defineComponent({
   name: 'ruins-list',
 
   data() {
@@ -37,5 +38,5 @@ export default {
   methods: {
     ...mapActions('ruins', ['getAllRuins']),
   },
-};
+});
 </script>

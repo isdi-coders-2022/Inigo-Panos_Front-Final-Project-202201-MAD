@@ -16,9 +16,10 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 
-export default {
+export default defineComponent({
   name: 'user-data',
 
   data() {
@@ -53,5 +54,5 @@ export default {
       this.logout();
     },
   },
-};
+});
 </script>
