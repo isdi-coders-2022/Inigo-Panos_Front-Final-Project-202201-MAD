@@ -54,15 +54,13 @@ export default defineComponent({
   computed: {
     ...mapState('account', ['status']),
   },
-  mounted() {
-    // reset login status
-    this.logout();
-    const id = localStorage.getItem('id');
-    localStorage.setItem('id', '');
-    this.$emit('reset-id-event', id);
+  // mounted() {
+  //   const id = localStorage.getItem('id');
+  //   localStorage.setItem('id', '');
+  //   this.$emit('reset-id-event', id);
 
-    console.log('Se llama a logout', id, ' y queda este id');
-  },
+  //   console.log('Se llama a logout', id, ' y queda este id');
+  // },
   methods: {
     ...mapActions('account', ['login', 'logout']),
     handleSubmit() {

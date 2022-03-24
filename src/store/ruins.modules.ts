@@ -85,13 +85,25 @@ const actions = {
       (listOfRuinsData: any) => {
         commit('deleteRuinSuccess', listOfRuinsData);
         router.push('/ruins');
-        dispatch('alert/success', 'Ruin creation successful', { root: true });
+        dispatch('alert/success', 'Ruin deletion successful', { root: true });
       },
       (error) => {
         commit('createNewRuinFailure', error);
         dispatch('alert/error', error, { root: true });
       },
     );
+  },
+
+  addRuinToFavorites({ dispatch, commit }: { dispatch: any; commit: any }, id: string) {
+    ruinsServices.addToFavoritesToggle(id).then((listOfRuinsData: any) => {
+      console.log('Se ha añadido/quitado de favoritos con éxito!');
+    });
+  },
+
+  addRuinToVisited({ dispatch, commit }: { dispatch: any; commit: any }, id: string) {
+    ruinsServices.addToVisitedToggle(id).then((listOfRuinsData: any) => {
+      console.log('Se ha añadido/quitado de visitados con éxito!');
+    });
   },
 };
 
@@ -115,9 +127,6 @@ const mutations = {
   deleteRuinSuccess(state: any, listOfRuinsData: any) {
     console.log(listOfRuinsData, ' listOfRuinsData tras borrar');
     state.allRuinsData = [];
-
-    router.push('/ruins');
-
     console.log(state.allRuinsData, ' ruinas después de borrar una');
   },
 

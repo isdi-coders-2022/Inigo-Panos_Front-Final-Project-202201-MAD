@@ -9,6 +9,8 @@ export const ruinsServices = {
   getRuinDetails,
   deleteRuin,
   updateRuin,
+  addToFavoritesToggle,
+  addToVisitedToggle,
 };
 
 function getToken() {
@@ -18,6 +20,21 @@ function getToken() {
 function updateRuin(payload: any) {
   console.log(payload, ' Payload recibido en updateRuin, servicio de ruinas');
   return axios.patch(`${RUINS_API}/${payload.idRuina}`, payload.ruin, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  });
+}
+
+function addToFavoritesToggle(id: string) {
+  return axios.patch(`${RUINS_API}/${id}/user/favorites`, id, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  });
+}
+function addToVisitedToggle(id: string) {
+  return axios.patch(`${RUINS_API}/${id}/user/visited`, id, {
     headers: {
       Authorization: `Bearer ${getToken()}`,
     },

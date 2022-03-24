@@ -12,6 +12,9 @@
       <li>Score: {{ ruinDetails.score }}</li>
     </ul>
 
+    <div>| <button v-on:click="ruinFavorites()">❤</button> |</div>
+    <div>| <button v-on:click="ruinVisited()">📍</button> |</div>
+
     <div v-if="isAdmin">
       <button v-on:click="deleteRuinById()">🗑</button>
       |
@@ -47,15 +50,31 @@ export default defineComponent({
 
   computed: {
     ...mapGetters('ruins', ['ruinDetails']),
-    ...mapGetters('account', ['userData']),
+    ...mapGetters('account', ['userData', 'userInfo']),
   },
   methods: {
-    ...mapActions('ruins', ['getRuinDetails', 'deleteRuin', 'updateRuin']),
+    ...mapActions('ruins', [
+      'getRuinDetails',
+      'deleteRuin',
+      'updateRuin',
+      'addRuinToFavorites',
+      'addRuinToVisited',
+    ]),
 
     deleteRuinById() {
       console.log(1, this.idRuina);
       this.deleteRuin(this.idRuina);
       console.log('Se ha llamado a la acción borrar Ruina');
+    },
+
+    ruinFavorites() {
+      this.addRuinToFavorites(this.idRuina);
+      console.log('Se llama a favoritos');
+    },
+
+    ruinVisited() {
+      this.addRuinToVisited(this.idRuina);
+      console.log('Se llama a visitados');
     },
   },
 

@@ -18,12 +18,13 @@
 
       <div class="form-group">
         <li>Localización: {{ ruinDetails.location }}</li>
+
         <label for="location">
           <input
             type="location"
             v-model="ruinDetails.location"
             name="location"
-            placeholder="{{ ruinDetails.location }}"
+            placeholder="`${{ ruinDetails.location }}`"
         /></label>
       </div>
 
@@ -87,7 +88,6 @@ export default defineComponent({
           location: '',
           description: '',
           images: [],
-
           score: 5,
         },
         idRuina: '',
