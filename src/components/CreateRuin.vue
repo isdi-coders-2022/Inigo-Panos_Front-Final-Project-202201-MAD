@@ -1,13 +1,13 @@
 <template>
   <div>
     <h2>Añada una nueva localización</h2>
-    <p>{{ this.userData }}</p>
+    <!-- <p>{{ this.userData }}</p> -->
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
         <label for="name">
           <input type="text" id="name" v-model="ruin.name" name="name" placeholder="Nombre" />
         </label>
-        <div v-show="submitted && !name" class="invalid-feedback">
+        <div v-show="submitted && !ruin.name" class="invalid-feedback">
           Es necesario que introduzca un nombre
         </div>
       </div>
@@ -16,7 +16,7 @@
         <label for="location">
           <input type="location" v-model="ruin.location" name="location" placeholder="Localización"
         /></label>
-        <div v-show="submitted && !password" class="invalid-feedback">
+        <div v-show="submitted && !ruin.location" class="invalid-feedback">
           Es necesario que introduzca una localización
         </div>
       </div>
@@ -29,7 +29,7 @@
             name="description"
             placeholder="Descripción"
         /></label>
-        <div v-show="submitted && !password" class="invalid-feedback">
+        <div v-show="submitted && !ruin.description" class="invalid-feedback">
           Es necesario que introduzca una descripción
         </div>
       </div>
@@ -43,7 +43,7 @@
             name="images"
             placeholder="Imágenes"
         /></label>
-        <div v-show="submitted && !password" class="invalid-feedback">
+        <div v-show="submitted && !ruin.images" class="invalid-feedback">
           Es necesario que introduzca al menos una imagen
         </div>
       </div>
@@ -61,9 +61,9 @@
 import { defineComponent } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 import { useRoute } from 'vue-router';
+
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { v4 as uuid } from 'uuid';
-
 import { storage } from '@/firebase';
 
 export default defineComponent({
@@ -71,13 +71,10 @@ export default defineComponent({
   data() {
     return {
       ruin: {
-        id: '',
         name: '',
         location: '',
         description: '',
         images: '',
-        comments: [],
-        score: 0,
       },
       isAdmin: false,
       id: '',
@@ -99,26 +96,30 @@ export default defineComponent({
 
     handleSubmit() {
       this.submitted = true;
-      console.log(this.ruin, ' creado en CreateRuin');
-
-      if (
-        (this.ruin.name && this.ruin.location && this.ruin.description && this.ruin.images) !==
-        undefined
-      ) {
-        this.createNewRuin(this.ruin);
-        console.log('Se llama a createNewRuin desde el componente CreateRuin.vue');
-      } else {
-        console.log(`Algún campo no está rellenado`);
-      }
 
       const newRef = ref(storage, uuid() + this.fileToUpload.fileName);
+      console.log(newRef, ' creado en CreateRuin');
 
       uploadBytes(newRef, this.fileToUpload as any).then(() => {
         getDownloadURL(newRef).then((url: string) => {
+          console.log(url, 'URL DE CREATERUIN');
           this.ruin.images = url as string;
+          console.log(this.ruin.images, 'IMAGEN YA HECHA URL');
           this.createNewRuin(this.ruin);
         });
       });
+
+      // if (
+      //   (this.ruin.name && this.ruin.location && this.ruin.description && this.ruin.images) !==
+      //   undefined
+      // ) {
+      //   console.log(
+      //     this.ruin.images,
+      //     'Se llama a createNewRuin desde el componente CreateRuin.vue',
+      //   );
+      // } else {
+      //   console.log(`Algún campo no está rellenado`);
+      // }
     },
     handleImageChange(e: any) {
       // eslint-disable-next-line prefer-destructuring
@@ -128,9 +129,6 @@ export default defineComponent({
 
   mounted() {
     console.log(this.userData, 'info de USUARIO EN CREATERUIN');
-    // if (this.userData.isAdmin) {
-    //   this.isAdmin = true;
-    // }
 
     const route = useRoute();
     const { id } = route.params;

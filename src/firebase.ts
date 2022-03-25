@@ -6,12 +6,12 @@ import { getStorage } from 'firebase/storage';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyCjgNMK9TTE2_hK6uH1AVyd15E1ImSUfD8',
-  authDomain: 'proyecto-final-inigo.firebaseapp.com',
-  projectId: 'proyecto-final-inigo',
-  storageBucket: 'proyecto-final-inigo.appspot.com',
-  messagingSenderId: '529349306435',
-  appId: '1:529349306435:web:3a9633a728618820850cf6',
+  apiKey: 'AIzaSyAnZlIWgawcJ8juNfK3PEd6JllC4yXV8ew',
+  authDomain: 'inig-panos-pfinal.firebaseapp.com',
+  projectId: 'inig-panos-pfinal',
+  storageBucket: 'inig-panos-pfinal.appspot.com',
+  messagingSenderId: '144201555286',
+  appId: '1:144201555286:web:2fc3d675b229774de88af7',
 };
 
 // Initialize Firebase
