@@ -94,19 +94,6 @@ const actions = {
     );
   },
 
-  addCommentToRuin({ dispatch, commit }: { dispatch: any; commit: any }, payload: any) {
-    ruinsServices.newCommentOnRuin(payload).then(
-      (ruinData: any) => {
-        commit('createNewRuinSuccess', ruinData);
-        dispatch('alert/success', 'Ruin creation successful', { root: true });
-      },
-      (error) => {
-        commit('createNewRuinFailure', error);
-        dispatch('alert/error', error, { root: true });
-      },
-    );
-  },
-
   addRuinToFavorites({ dispatch, commit }: { dispatch: any; commit: any }, id: string) {
     ruinsServices.addToFavoritesToggle(id).then(
       (ruinData: any) => {
@@ -128,6 +115,19 @@ const actions = {
       (error) => {
         dispatch('alert/error', error, { root: true });
         console.log('Se ha añadido/quitado de visitados con éxito!');
+      },
+    );
+  },
+
+  addCommentToRuin({ dispatch, commit }: { dispatch: any; commit: any }, payload: any) {
+    ruinsServices.newCommentOnRuin(payload).then(
+      (ruinDetails: any) => {
+        commit('addCommentToRuinSuccess', ruinDetails);
+        dispatch('alert/success', 'Ruin creation successful', { root: true });
+      },
+      (error) => {
+        commit('createNewRuinFailure', error);
+        dispatch('alert/error', error, { root: true });
       },
     );
   },
@@ -157,6 +157,12 @@ const mutations = {
 
   removedCommentFromRuinSuccess(state: any, ruinData: any) {
     console.log('Se ha borrado el comentario de forma exitosa');
+  },
+
+  addCommentToRuinSuccess(state: any, ruinDetails: any) {
+    console.log('Se ha añadido el comentario de forma exitosa', ruinDetails);
+    console.log('Datos de la ruina, ', ruinDetails.data.response);
+    state.ruin = ruinDetails.data.response;
   },
 
   getAllRuinsSucess(state: any, listOfRuinsData: any) {

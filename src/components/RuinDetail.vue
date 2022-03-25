@@ -3,25 +3,27 @@
     <h1>Detalles de la ruina</h1>
   </div>
   <main>
-    <ul v-if="ruinDetails">
-      <li>Nombre: {{ ruinDetails.name }}</li>
-      <li>Localización: {{ ruinDetails.location }}</li>
-      <li>Imágenes: {{ ruinDetails.images }}</li>
-      <li>Descripción: {{ ruinDetails.description }}</li>
-      Comentarios:
-      <ul>
-        <div v-for="comment in ruinDetails.comments" :key="comment.text">
-          <li>
-            {{ comment.text }}
-          </li>
-          |
-          <div v-if="isAdmin && comment.author_id._id === userInfo.userId">
-            <button v-on:click="deleteRuinComment(comment._id)">🗑</button>
+    <ul v-if="ruinInfo">
+      <li>Nombre: {{ ruinInfo.name }}</li>
+      <li>Localización: {{ ruinInfo.location }}</li>
+      <li>Imágenes: {{ ruinInfo.images }}</li>
+      <li>Descripción: {{ ruinInfo.description }}</li>
+      <template v-if="ruinDetails">
+        Comentarios:
+        <ul>
+          <div v-for="comment in ruinDetails.comments" :key="comment.text">
+            <li>
+              {{ comment.text }}
+            </li>
+            |
+            <div v-if="isAdmin && comment.author_id._id === userInfo.userId">
+              <button v-on:click="deleteRuinComment(comment._id)">🗑</button>
+            </div>
           </div>
-        </div>
-      </ul>
+        </ul>
+      </template>
 
-      <li>Score: {{ ruinDetails.score }}</li>
+      <li>Score: {{ ruinInfo.score }}</li>
     </ul>
 
     <form @submit.prevent="handleSubmit">
@@ -56,22 +58,24 @@ export default defineComponent({
 
   data() {
     return {
-      id: '',
-      name: '',
-      location: '',
-      description: '',
-      images: '',
-      score: '',
-      comments: [],
-      isAdmin: false,
-      isAuthor: false,
-      idRuina: '',
+      ruinInfo: {
+        _id: '',
+        name: '',
+        location: '',
+        description: '',
+        images: '',
+        score: '',
+        comments: [],
+        isAdmin: false,
+        isAuthor: false,
+        idRuina: '',
+      },
       newComment: '',
     };
   },
 
   computed: {
-    ...mapGetters('ruins', ['ruinDetails']),
+    ...mapGetters('ruins', ['ruinDetails', 'listOfRuinsData']),
     ...mapGetters('account', ['userData', 'userInfo']),
   },
   methods: {
@@ -84,20 +88,21 @@ export default defineComponent({
       'addCommentToRuin',
       'deleteCommentFromRuin',
     ]),
+    ...mapActions('account', ['getUserData']),
 
     deleteRuinById() {
-      console.log(this.idRuina);
-      this.deleteRuin(this.idRuina);
+      console.log(this.ruinInfo.idRuina);
+      this.deleteRuin(this.ruinInfo.idRuina);
       console.log('Se ha llamado a la acción borrar Ruina');
     },
 
     ruinFavorites() {
-      this.addRuinToFavorites(this.idRuina);
+      this.addRuinToFavorites(this.ruinInfo.idRuina);
       console.log('Se llama a favoritos');
     },
 
     ruinVisited() {
-      this.addRuinToVisited(this.idRuina);
+      this.addRuinToVisited(this.ruinInfo.idRuina);
       console.log('Se llama a visitados');
     },
 
@@ -105,40 +110,48 @@ export default defineComponent({
       console.log(id, ' id del comentario a borrar');
 
       const payloadComment = {
-        ruinId: this.idRuina,
+        ruinId: this.ruinInfo.idRuina,
         commentId: id,
       };
 
       this.deleteCommentFromRuin(payloadComment);
       console.log('Se ha pasado: ', payloadComment);
       this.$router.go(0);
+      console.log(this.userInfo, 'this.userInfo en ruinDetails');
     },
 
     handleSubmit() {
-      console.log(this.userInfo, 'this.userInfo en ruinDetails');
+      // console.log(this.userInfo, 'this.userInfo en ruinDetails');
 
       const payload = {
         author_id: this.userInfo.userId,
-        ruin_id: this.idRuina,
+        // eslint-disable-next-line no-underscore-dangle
+        ruin_id: this.ruinInfo._id,
         text: this.newComment,
       };
+      console.log(this.userInfo.userId);
       console.log(payload, 'PAYLOAD');
       this.addCommentToRuin(payload);
-      this.$router.go(0);
+
+      // this.$router.go(0);
     },
   },
 
   mounted() {
     const route = useRoute();
     const { id } = route.params;
-    this.idRuina = id as string;
+    // this.idRuina = id as string;
+    this.getRuinDetails(id);
 
-    console.log(this.userData, 'data de USUARIO EN RUIN DETAILS');
+    // eslint-disable-next-line no-underscore-dangle
+    const foundRuin = this.listOfRuinsData.find((e: any) => e._id === id);
+    this.ruinInfo = foundRuin;
+
+    console.log(this.userData, 'userData de USUARIO EN RUIN DETAILS');
     if (this.userData?.isAdmin) {
-      this.isAdmin = true;
+      this.ruinInfo.isAdmin = true;
     }
 
-    this.getRuinDetails(id);
     // console.log('Se ha llamado a getRuinDetails con la id: ', id);
   },
 });

@@ -32,7 +32,7 @@ function newCommentOnRuin(payload: any) {
   console.log(payload, ' Payload recibido en addComment, servicio de ruinas');
   // const text = payload.comentario;
   // console.log(text);
-  return axios.post(`${RUINS_API}/${payload.ruinId}/comment`, payload, {
+  return axios.patch(`${RUINS_API}/${payload.ruinId}/comment`, payload, {
     headers: {
       Authorization: `Bearer ${getToken()}`,
     },

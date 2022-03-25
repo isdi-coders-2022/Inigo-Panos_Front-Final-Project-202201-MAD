@@ -15,6 +15,7 @@ const actions = {
         localStorage.setItem('id', JSON.stringify(userData.data.userId));
         localStorage.setItem('token', userData.data.token);
         commit('loginSuccess', userData.data);
+        console.log('UserData tras hacer login', userData.data);
         router.push('/userData');
       },
       (error) => {
@@ -31,7 +32,6 @@ const actions = {
       (userData) => {
         commit('getUserSuccess', userData);
         console.log(userData, ' userData en accountModules');
-        router.push('/userData');
       },
 
       (error) => {
@@ -79,7 +79,11 @@ const mutations = {
       isAdmin: user.data.isAdmin,
     };
 
-    console.log(state.userInformation, ' datos de un usuario traídos de getUsers');
+    state.user.token = localStorage.getItem('token');
+    state.user.userId = localStorage.getItem('id');
+    state.user.userId = JSON.parse(state.user.userId);
+
+    console.log(state.userInformation, state.user, ' datos de un usuario traídos de getUsers');
   },
 
   loginSuccess(state: any, user: any) {

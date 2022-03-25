@@ -47,7 +47,6 @@ export default defineComponent({
       if (tokenUser) {
         tokenUser = JSON.parse(tokenUser);
       }
-
       this.getUserData(tokenUser);
     } else {
       this.userData = {};
