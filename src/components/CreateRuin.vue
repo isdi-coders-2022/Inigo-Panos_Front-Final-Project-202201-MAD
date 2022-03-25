@@ -35,7 +35,12 @@
 
       <div class="form-group">
         <label for="images">
-          <input type="images" v-model="ruin.images" name="images" placeholder="Imágenes"
+          <input
+            type="file"
+            accept="image/*"
+            @change="handleImageChange"
+            name="images"
+            placeholder="Imágenes"
         /></label>
         <div v-show="submitted && !password" class="invalid-feedback">
           Es necesario que introduzca al menos una imagen
@@ -55,6 +60,10 @@
 import { defineComponent } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 import { useRoute } from 'vue-router';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { v4 as uuid } from 'uuid';
+
+import { storage } from '@/firebase';
 
 export default defineComponent({
   name: 'register-form',
@@ -65,7 +74,7 @@ export default defineComponent({
         name: '',
         location: '',
         description: '',
-        images: [],
+        images: '',
         comments: [],
         score: 0,
       },
@@ -73,6 +82,9 @@ export default defineComponent({
       id: '',
       idRuina: '',
       submitted: false,
+      fileToUpload: {
+        fileName: '',
+      },
     };
   },
 
@@ -92,6 +104,19 @@ export default defineComponent({
       } else {
         console.log(`Algún campo no está rellenado`);
       }
+
+      const newRef = ref(storage, uuid() + this.fileToUpload.fileName);
+
+      uploadBytes(newRef, this.fileToUpload as any).then(() => {
+        getDownloadURL(newRef).then((url: string) => {
+          this.ruin.images = url as string;
+          this.createNewRuin(this.ruin);
+        });
+      });
+    },
+    handleImageChange(e: any) {
+      // eslint-disable-next-line prefer-destructuring
+      this.fileToUpload = e.target.files[0];
     },
   },
 
