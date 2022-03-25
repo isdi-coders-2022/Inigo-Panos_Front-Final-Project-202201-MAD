@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Añada una nueva localización</h2>
+    <p>{{ this.userData }}</p>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
         <label for="name">
@@ -88,6 +89,11 @@ export default defineComponent({
     };
   },
 
+  computed: {
+    ...mapGetters('ruins', ['ruinDetails']),
+    ...mapGetters('account', ['userData', 'userInformation']),
+  },
+
   methods: {
     ...mapActions('ruins', ['createNewRuin']),
 
@@ -120,21 +126,15 @@ export default defineComponent({
     },
   },
 
-  computed: {
-    ...mapGetters('ruins', ['ruinDetails']),
-    ...mapGetters('account', ['userData']),
-  },
-
   mounted() {
-    if (this.userData.isAdmin) {
-      this.isAdmin = true;
-    }
+    console.log(this.userData, 'info de USUARIO EN CREATERUIN');
+    // if (this.userData.isAdmin) {
+    //   this.isAdmin = true;
+    // }
 
     const route = useRoute();
     const { id } = route.params;
     this.idRuina = id as string;
-
-    console.log(this.userData, 'info de USUARIO EN RUIN DETAILS');
   },
 });
 </script>

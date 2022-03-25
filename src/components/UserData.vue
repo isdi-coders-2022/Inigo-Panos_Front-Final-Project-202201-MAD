@@ -6,13 +6,13 @@
     <h4>Bienvenido, user</h4>
 
     <ul v-if="userData">
-      <li>Nombre: {{ userData.userName }}</li>
-      <li>Favoritos: {{ userData.favorites }}</li>
-      <li>Visitados: {{ userData.visited }}</li>
+      <li>Nombre: {{ userData.userFound.userName }}</li>
+      <li>Favoritos: {{ userData.userFound.favorites }}</li>
+      <li>Visitados: {{ userData.userFound.visited }}</li>
       <p>Comentarios:</p>
       <ul>
         <!-- <li>Comentarios: {{ userData.comments }}</li> -->
-        <li v-for="comment in userData.comments" :key="comment.text">
+        <li v-for="comment in userData.userFound.comments" :key="comment.text">
           {{ comment.text }}
         </li>
       </ul>
@@ -41,19 +41,21 @@ export default defineComponent({
     ...mapGetters('account', ['userInfo', 'userData']),
   },
 
-  // mounted() {
-  //   if (localStorage.getItem('token') !== undefined) {
-  //     let tokenUser = localStorage.getItem('token');
-  //     if (tokenUser) {
-  //       tokenUser = JSON.parse(tokenUser);
-  //     }
-  //     console.log(tokenUser, ' TOKEN USER si existe en UsreData');
-  //     this.getUserData(tokenUser);
-  //   } else {
-  //     this.userData = {};
-  //     console.log('Después del logout', this.userData);
-  //   }
-  // },
+  mounted() {
+    console.log('MOUNTTTTTTTTTTTTTING');
+    // if (localStorage.getItem('token') !== undefined) {
+    // const tokenUser = localStorage.getItem('token');
+    //   if (tokenUser) {
+    //     tokenUser = JSON.parse(tokenUser);
+    //   }
+    //   console.log(tokenUser, ' TOKEN USER si existe en UsreData');
+    // this.getUserData(tokenUser);
+    // }
+    // } else {
+    //   this.userData = {};
+    //   console.log('Después del logout', this.userData);
+    // }
+  },
   methods: {
     ...mapActions('account', ['getUserData', 'logout']),
 

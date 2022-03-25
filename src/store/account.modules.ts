@@ -26,12 +26,12 @@ const actions = {
   },
 
   loginWithToken({ dispatch, commit }: { dispatch: any; commit: any }, token: any) {
-    console.log(token, ' token enviado desde loginWithToken');
+    // console.log(token, ' token enviado desde loginWithToken');
     usersService.loginUsingToken(token).then(
       (userData) => {
-        console.log(userData, ' USERDATA de loginWithToken');
+        // console.log(userData, ' USERDATA de loginWithToken');
         commit('loginSuccess', userData.data);
-        console.log('UserData tras hacer login', userData.data);
+        // console.log('UserData tras hacer login', userData.data);
       },
       (error) => {
         commit('loginFailureToken', error);
@@ -106,14 +106,13 @@ const mutations = {
 
   loginSuccess(state: any, user: any) {
     state.status = { loggedIn: true };
-    console.log(user, ' user');
     state.userInformation = user;
 
-    state.user.token = localStorage.getItem('token');
-    state.user.userId = localStorage.getItem('id');
-    state.user.userId = JSON.parse(state.user.userId);
+    console.log(state.userInformation, ' estado del usuario ya logeado');
 
-    console.log(state.user, ' estado del usuario ya logeado');
+    // state.user.token = localStorage.getItem('token');
+    // state.user.userId = localStorage.getItem('id');
+    // state.user.userId = JSON.parse(state.user.userId);
   },
 
   loginRequest(state: any, user: any) {

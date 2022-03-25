@@ -28,14 +28,8 @@ export default {
   },
 
   mounted() {
-    console.log('App llamando a tierra');
     if (localStorage.getItem('token')) {
       const tokenUser = localStorage.getItem('token');
-      console.log('TOKEN USER COGIDO EN APP', tokenUser);
-
-      // tokenUser = JSON.parse(tokenUser);
-
-      console.log('Llamado en App.vue');
       this.loginWithToken(tokenUser);
     }
   },
@@ -43,12 +37,6 @@ export default {
   methods: {
     ...mapActions('account', ['loginWithToken']),
   },
-  // methods() {
-  //   let idUser = localStorage.getItem('id');
-  //   console.log(idUser, ' id del usuario en local storage');
-  //   idUser = JSON.parse(idUser);
-  //   console.log(idUser, ' en App.vue para ocultar detalles del usuario');
-  // },
 };
 </script>
 

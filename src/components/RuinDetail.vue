@@ -3,6 +3,7 @@
     <h1>Detalles de la ruina</h1>
   </div>
   <main>
+    <p>{{ this.userData?.isAdmin }}</p>
     <ul v-if="ruinInfo">
       <li>Nombre: {{ ruinInfo.name }}</li>
       <li>Localización: {{ ruinInfo.location }}</li>
@@ -16,7 +17,7 @@
               {{ comment.text }}
             </li>
             |
-            <div v-if="isAdmin && comment.author_id._id === userInfo.userId">
+            <div v-if="this.userData?.isAdmin && comment.author_id._id === userData._id">
               <button v-on:click="deleteRuinComment(comment._id)">🗑</button>
             </div>
           </div>
@@ -38,7 +39,8 @@
     <div>| <button v-on:click="ruinFavorites()">❤</button> |</div>
     <div>| <button v-on:click="ruinVisited()">📍</button> |</div>
 
-    <div v-if="isAdmin">
+    <div v-if="this.userData.isAdmin">
+      <p>Soy admin</p>
       <button v-on:click="deleteRuinById()">🗑</button>
       |
       <router-link :to="`/ruinUpdate/${this.idRuina}`">
@@ -121,8 +123,6 @@ export default defineComponent({
     },
 
     handleSubmit() {
-      // console.log(this.userInfo, 'this.userInfo en ruinDetails');
-
       const payload = {
         author_id: this.userInfo.userId,
         // eslint-disable-next-line no-underscore-dangle
@@ -132,27 +132,25 @@ export default defineComponent({
       console.log(this.userInfo.userId);
       console.log(payload, 'PAYLOAD');
       this.addCommentToRuin(payload);
-
-      // this.$router.go(0);
     },
   },
 
   mounted() {
     const route = useRoute();
     const { id } = route.params;
-    // this.idRuina = id as string;
     this.getRuinDetails(id);
-
+    console.log('Se ha llamado a getRuinDetails con la id: ', id);
     // eslint-disable-next-line no-underscore-dangle
     const foundRuin = this.listOfRuinsData.find((e: any) => e._id === id);
     this.ruinInfo = foundRuin;
+    // if (this.ruinDetails) {
+    //   foundRuin = this.ruinDetails;
+    //   console.log(this.ruinDetails, ' info de ruina en RuinDetail');
+    // } else {
+    //   foundRuin = this.listOfRuinsData.find((e: any) => e._id === id);
+    // }
 
-    console.log(this.userData, 'userData de USUARIO EN RUIN DETAILS');
-    if (this.userData?.isAdmin) {
-      this.ruinInfo.isAdmin = true;
-    }
-
-    // console.log('Se ha llamado a getRuinDetails con la id: ', id);
+    // console.log(this.userData, 'userData de USUARIO EN RUIN DETAILS');
   },
 });
 </script>
