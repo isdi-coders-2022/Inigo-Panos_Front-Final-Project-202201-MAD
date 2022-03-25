@@ -95,14 +95,9 @@ const actions = {
   },
 
   addCommentToRuin({ dispatch, commit }: { dispatch: any; commit: any }, payload: any) {
-    console.log('Ruina llegada a createNewRuin en ruins.modules: ', payload);
-    // commit('createNewRuinRequest', ruin);
-    console.log(payload, 'DESPUÉS DEL COMMIT');
-
     ruinsServices.newCommentOnRuin(payload).then(
       (ruinData: any) => {
         commit('createNewRuinSuccess', ruinData);
-        router.push('/ruins');
         dispatch('alert/success', 'Ruin creation successful', { root: true });
       },
       (error) => {
@@ -136,6 +131,19 @@ const actions = {
       },
     );
   },
+
+  deleteCommentFromRuin({ dispatch, commit }: { dispatch: any; commit: any }, payload: any) {
+    ruinsServices.deleteComment(payload).then(
+      (ruinData: any) => {
+        commit('removedCommentFromRuinSuccess', ruinData);
+        console.log('Se ha borrado el comentario con éxito!');
+      },
+      (error) => {
+        dispatch('alert/error', error, { root: true });
+        console.log('Se ha añadido/quitado de visitados con éxito!');
+      },
+    );
+  },
 };
 
 const mutations = {
@@ -145,6 +153,10 @@ const mutations = {
 
   addRuinToVisitedSuccess(state: any, ruinData: any) {
     console.log('Se ha modificado el visitado de forma exitosa');
+  },
+
+  removedCommentFromRuinSuccess(state: any, ruinData: any) {
+    console.log('Se ha borrado el comentario de forma exitosa');
   },
 
   getAllRuinsSucess(state: any, listOfRuinsData: any) {

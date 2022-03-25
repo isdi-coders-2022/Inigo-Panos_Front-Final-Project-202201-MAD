@@ -9,7 +9,13 @@
       <li>Nombre: {{ userData.userName }}</li>
       <li>Favoritos: {{ userData.favorites }}</li>
       <li>Visitados: {{ userData.visited }}</li>
-      <li>Comentarios: {{ userData.comments }}</li>
+      <p>Comentarios:</p>
+      <ul>
+        <!-- <li>Comentarios: {{ userData.comments }}</li> -->
+        <li v-for="comment in userData.comments" :key="comment.text">
+          {{ comment.text }}
+        </li>
+      </ul>
     </ul>
     <router-link @click="this.resetStorage()" to="/login" class="btn btn-link">Logout</router-link>
   </main>

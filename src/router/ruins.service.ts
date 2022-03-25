@@ -12,6 +12,7 @@ export const ruinsServices = {
   addToFavoritesToggle,
   addToVisitedToggle,
   newCommentOnRuin,
+  deleteComment,
 };
 
 function getToken() {
@@ -32,6 +33,15 @@ function newCommentOnRuin(payload: any) {
   // const text = payload.comentario;
   // console.log(text);
   return axios.post(`${RUINS_API}/${payload.ruinId}/comment`, payload, {
+    headers: {
+      Authorization: `Bearer ${getToken()}`,
+    },
+  });
+}
+
+function deleteComment(payload: any) {
+  console.log('Payload en deleteComment: ', payload);
+  return axios.delete(`${RUINS_API}/${payload.ruinId}/comment/${payload.commentId}`, {
     headers: {
       Authorization: `Bearer ${getToken()}`,
     },
