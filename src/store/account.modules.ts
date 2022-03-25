@@ -25,9 +25,22 @@ const actions = {
     );
   },
 
-  getUserData({ dispatch, commit }: { dispatch: any; commit: any }, id: any) {
-    console.log('Se llama getUserData');
+  loginWithToken({ dispatch, commit }: { dispatch: any; commit: any }, token: any) {
+    console.log(token, ' token enviado desde loginWithToken');
+    usersService.loginUsingToken(token).then(
+      (userData) => {
+        console.log(userData, ' USERDATA de loginWithToken');
+        commit('loginSuccess', userData.data);
+        console.log('UserData tras hacer login', userData.data);
+      },
+      (error) => {
+        commit('loginFailureToken', error);
+        dispatch('alert/error', error, { root: true });
+      },
+    );
+  },
 
+  getUserData({ dispatch, commit }: { dispatch: any; commit: any }, id: any) {
     usersService.getData(id).then(
       (userData) => {
         commit('getUserSuccess', userData);
@@ -83,14 +96,22 @@ const mutations = {
     state.user.userId = localStorage.getItem('id');
     state.user.userId = JSON.parse(state.user.userId);
 
-    console.log(state.userInformation, state.user, ' datos de un usuario traídos de getUsers');
+    console.log(
+      state.userInformation,
+      ' y ',
+      state.user,
+      ' datos de un usuario traídos de getUsers',
+    );
   },
 
   loginSuccess(state: any, user: any) {
     state.status = { loggedIn: true };
     console.log(user, ' user');
+    state.userInformation = user;
 
-    state.user = user;
+    state.user.token = localStorage.getItem('token');
+    state.user.userId = localStorage.getItem('id');
+    state.user.userId = JSON.parse(state.user.userId);
 
     console.log(state.user, ' estado del usuario ya logeado');
   },
@@ -103,6 +124,11 @@ const mutations = {
 
   loginFailure(state: any) {
     console.log(state.status, 'estado login failure');
+    state.status = {};
+    state.user = null;
+  },
+  loginFailureToken(state: any) {
+    console.log(state.status, 'estado login failure tras llamar con token');
     state.status = {};
     state.user = null;
   },

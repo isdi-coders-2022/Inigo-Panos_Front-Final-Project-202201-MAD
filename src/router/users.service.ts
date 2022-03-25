@@ -8,14 +8,14 @@ export const usersService = {
   logout,
   register,
   getData,
+  loginUsingToken,
 };
 
 // let token = localStorage.getItem('token');
 // token = token === null ? null : token;
 
-let tokenUser = localStorage.getItem('id');
-if (tokenUser) {
-  tokenUser = JSON.parse(tokenUser);
+function getToken() {
+  return localStorage.getItem('token');
 }
 
 function handleResponse(response: any) {
@@ -42,6 +42,19 @@ function register(user: UserRegisterI) {
 
 function login(user: UserLoginI) {
   return axios.post(`${USERS_API}/users/login`, user);
+}
+
+function loginUsingToken(token: any) {
+  console.log('Se llama a loginUsingToken con el token: ', token);
+  return axios.post(
+    `${USERS_API}/users/login/token`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    },
+  );
 }
 
 function logout() {

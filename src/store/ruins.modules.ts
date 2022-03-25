@@ -173,7 +173,7 @@ const mutations = {
       state.allRuinsData.push(e); // No funciona con el datainteface preguntar a Moi
     });
 
-    console.log(state.allRuinsData, ' datos de un usuario traídos de getUsers');
+    console.log(state.allRuinsData, ' datos de las ruinas');
   },
 
   getRuinDetailsSuccess(state: any, ruinDetails: any) {

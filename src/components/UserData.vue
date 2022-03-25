@@ -41,18 +41,19 @@ export default defineComponent({
     ...mapGetters('account', ['userInfo', 'userData']),
   },
 
-  mounted() {
-    if (localStorage.getItem('id') !== undefined) {
-      let tokenUser = localStorage.getItem('id');
-      if (tokenUser) {
-        tokenUser = JSON.parse(tokenUser);
-      }
-      this.getUserData(tokenUser);
-    } else {
-      this.userData = {};
-      console.log('Después del logout', this.userData);
-    }
-  },
+  // mounted() {
+  //   if (localStorage.getItem('token') !== undefined) {
+  //     let tokenUser = localStorage.getItem('token');
+  //     if (tokenUser) {
+  //       tokenUser = JSON.parse(tokenUser);
+  //     }
+  //     console.log(tokenUser, ' TOKEN USER si existe en UsreData');
+  //     this.getUserData(tokenUser);
+  //   } else {
+  //     this.userData = {};
+  //     console.log('Después del logout', this.userData);
+  //   }
+  // },
   methods: {
     ...mapActions('account', ['getUserData', 'logout']),
 
