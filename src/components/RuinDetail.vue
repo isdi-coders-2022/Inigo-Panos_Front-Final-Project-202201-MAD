@@ -14,21 +14,18 @@
       <template v-if="this.ruinDetails">
         Comentarios:
         <ul>
-          <div v-for="comment in ruinDetails.comments" :key="comment.text">
-            <!-- <p>{{ comment }}</p> -->
-            <li>
-              {{ comment?.text }}
-            </li>
-            |
+          <div v-for="comment in ruinDetails?.comments" :key="comment.text">
+            <li>Autor: {{ comment?.author_id?.userName }} Comentario: {{ comment?.text }}</li>
+            -- | --
 
             <!-- <p>{{ this.userData?.userFound?._id }} 1</p>
-            <p>{{ this.userData?.userFound?.isAdmin }} 2</p>
-            <p>{{ comment.author_id?._id }} 3</p> -->
+            <p>{{ this.userData?.userFound?.isAdmin }} 2</p> -->
+            <p>{{ comment?.author_id?._id }} 3</p>
 
             <div
               v-if="
                 this.userData?.userFound?.isAdmin &&
-                comment.author_id?._id === userData?.userFound?._id
+                comment?.author_id?._id === userData?.userFound?._id
               "
             >
               <button v-on:click="deleteRuinComment(comment?._id)">🗑</button>
@@ -132,7 +129,7 @@ export default defineComponent({
       this.deleteCommentFromRuin(payloadComment);
       console.log('MANDADO A BORRAR EL COMENTARIO', payloadComment);
 
-      // this.$router.go(0);
+      //  this.$router.go(0);
     },
 
     handleSubmit() {

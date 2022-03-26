@@ -12,6 +12,7 @@ const actions = {
 
     usersService.login(user).then(
       (userData) => {
+        console.log('USER DATA DE LOGIN NORMAL Y CORRIENTE', userData);
         localStorage.setItem('id', JSON.stringify(userData.data.userId));
         localStorage.setItem('token', userData.data.token);
         commit('loginSuccess', userData.data);
@@ -26,12 +27,10 @@ const actions = {
   },
 
   loginWithToken({ dispatch, commit }: { dispatch: any; commit: any }, token: any) {
-    // console.log(token, ' token enviado desde loginWithToken');
     usersService.loginUsingToken(token).then(
       (userData) => {
-        // console.log(userData, ' USERDATA de loginWithToken');
+        console.log('USER DATA DE LOGIN POR TOKEN Y <PUTO></PUTO>', userData);
         commit('loginSuccess', userData.data);
-        // console.log('UserData tras hacer login', userData.data);
       },
       (error) => {
         commit('loginFailureToken', error);

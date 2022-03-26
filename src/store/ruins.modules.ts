@@ -68,6 +68,8 @@ const actions = {
       (listOfRuinsData: any) => {
         commit('modifyRuinSuccess', listOfRuinsData);
         router.push('/ruins');
+        location.reload();
+
         // dispatch('alert/success', 'Ruin modification successful', { root: true });
       },
       (error) => {
@@ -121,7 +123,8 @@ const actions = {
     ruinsServices.newCommentOnRuin(payload).then(
       (ruinDetails: any) => {
         commit('addCommentToRuinSuccess', ruinDetails);
-        dispatch('alert/success', 'Ruin creation successful', { root: true });
+        dispatch('alert/success', 'Comment creation successful', { root: true });
+        // location.reload();
       },
       (error) => {
         commit('createNewRuinFailure', error);
@@ -132,13 +135,15 @@ const actions = {
 
   deleteCommentFromRuin({ dispatch, commit }: { dispatch: any; commit: any }, payload: any) {
     ruinsServices.deleteComment(payload).then(
-      (ruinData: any) => {
-        commit('removedCommentFromRuinSuccess', ruinData);
+      (ruinDetails: any) => {
+        commit('removedCommentFromRuinSuccess', ruinDetails);
+        dispatch('alert/success', 'Comment deletion successful', { root: true });
         console.log('Se ha borrado el comentario con éxito!');
+        // location.reload();
       },
       (error) => {
+        commit('createNewRuinFailure', error);
         dispatch('alert/error', error, { root: true });
-        console.log('Se ha añadido/quitado de visitados con éxito!');
       },
     );
   },
@@ -153,14 +158,16 @@ const mutations = {
     console.log('Se ha modificado el visitado de forma exitosa');
   },
 
-  removedCommentFromRuinSuccess(state: any, ruinData: any) {
+  removedCommentFromRuinSuccess(state: any, ruinDetails: any) {
     console.log('Se ha borrado el comentario de forma exitosa');
+    state.ruin = ruinDetails.data.response;
   },
 
   addCommentToRuinSuccess(state: any, ruinDetails: any) {
-    console.log('Se ha añadido el comentario de forma exitosa', ruinDetails);
-    console.log('Datos de la ruina, ', ruinDetails.data.response);
+    console.log('Se ha añadido el comentario de forma exitosa');
+
     state.ruin = ruinDetails.data.response;
+    console.log('Datos de la ruina, ', state.ruin);
   },
 
   getAllRuinsSucess(state: any, listOfRuinsData: any) {
