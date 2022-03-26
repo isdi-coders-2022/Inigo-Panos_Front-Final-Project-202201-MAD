@@ -1,6 +1,0 @@
-projectKey=Proyecto-Final-Inigo-Front
-serverUrl=http://localhost:5000
-serverVersion=9.2.4.50792
-dashboardUrl=http://localhost:5000/dashboard?id=Proyecto-Final-Inigo-Front
-ceTaskId=AX_B_H_cGUayNzj-alUc
-ceTaskUrl=http://localhost:5000/api/ce/task?id=AX_B_H_cGUayNzj-alUc

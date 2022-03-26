@@ -1,0 +1,37 @@
+SonarQube plugins:
+  - Python Code Quality and Security 3.8.0.8883 (python)
+  - Go Code Quality and Security 1.8.3.2219 (go)
+  - JaCoCo 1.1.1.1157 (jacoco)
+  - Kotlin Code Quality and Security 2.7.0.948 (kotlin)
+  - IaC Code Quality and Security 1.4.0.1294 (iac)
+  - JavaScript/TypeScript Code Quality and Security 8.6.0.16913 (javascript)
+  - Ruby Code Quality and Security 1.8.3.2219 (ruby)
+  - Scala Code Quality and Security 1.8.3.2219 (sonarscala)
+  - C# Code Quality and Security 8.32.0.39516 (csharp)
+  - Java Code Quality and Security 7.5.0.28054 (java)
+  - HTML Code Quality and Security 3.4.0.2754 (web)
+  - Flex Code Quality and Security 2.6.2.2641 (flex)
+  - XML Code Quality and Security 2.4.0.3273 (xml)
+  - PHP Code Quality and Security 3.21.2.8292 (php)
+  - VB.NET Code Quality and Security 8.32.0.39516 (vbnet)
+  - Configuration detection fot Code Quality and Security 1.1.0.185 (config)
+Global server settings:
+  - sonar.core.id=BF41A1F2-AX-IUfH4X-1lk0xKz1pt
+  - sonar.core.startTime=2022-03-26T10:39:54+0000
+  - sonar.forceAuthentication=true
+Project server settings:
+  - sonar.coverage.exclusions=**/firebase
+  - sonar.exclusions=src/firebase.ts,src/registerServiceWorker.ts
+Project scanner properties:
+  - sonar.coverage.exclusions=**.spec.ts, # Path to test reports (itÂ´s always the same) and expected test file config
+  - sonar.host.url=http://localhost:5000/
+  - sonar.javascript.lcov.reportPaths=coverage/lcov.info
+  - sonar.login=******
+  - sonar.projectBaseDir=C:\Users\Usuario\Desktop\ISDICoders\ProyectoFinal\Inigo-Panos_Front-Final-Project-202201-MAD
+  - sonar.projectKey=Proyecto-Final-Inigo-Front
+  - sonar.projectName=Proyecto-Final-Inigo-Front
+  - sonar.scanner.app=ScannerCLI
+  - sonar.scanner.appVersion=4.6.2.2472
+  - sonar.sourceEncoding=UTF-8
+  - sonar.sources=src
+  - sonar.working.directory=C:\Users\Usuario\Desktop\ISDICoders\ProyectoFinal\Inigo-Panos_Front-Final-Project-202201-MAD\.scannerwork

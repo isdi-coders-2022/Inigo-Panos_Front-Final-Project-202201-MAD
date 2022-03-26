@@ -4,25 +4,25 @@
   </div>
   <main>
     <h4>Bienvenido, {{ userData?.userFound?.userName }}</h4>
-    <p>{{ userData.userFound.favorites.name }}</p>
+    <p>{{ userData?.userFound.favorites.name }}</p>
     <ul v-if="userData">
       <li>Nombre: {{ userData?.userFound?.userName }}</li>
       <p>Favoritos:</p>
       <li v-for="favorite in userData.userFound.favorites" :key="favorite.name">
         <router-link :to="`/ruinDetails/${favorite._id}`">
-          <a>{{ favorite.name }}</a>
+          <a class="favorite-name">{{ favorite.name }}</a>
         </router-link>
       </li>
       <p>Visitados:</p>
-      <li v-for="visited in userData.userFound.visited" :key="visited.name">
+      <li v-for="visited in userData?.userFound.visited" :key="visited.name">
         <router-link :to="`/ruinDetails/${visited._id}`">
-          <a>{{ visited.name }}</a>
+          <a class="visited-name">{{ visited.name }}</a>
         </router-link>
       </li>
       <p>Comentarios:</p>
       <ul>
         <!-- <li>Comentarios: {{ userData.comments }}</li> -->
-        <li v-for="comment in userData.userFound.comments" :key="comment.text">
+        <li v-for="comment in userData.userFound.comments" :key="comment.text" class="comment-text">
           {{ comment.text }}
         </li>
       </ul>
