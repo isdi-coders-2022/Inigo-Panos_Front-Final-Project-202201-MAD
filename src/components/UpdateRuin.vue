@@ -1,67 +1,43 @@
 <template>
   <div>
-    <h2>Modifique la ruina {{ this.payload.idRuina }}</h2>
+    <h2>Modifique la ruina {{ this.payload?.ruin?.name }} con id {{ this.payload?.idRuina }}</h2>
     <p>{{ this.ruinDetails }}</p>
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
-        <li>Nombre: {{ ruinDetails.name }}</li>
+        <li>Nombre: {{ ruinDetails?.name }}</li>
         <label for="name">
-          <input
-            type="text"
-            id="name"
-            v-model="ruinDetails.name"
-            name="name"
-            placeholder="{{ ruinDetails.name }}"
-          />
+          <input type="text" id="name" v-model="ruinDetails.name" name="name" />
         </label>
       </div>
 
       <div class="form-group">
-        <li>Localización: {{ ruinDetails.location }}</li>
+        <li>Localización: {{ ruinDetails?.location }}</li>
 
         <label for="location">
-          <input
-            type="location"
-            v-model="ruinDetails.location"
-            name="location"
-            placeholder="`${{ ruinDetails.location }}`"
+          <input type="location" v-model="ruinDetails.location" name="location"
         /></label>
       </div>
 
       <div class="form-group">
-        <li>Descripción: {{ ruinDetails.description }}</li>
+        <li>Descripción: {{ ruinDetails?.description }}</li>
 
         <label for="description">
-          <input
-            type="description"
-            v-model="ruinDetails.description"
-            name="description"
-            placeholder="{{ ruinDetails.description }}"
+          <input type="description" v-model="ruinDetails.description" name="description"
         /></label>
       </div>
 
       <div class="form-group">
-        <li>Imágenes: {{ ruinDetails.images }}</li>
+        <li>Imágenes: {{ ruinDetails?.images }}</li>
 
         <label for="images">
-          <input
-            type="images"
-            v-model="ruinDetails.images"
-            name="images"
-            placeholder="{{ ruinDetails.images }}"
+          <input type="images" v-model="ruinDetails.images" name="images"
         /></label>
       </div>
 
       <div class="form-group">
-        <li>Puntuación: {{ ruinDetails.score }}</li>
+        <li>Puntuación: {{ ruinDetails?.score }}</li>
 
-        <label for="score">
-          <input
-            type="score"
-            v-model="ruinDetails.score"
-            name="score"
-            placeholder="{{ ruinDetails.score }}"
-        /></label>
+        <label for="score"> <input type="score" v-model="ruinDetails.score" name="score" /></label>
       </div>
 
       <div class="form-group">

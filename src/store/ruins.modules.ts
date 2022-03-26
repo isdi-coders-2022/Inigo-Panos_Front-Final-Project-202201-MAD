@@ -37,7 +37,7 @@ const actions = {
     ruinsServices.getRuinDetails(id).then(
       (ruinsDetails) => {
         commit('getRuinDetailsSuccess', ruinsDetails);
-        console.log(ruinsDetails, ' listOfRuinsData en ruin.modules');
+        // console.log(ruinsDetails, ' listOfRuinsData en ruin.modules');
       },
 
       (error) => {
@@ -177,7 +177,7 @@ const mutations = {
   },
 
   getRuinDetailsSuccess(state: any, ruinDetails: any) {
-    console.log(ruinDetails, ' detalles de ruina en mutación');
+    // console.log(ruinDetails, ' detalles de ruina en mutación');
     state.ruin = ruinDetails.data;
   },
 

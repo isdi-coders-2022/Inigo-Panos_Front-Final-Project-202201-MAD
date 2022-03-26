@@ -21,7 +21,8 @@
     // "comma-dangle": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "no-console": "off",
-    "no-parsing-error": "off"
+    "no-parsing-error": "off",
+    "no-underscore-dangle": "warn"
   },
   "overrides": [
     {

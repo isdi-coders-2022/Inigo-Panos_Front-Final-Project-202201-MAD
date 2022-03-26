@@ -1,11 +1,39 @@
+/* eslint-disable vue/no-parsing-error */
 <template>
   <nav>
     <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
     <router-link to="/register">Register</router-link> |
     <router-link to="/login">Login</router-link> |
     <router-link to="/ruins">List of Ruins</router-link> |
-    <router-link to="/userData" v-on="reset - id - event">Detalles de usuario</router-link> |
-    <router-link to="/addRuin">Add new ruin</router-link> |
+    <!--
+    <router-link to="/login" v-on="reset - id - event"
+      ><img
+        class="profile_image"
+        src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
+        alt="RomanBust"
+    /></router-link> -->
+
+    <template v-if="this.$store?._state.data.account.status === false">
+      <button v-on:click="showState()">Hola mundo</button>
+      <!-- <p>{{ showState() }}</p> -->
+      <router-link to="/login">
+        <img
+          class="profile_image"
+          src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
+          alt="RomanBust"
+      /></router-link>
+    </template>
+    <template v-else-if="this.$store?._state.data.account.status">
+      <router-link to="/userData">
+        <img
+          class="profile_image"
+          src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
+          alt="RomanBust"
+      /></router-link>
+    </template>
+
+    <!-- | <router-link to="/addRuin">Add new ruin</router-link> | -->
+
     <!-- <router-link to="/ruinDetails">Ruin Details</router-link> |
     <router-link to="/ruinUpdate">Update Ruin</router-link> | -->
   </nav>
@@ -28,7 +56,7 @@ export default {
   },
 
   mounted() {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('token') !== null) {
       const tokenUser = localStorage.getItem('token');
       this.loginWithToken(tokenUser);
     }
@@ -36,6 +64,10 @@ export default {
 
   methods: {
     ...mapActions('account', ['loginWithToken']),
+
+    // showState() {
+    //   console.log(this.$store._state.data.account.status, 'ESETADO EN APP');
+    // },
   },
 };
 </script>
@@ -51,6 +83,10 @@ export default {
   img {
     width: 100px;
     height: 100px;
+  }
+  .profile_image {
+    width: 50px;
+    height: 68px;
   }
 }
 

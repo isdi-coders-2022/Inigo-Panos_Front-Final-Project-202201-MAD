@@ -19,15 +19,23 @@
             <li>
               {{ comment.text }}
             </li>
+
+            <!-- <p>{{ comment.author_id._id }}</p>
+            <p>{{ this.userData?.userFound?._id }}</p> -->
             |
-            <div v-if="this.userData?.isAdmin && comment.author_id._id === userData._id">
+            <div
+              v-if="
+                this.userData?.userFound?.isAdmin &&
+                comment.author_id._id === userData.userFound._id
+              "
+            >
               <button v-on:click="deleteRuinComment(comment._id)">🗑</button>
             </div>
           </div>
         </ul>
       </template>
 
-      <li>Score: {{ ruinInfo.score }}</li>
+      <li>Score: {{ ruinInfo?.score }}</li>
     </ul>
 
     <form @submit.prevent="handleSubmit">
@@ -99,71 +107,66 @@ export default defineComponent({
     ...mapActions('account', ['getUserData']),
 
     deleteRuinById() {
-      // console.log(this.ruinInfo.idRuina);
       this.deleteRuin(this.ruinInfo.idRuina);
-      // console.log('Se ha llamado a la acción borrar Ruina');
     },
 
     ruinFavorites() {
       this.addRuinToFavorites(this.ruinInfo.idRuina);
-      // console.log('Se llama a favoritos');
     },
 
     ruinVisited() {
       this.addRuinToVisited(this.ruinInfo.idRuina);
-      // console.log('Se llama a visitados');
     },
 
     deleteRuinComment(id: string) {
-      // console.log(id, ' id del comentario a borrar');
-
       const payloadComment = {
         ruinId: this.ruinInfo.idRuina,
         commentId: id,
       };
 
+      console.log(this.ruinInfo);
+
       this.deleteCommentFromRuin(payloadComment);
-      // console.log('Se ha pasado: ', payloadComment);
-      this.$router.go(0);
-      // console.log(this.userInfo, 'this.userInfo en ruinDetails');
+      console.log('MANDADO A BORRAR EL COMENTARIO', payloadComment);
+
+      // this.$router.go(0);
     },
 
     handleSubmit() {
+      let idUsuario = localStorage.getItem('id');
+      idUsuario = JSON.parse(idUsuario as string);
       const payload = {
-        author_id: this.userInfo.userId,
+        author_id: idUsuario,
         // eslint-disable-next-line no-underscore-dangle
         ruin_id: this.ruinInfo._id,
         text: this.newComment,
       };
-      // console.log(this.userInfo.userId);
-      // console.log(payload, 'PAYLOAD');
+      console.log(payload);
       this.addCommentToRuin(payload);
     },
   },
 
   mounted() {
+    console.log(this.userData?.isAdmin, 'SI ES ADMIN EN RUIN DATA O NO');
+
     const route = useRoute();
     const { id } = route.params;
     this.getAllRuins();
     this.getRuinDetails(id);
     console.log(this.getRuinDetails(id));
-    // console.log('Se ha llamado a getRuinDetails con la id: ', id);
-    // console.log(this.allRuinsData, ' FAPSFOAPSOFPASOF222222');
+
     this.ruinInfo.prueba = this.listOfRuinsData;
     console.log(this.ruinInfo.prueba, 'PRUEBA listof');
     // eslint-disable-next-line no-underscore-dangle
     const foundRuin = this.listOfRuinsData?.find((e: any) => e._id === id);
 
     this.ruinInfo = foundRuin;
+    // console.log(
+    //   // eslint-disable-next-line no-underscore-dangle
+    //   this.ruinDetails?.comments[10]?.author_id._id,
 
-    // if (this.ruinDetails) {
-    //   foundRuin = this.ruinDetails;
-    //   console.log(this.ruinDetails, ' info de ruina en RuinDetail');
-    // } else {
-    //   foundRuin = this.listOfRuinsData.find((e: any) => e._id === id);
-    // }
-
-    // console.log(this.userData, 'userData de USUARIO EN RUIN DETAILS');
+    //   'SI ES AUTOR DEL COMENTARIO EN RUIN DATA O NO',
+    // );
   },
 });
 </script>

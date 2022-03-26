@@ -3,18 +3,18 @@
     <h1>Detalles del usuario</h1>
   </div>
   <main>
-    <h4>Bienvenido, {{ userData?.userFound?.userName }}</h4>
-    <p>{{ userData?.userFound.favorites.name }}</p>
     <ul v-if="userData">
-      <li>Nombre: {{ userData?.userFound?.userName }}</li>
+      <li>
+        <h3>Nombre: {{ userData?.userFound?.userName }}</h3>
+      </li>
       <p>Favoritos:</p>
-      <li v-for="favorite in userData.userFound.favorites" :key="favorite.name">
+      <li v-for="favorite in userData.userFound?.favorites" :key="favorite.name">
         <router-link :to="`/ruinDetails/${favorite._id}`">
           <a class="favorite-name">{{ favorite.name }}</a>
         </router-link>
       </li>
       <p>Visitados:</p>
-      <li v-for="visited in userData?.userFound.visited" :key="visited.name">
+      <li v-for="visited in userData?.userFound?.visited" :key="visited.name">
         <router-link :to="`/ruinDetails/${visited._id}`">
           <a class="visited-name">{{ visited.name }}</a>
         </router-link>
@@ -22,7 +22,11 @@
       <p>Comentarios:</p>
       <ul>
         <!-- <li>Comentarios: {{ userData.comments }}</li> -->
-        <li v-for="comment in userData.userFound.comments" :key="comment.text" class="comment-text">
+        <li
+          v-for="comment in userData?.userFound?.comments"
+          :key="comment.text"
+          class="comment-text"
+        >
           {{ comment.text }}
         </li>
       </ul>
@@ -53,24 +57,17 @@ export default defineComponent({
 
   mounted() {
     console.log('MOUNTTTTTTTTTTTTTING');
-    // if (localStorage.getItem('token') !== undefined) {
-    // const tokenUser = localStorage.getItem('token');
-    //   if (tokenUser) {
-    //     tokenUser = JSON.parse(tokenUser);
-    //   }
-    //   console.log(tokenUser, ' TOKEN USER si existe en UsreData');
-    // this.getUserData(tokenUser);
-    // }
-    // } else {
-    //   this.userData = {};
-    //   console.log('Después del logout', this.userData);
-    // }
   },
   methods: {
     ...mapActions('account', ['getUserData', 'logout']),
 
     resetStorage() {
       this.userData = {};
+      if (localStorage.getItem('token') !== '') {
+        localStorage.setItem('token', '');
+        console.log('Deslogeado con éxito!');
+      }
+
       this.logout();
     },
   },
