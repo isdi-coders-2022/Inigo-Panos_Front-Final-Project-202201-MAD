@@ -29,7 +29,7 @@
         <div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary">Login</button>
+        <button class="btn btn-primary btn-login" type="submit">Login</button>
         <!-- v-if="!isLoggedIn" to="/login"><button>Login</button> -->
 
         <router-link to="/register" class="btn btn-link">Register</router-link>
@@ -38,10 +38,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { mapState, mapActions } from 'vuex';
 
-export default {
+export default defineComponent({
   name: 'login-form',
   data() {
     return {
@@ -54,20 +55,21 @@ export default {
     ...mapState('account', ['status']),
   },
   mounted() {
-    // reset login status
-    this.logout();
-    console.log('Se llama a logout');
+    const id = localStorage.getItem('id');
+    localStorage.setItem('id', '');
+    // this.$emit('reset-id-event', id);
+
+    console.log('Se llama a logout', id, ' y queda este id');
   },
   methods: {
     ...mapActions('account', ['login', 'logout']),
-    handleSubmit(e) {
+    handleSubmit() {
       this.submitted = true;
       const { userName, password } = this;
       if (userName && password) {
         this.login({ userName, password });
-        console.log('this.login 1');
       }
     },
   },
-};
+});
 </script>

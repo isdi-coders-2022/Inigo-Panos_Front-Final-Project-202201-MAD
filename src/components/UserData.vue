@@ -3,21 +3,44 @@
     <h1>Detalles del usuario</h1>
   </div>
   <main>
-    <h4>Bienvenido, user</h4>
-    <ul v-if="this.userData">
-      <li>Nombre: {{ this.userData.userName }}</li>
-      <li>Favoritos: {{ this.userData.favorites }}</li>
-      <li>Visitados: {{ this.userData.visited }}</li>
-      <li>Comentarios: {{ this.userData.comments }}</li>
+    <ul v-if="userData">
+      <li>
+        <h3>Nombre: {{ userData?.userFound?.userName }}</h3>
+      </li>
+      <p>Favoritos:</p>
+      <li v-for="favorite in userData.userFound?.favorites" :key="favorite.name">
+        <router-link :to="`/ruinDetails/${favorite._id}`">
+          <a class="favorite-name">{{ favorite.name }}</a>
+        </router-link>
+      </li>
+      <p>Visitados:</p>
+      <li v-for="visited in userData?.userFound?.visited" :key="visited.name">
+        <router-link :to="`/ruinDetails/${visited._id}`">
+          <a class="visited-name">{{ visited.name }}</a>
+        </router-link>
+      </li>
+      <p>Comentarios:</p>
+      <ul>
+        <!-- <li>Comentarios: {{ userData.comments }}</li> -->
+        <li
+          v-for="comment in userData?.userFound?.comments"
+          :key="comment.text"
+          class="comment-text"
+        >
+          Has comentado: <span class="userData_comment__text">{{ comment.text }}</span
+          >, en la ruina <span class="userData_comment__name">{{ comment.ruin_id.name }}</span>
+        </li>
+      </ul>
     </ul>
-    <router-link to="/login" class="btn btn-link">Logout</router-link>
+    <router-link @click="this.resetStorage()" to="/login" class="btn btn-link">Logout</router-link>
   </main>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { mapActions, mapGetters } from 'vuex';
 
-export default {
+export default defineComponent({
   name: 'user-data',
 
   data() {
@@ -30,19 +53,38 @@ export default {
   },
 
   computed: {
-    ...mapGetters('account', ['userInfo', 'userData']),
+    ...mapGetters('account', ['userData']),
   },
 
   mounted() {
-    if (localStorage.getItem('id')) {
-      let tokenUser = localStorage.getItem('id');
-      tokenUser = JSON.parse(tokenUser);
-
-      this.getUserData(tokenUser);
+    console.log('MOUNTTTTTTTTTTTTTING');
+    console.log(this.userData, 'userData en UserData');
+    if (localStorage.getItem('token') !== null) {
+      const tokenUser = localStorage.getItem('token');
+      this.loginWithToken(tokenUser);
     }
   },
   methods: {
-    ...mapActions('account', ['getUserData', 'logout']),
+    ...mapActions('account', ['loginWithToken', 'logout']),
+
+    resetStorage() {
+      this.userData = {};
+      if (localStorage.getItem('token') !== '') {
+        localStorage.setItem('token', '');
+        console.log('Deslogeado con éxito!');
+      }
+
+      this.logout();
+    },
   },
-};
+});
 </script>
+
+<style lang="scss">
+.userData_comment__text {
+  font-weight: bold;
+}
+.userData_comment__name {
+  font-weight: bold;
+}
+</style>

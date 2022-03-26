@@ -1,5 +1,5 @@
 {
-  "name": "vue_front_prueba",
+  "name": "proyecto-final-front-inigo-panos",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,14 +7,19 @@
     "serve": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
+    "test:moi": "jest --coverage --watchAll",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@types/uuid": "^8.3.4",
+    "@vue/test-utils": "^2.0.0-rc.17",
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
     "eslint-config-prettier": "^8.5.0",
+    "firebase": "^9.6.10",
     "prettier": "^2.6.0",
     "register-service-worker": "^1.7.2",
+    "uuid": "^8.3.2",
     "vee-validate": "^4.5.10",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
@@ -35,7 +40,6 @@
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-airbnb": "^6.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
-    "@vue/test-utils": "^2.0.0-0",
     "@vue/vue3-jest": "^27.0.0-alpha.1",
     "babel-jest": "^27.0.6",
     "cypress": "^8.3.0",

@@ -8,7 +8,15 @@ export const usersService = {
   logout,
   register,
   getData,
+  loginUsingToken,
 };
+
+// let token = localStorage.getItem('token');
+// token = token === null ? null : token;
+
+function getToken() {
+  return localStorage.getItem('token');
+}
 
 function handleResponse(response: any) {
   return response.text().then((text: string) => {
@@ -33,11 +41,25 @@ function register(user: UserRegisterI) {
 }
 
 function login(user: UserLoginI) {
+  console.log(user, 'USUARIO EN LOGIN SERVICIO DE USUARIO');
   return axios.post(`${USERS_API}/users/login`, user);
 }
 
+function loginUsingToken(token: any) {
+  console.log('Se llama a loginUsingToken con el token: ', token);
+  return axios.post(
+    `${USERS_API}/users/login/token`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+      },
+    },
+  );
+}
+
 function logout() {
-  // remove user from local storage to log user out
+  // remove user from local storage to log user out. Yo tengo id?
   localStorage.removeItem('user');
 }
 

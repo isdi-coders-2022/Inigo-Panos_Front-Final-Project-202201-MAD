@@ -16,11 +16,11 @@ export interface UserI {
   favorites: string;
   visited: string;
 }
-export interface RuinI {
+export interface CreateRuinI {
   name: string;
   location: string;
   description: string;
   images: string;
   score: number;
-  comments: string;
+  comments: [];
 }
