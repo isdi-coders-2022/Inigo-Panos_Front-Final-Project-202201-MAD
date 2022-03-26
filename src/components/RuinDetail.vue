@@ -2,14 +2,17 @@
   <div>
     <h1>Detalles de la ruina</h1>
   </div>
+
   <main>
-    <p>{{ this.userData?.isAdmin }}</p>
-    <ul v-if="ruinInfo">
+    <!-- <p v-if="this.userData">{{ userData }}</p> -->
+
+    <ul v-if="this.ruinInfo">
       <li>Nombre: {{ ruinInfo.name }}</li>
       <li>Localización: {{ ruinInfo.location }}</li>
-      <li>Imágenes: {{ ruinInfo.images }}</li>
+      <li>Imágenes: <img v-bind:src="ruinInfo.images" alt="" /></li>
       <li>Descripción: {{ ruinInfo.description }}</li>
-      <template v-if="ruinDetails">
+
+      <template v-if="this.ruinDetails">
         Comentarios:
         <ul>
           <div v-for="comment in ruinDetails.comments" :key="comment.text">
@@ -52,7 +55,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapState } from 'vuex';
 import { useRoute } from 'vue-router';
 
 export default defineComponent({
@@ -71,6 +74,7 @@ export default defineComponent({
         isAdmin: false,
         isAuthor: false,
         idRuina: '',
+        prueba: '',
       },
       newComment: '',
     };
@@ -79,10 +83,12 @@ export default defineComponent({
   computed: {
     ...mapGetters('ruins', ['ruinDetails', 'listOfRuinsData']),
     ...mapGetters('account', ['userData', 'userInfo']),
+    ...mapState('ruins', ['allRuinsData']),
   },
   methods: {
     ...mapActions('ruins', [
       'getRuinDetails',
+      'getAllRuins',
       'deleteRuin',
       'updateRuin',
       'addRuinToFavorites',
@@ -93,23 +99,23 @@ export default defineComponent({
     ...mapActions('account', ['getUserData']),
 
     deleteRuinById() {
-      console.log(this.ruinInfo.idRuina);
+      // console.log(this.ruinInfo.idRuina);
       this.deleteRuin(this.ruinInfo.idRuina);
-      console.log('Se ha llamado a la acción borrar Ruina');
+      // console.log('Se ha llamado a la acción borrar Ruina');
     },
 
     ruinFavorites() {
       this.addRuinToFavorites(this.ruinInfo.idRuina);
-      console.log('Se llama a favoritos');
+      // console.log('Se llama a favoritos');
     },
 
     ruinVisited() {
       this.addRuinToVisited(this.ruinInfo.idRuina);
-      console.log('Se llama a visitados');
+      // console.log('Se llama a visitados');
     },
 
     deleteRuinComment(id: string) {
-      console.log(id, ' id del comentario a borrar');
+      // console.log(id, ' id del comentario a borrar');
 
       const payloadComment = {
         ruinId: this.ruinInfo.idRuina,
@@ -117,9 +123,9 @@ export default defineComponent({
       };
 
       this.deleteCommentFromRuin(payloadComment);
-      console.log('Se ha pasado: ', payloadComment);
+      // console.log('Se ha pasado: ', payloadComment);
       this.$router.go(0);
-      console.log(this.userInfo, 'this.userInfo en ruinDetails');
+      // console.log(this.userInfo, 'this.userInfo en ruinDetails');
     },
 
     handleSubmit() {
@@ -129,8 +135,8 @@ export default defineComponent({
         ruin_id: this.ruinInfo._id,
         text: this.newComment,
       };
-      console.log(this.userInfo.userId);
-      console.log(payload, 'PAYLOAD');
+      // console.log(this.userInfo.userId);
+      // console.log(payload, 'PAYLOAD');
       this.addCommentToRuin(payload);
     },
   },
@@ -138,11 +144,18 @@ export default defineComponent({
   mounted() {
     const route = useRoute();
     const { id } = route.params;
+    this.getAllRuins();
     this.getRuinDetails(id);
-    console.log('Se ha llamado a getRuinDetails con la id: ', id);
+    console.log(this.getRuinDetails(id));
+    // console.log('Se ha llamado a getRuinDetails con la id: ', id);
+    // console.log(this.allRuinsData, ' FAPSFOAPSOFPASOF222222');
+    this.ruinInfo.prueba = this.listOfRuinsData;
+    console.log(this.ruinInfo.prueba, 'PRUEBA listof');
     // eslint-disable-next-line no-underscore-dangle
-    const foundRuin = this.listOfRuinsData.find((e: any) => e._id === id);
+    const foundRuin = this.listOfRuinsData?.find((e: any) => e._id === id);
+
     this.ruinInfo = foundRuin;
+
     // if (this.ruinDetails) {
     //   foundRuin = this.ruinDetails;
     //   console.log(this.ruinDetails, ' info de ruina en RuinDetail');

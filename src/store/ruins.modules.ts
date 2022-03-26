@@ -23,7 +23,6 @@ const actions = {
       (listOfRuinsData) => {
         commit('getAllRuinsSucess', listOfRuinsData);
         console.log(listOfRuinsData, ' listOfRuinsData en ruin.modules');
-        router.push('/ruins');
       },
 
       (error) => {
@@ -170,6 +169,7 @@ const mutations = {
     state.allRuinsData = [];
 
     listOfRuinsData.data.forEach((e: CreateRuinI) => {
+      console.log('POLLAS EN VINAGRE');
       state.allRuinsData.push(e); // No funciona con el datainteface preguntar a Moi
     });
 
@@ -207,6 +207,7 @@ const mutations = {
 
 const getters = {
   listOfRuinsData(state: any) {
+    console.log(state.allRuinsData);
     return state.allRuinsData;
   },
   ruinDetails(state: any) {

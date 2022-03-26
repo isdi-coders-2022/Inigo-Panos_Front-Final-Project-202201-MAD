@@ -3,12 +3,22 @@
     <h1>Detalles del usuario</h1>
   </div>
   <main>
-    <h4>Bienvenido, user</h4>
-
+    <h4>Bienvenido, {{ userData?.userFound?.userName }}</h4>
+    <p>{{ userData.userFound.favorites.name }}</p>
     <ul v-if="userData">
-      <li>Nombre: {{ userData.userFound.userName }}</li>
-      <li>Favoritos: {{ userData.userFound.favorites }}</li>
-      <li>Visitados: {{ userData.userFound.visited }}</li>
+      <li>Nombre: {{ userData?.userFound?.userName }}</li>
+      <p>Favoritos:</p>
+      <li v-for="favorite in userData.userFound.favorites" :key="favorite.name">
+        <router-link :to="`/ruinDetails/${favorite._id}`">
+          <a>{{ favorite.name }}</a>
+        </router-link>
+      </li>
+      <p>Visitados:</p>
+      <li v-for="visited in userData.userFound.visited" :key="visited.name">
+        <router-link :to="`/ruinDetails/${visited._id}`">
+          <a>{{ visited.name }}</a>
+        </router-link>
+      </li>
       <p>Comentarios:</p>
       <ul>
         <!-- <li>Comentarios: {{ userData.comments }}</li> -->
