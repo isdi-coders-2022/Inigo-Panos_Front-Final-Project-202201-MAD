@@ -27,7 +27,8 @@
           :key="comment.text"
           class="comment-text"
         >
-          {{ comment.text }}
+          Has comentado: <span class="userData_comment__text">{{ comment.text }}</span
+          >, en la ruina <span class="userData_comment__name">{{ comment.ruin_id.name }}</span>
         </li>
       </ul>
     </ul>
@@ -78,3 +79,12 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss">
+.userData_comment__text {
+  font-weight: bold;
+}
+.userData_comment__name {
+  font-weight: bold;
+}
+</style>
