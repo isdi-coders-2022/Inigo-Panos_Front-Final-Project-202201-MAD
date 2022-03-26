@@ -37,7 +37,6 @@ const actions = {
     ruinsServices.getRuinDetails(id).then(
       (ruinsDetails) => {
         commit('getRuinDetailsSuccess', ruinsDetails);
-        // console.log(ruinsDetails, ' listOfRuinsData en ruin.modules');
       },
 
       (error) => {

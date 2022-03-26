@@ -3,15 +3,8 @@
   <nav>
     <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
     <router-link to="/register">Register</router-link> |
-    <router-link to="/login">Login</router-link> |
+    <!-- <router-link to="/login">Login</router-link> | -->
     <router-link to="/ruins">List of Ruins</router-link> |
-    <!--
-    <router-link to="/login" v-on="reset - id - event"
-      ><img
-        class="profile_image"
-        src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
-        alt="RomanBust"
-    /></router-link> -->
 
     <template v-if="this.$store?._state.data.account.status === false">
       <button v-on:click="showState()">Hola mundo</button>

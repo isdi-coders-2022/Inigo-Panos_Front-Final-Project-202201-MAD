@@ -1,11 +1,10 @@
+/* eslint-disable no-underscore-dangle */
 <template>
   <div>
     <h1>Detalles de la ruina</h1>
   </div>
 
   <main>
-    <!-- <p v-if="this.userData">{{ userData }}</p> -->
-
     <ul v-if="this.ruinInfo">
       <li>Nombre: {{ ruinInfo.name }}</li>
       <li>Localización: {{ ruinInfo.location }}</li>
@@ -16,20 +15,23 @@
         Comentarios:
         <ul>
           <div v-for="comment in ruinDetails.comments" :key="comment.text">
+            <!-- <p>{{ comment }}</p> -->
             <li>
-              {{ comment.text }}
+              {{ comment?.text }}
             </li>
-
-            <!-- <p>{{ comment.author_id._id }}</p>
-            <p>{{ this.userData?.userFound?._id }}</p> -->
             |
+
+            <!-- <p>{{ this.userData?.userFound?._id }} 1</p>
+            <p>{{ this.userData?.userFound?.isAdmin }} 2</p>
+            <p>{{ comment.author_id?._id }} 3</p> -->
+
             <div
               v-if="
                 this.userData?.userFound?.isAdmin &&
-                comment.author_id._id === userData.userFound._id
+                comment.author_id?._id === userData?.userFound?._id
               "
             >
-              <button v-on:click="deleteRuinComment(comment._id)">🗑</button>
+              <button v-on:click="deleteRuinComment(comment?._id)">🗑</button>
             </div>
           </div>
         </ul>
@@ -52,7 +54,7 @@
 
     <div v-if="this.userData.isAdmin">
       <p>Soy admin</p>
-      <button v-on:click="deleteRuinById()">🗑</button>
+      <!-- <button v-on:click="deleteRuinById()">🗑</button> -->
       |
       <router-link :to="`/ruinUpdate/${this.idRuina}`">
         <a>Actualizar datos</a>
@@ -90,7 +92,7 @@ export default defineComponent({
 
   computed: {
     ...mapGetters('ruins', ['ruinDetails', 'listOfRuinsData']),
-    ...mapGetters('account', ['userData', 'userInfo']),
+    ...mapGetters('account', ['userData']),
     ...mapState('ruins', ['allRuinsData']),
   },
   methods: {
@@ -119,8 +121,9 @@ export default defineComponent({
     },
 
     deleteRuinComment(id: string) {
+      console.log(this.ruinInfo, ' RUIN INFO POR FAVOR');
       const payloadComment = {
-        ruinId: this.ruinInfo.idRuina,
+        ruinId: this.ruinInfo?._id,
         commentId: id,
       };
 
@@ -147,7 +150,14 @@ export default defineComponent({
   },
 
   mounted() {
-    console.log(this.userData?.isAdmin, 'SI ES ADMIN EN RUIN DATA O NO');
+    console.log(this.userData?.userFound?.isAdmin, 'SI ES ADMIN EN RUIN DATA O NO');
+    console.log(this.userData, 'ID DEL MINITO');
+    console.log(
+      // eslint-disable-next-line no-underscore-dangle
+      this.ruinDetails?.comments[11],
+
+      'SI ES AUTOR DEL COMENTARIO EN RUIN DATA O NO',
+    );
 
     const route = useRoute();
     const { id } = route.params;
@@ -155,18 +165,12 @@ export default defineComponent({
     this.getRuinDetails(id);
     console.log(this.getRuinDetails(id));
 
-    this.ruinInfo.prueba = this.listOfRuinsData;
-    console.log(this.ruinInfo.prueba, 'PRUEBA listof');
+    // this.ruinInfo.prueba = this.listOfRuinsData;
+    // console.log(this.ruinInfo.prueba, 'PRUEBA listof');
     // eslint-disable-next-line no-underscore-dangle
     const foundRuin = this.listOfRuinsData?.find((e: any) => e._id === id);
 
     this.ruinInfo = foundRuin;
-    // console.log(
-    //   // eslint-disable-next-line no-underscore-dangle
-    //   this.ruinDetails?.comments[10]?.author_id._id,
-
-    //   'SI ES AUTOR DEL COMENTARIO EN RUIN DATA O NO',
-    // );
   },
 });
 </script>

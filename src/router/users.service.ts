@@ -41,6 +41,7 @@ function register(user: UserRegisterI) {
 }
 
 function login(user: UserLoginI) {
+  console.log(user, 'USUARIO EN LOGIN SERVICIO DE USUARIO');
   return axios.post(`${USERS_API}/users/login`, user);
 }
 
