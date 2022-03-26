@@ -6,6 +6,7 @@
 
   <main>
     <ul v-if="this.ruinInfo">
+      <p>{{ ruinInfo._id }}</p>
       <li>Nombre: {{ ruinInfo.name }}</li>
       <li>Localización: {{ ruinInfo.location }}</li>
       <li>Imágenes: <img v-bind:src="ruinInfo.images" alt="" /></li>
@@ -106,15 +107,17 @@ export default defineComponent({
     ...mapActions('account', ['getUserData']),
 
     deleteRuinById() {
-      this.deleteRuin(this.ruinInfo.idRuina);
+      this.deleteRuin(this.ruinInfo._id);
     },
 
     ruinFavorites() {
-      this.addRuinToFavorites(this.ruinInfo.idRuina);
+      this.addRuinToFavorites(this.ruinInfo._id);
+      console.log(this.ruinInfo._id, ' mandado a fruinFavorites desde <ruinDetails></ruinDetails>');
     },
 
     ruinVisited() {
-      this.addRuinToVisited(this.ruinInfo.idRuina);
+      this.addRuinToVisited(this.ruinInfo._id);
+      console.log(this.ruinInfo._id, ' mandado a fruinFavorites desde <ruinDetails></ruinDetails>');
     },
 
     deleteRuinComment(id: string) {

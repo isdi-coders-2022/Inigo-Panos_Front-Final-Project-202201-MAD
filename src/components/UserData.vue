@@ -52,14 +52,19 @@ export default defineComponent({
   },
 
   computed: {
-    ...mapGetters('account', ['userInfo', 'userData']),
+    ...mapGetters('account', ['userData']),
   },
 
   mounted() {
     console.log('MOUNTTTTTTTTTTTTTING');
+    console.log(this.userData, 'userData en UserData');
+    if (localStorage.getItem('token') !== null) {
+      const tokenUser = localStorage.getItem('token');
+      this.loginWithToken(tokenUser);
+    }
   },
   methods: {
-    ...mapActions('account', ['getUserData', 'logout']),
+    ...mapActions('account', ['loginWithToken', 'logout']),
 
     resetStorage() {
       this.userData = {};

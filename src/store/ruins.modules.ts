@@ -160,7 +160,9 @@ const mutations = {
 
   removedCommentFromRuinSuccess(state: any, ruinDetails: any) {
     console.log('Se ha borrado el comentario de forma exitosa');
-    state.ruin = ruinDetails.data.response;
+    const newRuinData = ruinDetails.data.resposne;
+    state.ruin = newRuinData;
+    console.log(newRuinData, 'TRAS BORRAR COMENTARIO');
   },
 
   addCommentToRuinSuccess(state: any, ruinDetails: any) {
