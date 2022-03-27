@@ -9,11 +9,15 @@
       <!-- <p>{{ ruinInfo?._id }}</p> -->
       <li><span class="bold">Nombre:</span> {{ ruinInfo?.name }}</li>
       <li><span class="bold">Localización:</span> {{ ruinInfo?.location }}</li>
+      <li><span class="bold">Descripción:</span> {{ ruinInfo?.description }}</li>
+      <li>
+        <span class="bold">Score: {{ ruinInfo?.score }}</span>
+      </li>
+
       <li class="ruinImage">
         <span class="bold">Imágenes:</span>
         <img v-bind:src="ruinInfo?.images" alt="" />
       </li>
-      <li><span class="bold">Descripción:</span> {{ ruinInfo?.description }}</li>
 
       <template v-if="this.ruinDetails">
         <span class="bold"> Comentarios:</span>
@@ -55,14 +59,13 @@
           </form>
         </ul>
       </template>
-
-      <li>Score: {{ ruinInfo?.score }}</li>
     </ul>
+    <div class="icons-container">
+      <div class="icons-container__icon">| <button v-on:click="ruinFavorites()">❤</button> |</div>
+      <div class="icons-container__icon">| <button v-on:click="ruinVisited()">📍</button> |</div>
+    </div>
 
-    <div>| <button v-on:click="ruinFavorites()">❤</button> |</div>
-    <div>| <button v-on:click="ruinVisited()">📍</button> |</div>
-
-    <div v-if="this.userData?.isAdmin">
+    <div v-if="this.userData?.userFound?.isAdmin">
       <p>Soy admin</p>
       |
       <router-link :to="`/ruinUpdate/${this.idRuina}`">
@@ -201,6 +204,11 @@ h1 {
     height: 100%;
   }
 }
+
+.icons-container {
+  display: flex;
+  justify-content: center;
+}
 .ruin-details {
   &__comment-card-container {
     background-color: rgb(165, 158, 158);
@@ -213,6 +221,11 @@ h1 {
     border-radius: 30px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
+
+    .form-group {
+      display: flex;
+      justify-content: center;
+    }
 
     &__div {
       background-color: rgb(197, 188, 188);

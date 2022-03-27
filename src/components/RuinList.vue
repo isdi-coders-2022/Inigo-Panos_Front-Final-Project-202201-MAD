@@ -51,6 +51,8 @@ ul {
   margin-top: 3rem;
   margin-bottom: 3rem;
   margin-right: 2rem;
+  margin-left: 2rem;
+  // margin: 3rem, 2rem, 3rem, 2rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
 
@@ -67,10 +69,8 @@ ul {
   & :focus {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
-
-  & a {
-    text-decoration: none;
-    font-size: 30px;
-  }
+  text-decoration: none;
+  font-size: 30px;
+  text-align: center;
 }
 </style>
