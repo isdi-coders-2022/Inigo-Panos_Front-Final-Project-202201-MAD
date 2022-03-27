@@ -6,42 +6,58 @@
 
   <main>
     <ul v-if="this.ruinInfo">
-      <p>{{ ruinInfo?._id }}</p>
-      <li>Nombre: {{ ruinInfo?.name }}</li>
-      <li>Localización: {{ ruinInfo?.location }}</li>
-      <li>Imágenes: <img v-bind:src="ruinInfo?.images" alt="" /></li>
-      <li>Descripción: {{ ruinInfo?.description }}</li>
+      <!-- <p>{{ ruinInfo?._id }}</p> -->
+      <li><span class="bold">Nombre:</span> {{ ruinInfo?.name }}</li>
+      <li><span class="bold">Localización:</span> {{ ruinInfo?.location }}</li>
+      <li class="ruinImage">
+        <span class="bold">Imágenes:</span>
+        <img v-bind:src="ruinInfo?.images" alt="" />
+      </li>
+      <li><span class="bold">Descripción:</span> {{ ruinInfo?.description }}</li>
 
       <template v-if="this.ruinDetails">
-        Comentarios:
-        <ul>
-          <div v-for="comment in ruinDetails?.comments" :key="comment.text">
-            <li>Autor: {{ comment?.author_id?.userName }}</li>
-            <li>Comentario: {{ comment?.text }}</li>
+        <span class="bold"> Comentarios:</span>
+        <ul class="ruin-details__comment-card-container">
+          <div
+            v-for="comment in ruinDetails?.comments"
+            :key="comment.text"
+            class="ruin-details__comment-card-container__div"
+          >
+            <li class="ruin-details__comment-card-container__div__userName">
+              <img
+                class="ruin-details__comment-card-container__div__image"
+                src="https://firebasestorage.googleapis.com/v0/b/inig-panos-pfinal.appspot.com/o/user%20(2).png?alt=media&token=fde454b9-e3e9-474e-aced-4f12108acc91"
+                alt="user icon"
+              />
+              {{ comment?.author_id?.userName }} :
+            </li>
+            <li>
+              <img
+                class="ruin-details__comment-card-container__div__image"
+                src="https://firebasestorage.googleapis.com/v0/b/inig-panos-pfinal.appspot.com/o/comment%20(1).png?alt=media&token=4aaba2c6-e20c-4f14-ac25-37184a4a478c"
+                alt=""
+              />
+              {{ comment?.text }}
+            </li>
             -- | --
 
-            <p>{{ comment?.author_id?._id }} 3</p>
-
             <div v-if="comment?.author_id?._id === userData?.userFound?._id">
-              <!-- <template v-if="this.userData?.userFound?.isAdmin"> -->
               <button v-on:click="deleteRuinComment(comment?._id)">🗑</button>
-              <!-- </template> -->
             </div>
           </div>
+          <form @submit.prevent="handleSubmit">
+            <div class="form-group">
+              <label for="comment">
+                <input type="comment" v-model="this.newComment" name="comment" /> |
+                <button type="button" v-on:click="handleSubmit">Enviar comentario</button>
+              </label>
+            </div>
+          </form>
         </ul>
       </template>
 
       <li>Score: {{ ruinInfo?.score }}</li>
     </ul>
-
-    <form @submit.prevent="handleSubmit">
-      <div class="form-group">
-        <label for="comment">
-          <input type="comment" v-model="this.newComment" name="comment" /> |
-          <button type="button" v-on:click="handleSubmit">Enviar comentario</button>
-        </label>
-      </div>
-    </form>
 
     <div>| <button v-on:click="ruinFavorites()">❤</button> |</div>
     <div>| <button v-on:click="ruinVisited()">📍</button> |</div>
@@ -165,3 +181,57 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss">
+h1 {
+  font-size: 25px;
+  margin: 0 auto;
+  text-align: center;
+}
+.bold {
+  font-weight: bold;
+}
+.ruinImage {
+  width: 95%;
+  height: auto;
+  margin: 0 auto;
+
+  img {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+  }
+}
+.ruin-details {
+  &__comment-card-container {
+    background-color: rgb(165, 158, 158);
+
+    width: 90%;
+    margin: 10px auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+
+    border-radius: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+
+    &__div {
+      background-color: rgb(197, 188, 188);
+      border-color: black 10px;
+
+      padding: 0.5rem;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      width: 90%;
+      margin: 0 auto;
+      margin-bottom: 1rem;
+      &__userName {
+        font-weight: bold;
+      }
+
+      &__image {
+        height: 15px;
+        width: 15px;
+      }
+    }
+  }
+}
+</style>

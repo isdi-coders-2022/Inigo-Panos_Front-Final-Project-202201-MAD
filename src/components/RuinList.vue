@@ -48,11 +48,16 @@ ul {
 }
 
 .ruin-list__card {
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   margin-right: 2rem;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  background-color: rgba(243, 208, 208, 1);
+  opacity: 0.8;
+
+  border-radius: 50px;
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
@@ -61,6 +66,11 @@ ul {
   }
   & :focus {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  & a {
+    text-decoration: none;
+    font-size: 30px;
   }
 }
 </style>

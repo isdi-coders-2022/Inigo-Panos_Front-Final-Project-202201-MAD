@@ -1,31 +1,34 @@
 /* eslint-disable vue/no-parsing-error */
 <template>
-  <nav>
-    <router-link to="/register">Register</router-link> |
+  <div ref="" class="app-template">
+    <nav>
+      <router-link to="/register">Register</router-link> |
 
-    <router-link to="/ruins">List of Ruins</router-link> |
+      <router-link to="/ruins">List of Ruins</router-link> |
 
-    <template v-if="this.$store?._state.data.account.status === {}">
-      <button v-on:click="showState()">Hola mundo</button>
+      <template v-if="this.$store?._state.data.account.status === {}">
+        <button v-on:click="showState()">Hola mundo</button>
 
-      <router-link to="/login">
-        <img
-          class="profile_image"
-          src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
-          alt="RomanBust"
-      /></router-link>
-    </template>
-    <template v-else-if="this.$store?._state.data.account.status">
-      <router-link to="/userData">
-        <img
-          class="profile_image"
-          src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
-          alt="RomanBust"
-      /></router-link>
-    </template>
-  </nav>
-  <router-view />
-  <main></main>
+        <router-link to="/login">
+          <img
+            class="profile_image"
+            src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
+            alt="RomanBust"
+        /></router-link>
+      </template>
+      <template v-else-if="this.$store?._state.data.account.status">
+        <router-link to="/userData">
+          <img
+            class="profile_image"
+            src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
+            alt="RomanBust"
+        /></router-link>
+      </template>
+    </nav>
+    <router-view />
+    <main></main>
+    <footer>Hola soy un footer</footer>
+  </div>
 </template>
 
 <script>
@@ -52,30 +55,62 @@ export default {
 
   methods: {
     ...mapActions('account', ['loginWithToken']),
-
-    // showState() {
-    //   console.log(this.$store._state.data.account.status, 'ESETADO EN APP');
-    // },
   },
 };
 </script>
 
 <style lang="scss">
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+}
 #app {
+  width: 100%;
+  position: relative;
+  .app-template {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+  .app-template::before {
+    content: '';
+    background-size: cover;
+    position: absolute;
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/inig-panos-pfinal.appspot.com/o/hanibal.png?alt=media&token=c2abda80-0fe9-4296-ac1a-00a0a2fd37cc);
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: -1;
+    opacity: 0.25;
+  }
+
   font-family: Cinzel, sans-serif;
   // font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
 
-  img {
+  .img.ruin {
     width: 100px;
     height: 100px;
   }
+
   .profile_image {
     width: 50px;
     height: 68px;
+  }
+
+  .ruin-details__comment-card-container__div__image {
+    width: 15px;
+    height: 15px;
+    margin: 1px;
   }
 }
 
