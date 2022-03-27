@@ -6,7 +6,6 @@
 
   <main>
     <ul v-if="this.ruinInfo">
-      <!-- <p>{{ ruinInfo?._id }}</p> -->
       <li><span class="bold">Nombre:</span> {{ ruinInfo?.name }}</li>
       <li><span class="bold">Localización:</span> {{ ruinInfo?.location }}</li>
       <li><span class="bold">Descripción:</span> {{ ruinInfo?.description }}</li>
@@ -68,7 +67,7 @@
     <div v-if="this.userData?.userFound?.isAdmin">
       <p>Soy admin</p>
       |
-      <router-link :to="`/ruinUpdate/${this.idRuina}`">
+      <router-link :to="`/ruinUpdate/${this?.idRuina}`">
         <a>Actualizar datos</a>
       </router-link>
     </div>
