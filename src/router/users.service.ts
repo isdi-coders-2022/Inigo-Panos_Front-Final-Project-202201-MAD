@@ -11,9 +11,6 @@ export const usersService = {
   loginUsingToken,
 };
 
-// let token = localStorage.getItem('token');
-// token = token === null ? null : token;
-
 function getToken() {
   return localStorage.getItem('token');
 }
@@ -23,7 +20,6 @@ function handleResponse(response: any) {
     const data = text && JSON.parse(text);
     if (!response.ok) {
       if (response.status === 401) {
-        // auto logout if 401 response returned from api
         logout();
         location.reload();
       }
@@ -59,8 +55,7 @@ function loginUsingToken(token: any) {
 }
 
 function logout() {
-  // remove user from local storage to log user out. Yo tengo id?
-  localStorage.removeItem('user');
+  localStorage.removeItem('token');
 }
 
 function getData(id: any) {

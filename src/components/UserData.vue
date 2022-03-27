@@ -21,7 +21,6 @@
       </li>
       <p>Comentarios:</p>
       <ul>
-        <!-- <li>Comentarios: {{ userData.comments }}</li> -->
         <li
           v-for="comment in userData?.userFound?.comments"
           :key="comment.text"
@@ -59,7 +58,7 @@ export default defineComponent({
   mounted() {
     console.log('MOUNTTTTTTTTTTTTTING');
     console.log(this.userData, 'userData en UserData');
-    if (localStorage.getItem('token') !== null) {
+    if (localStorage.getItem('token')) {
       const tokenUser = localStorage.getItem('token');
       this.loginWithToken(tokenUser);
     }
@@ -70,7 +69,7 @@ export default defineComponent({
     resetStorage() {
       this.userData = {};
       if (localStorage.getItem('token') !== '') {
-        localStorage.setItem('token', '');
+        localStorage.removeItem('token');
         console.log('Deslogeado con éxito!');
       }
 

@@ -6,30 +6,26 @@
 
   <main>
     <ul v-if="this.ruinInfo">
-      <p>{{ ruinInfo._id }}</p>
-      <li>Nombre: {{ ruinInfo.name }}</li>
-      <li>Localización: {{ ruinInfo.location }}</li>
-      <li>Imágenes: <img v-bind:src="ruinInfo.images" alt="" /></li>
-      <li>Descripción: {{ ruinInfo.description }}</li>
+      <p>{{ ruinInfo?._id }}</p>
+      <li>Nombre: {{ ruinInfo?.name }}</li>
+      <li>Localización: {{ ruinInfo?.location }}</li>
+      <li>Imágenes: <img v-bind:src="ruinInfo?.images" alt="" /></li>
+      <li>Descripción: {{ ruinInfo?.description }}</li>
 
       <template v-if="this.ruinDetails">
         Comentarios:
         <ul>
           <div v-for="comment in ruinDetails?.comments" :key="comment.text">
-            <li>Autor: {{ comment?.author_id?.userName }} Comentario: {{ comment?.text }}</li>
+            <li>Autor: {{ comment?.author_id?.userName }}</li>
+            <li>Comentario: {{ comment?.text }}</li>
             -- | --
 
-            <!-- <p>{{ this.userData?.userFound?._id }} 1</p>
-            <p>{{ this.userData?.userFound?.isAdmin }} 2</p> -->
             <p>{{ comment?.author_id?._id }} 3</p>
 
-            <div
-              v-if="
-                this.userData?.userFound?.isAdmin &&
-                comment?.author_id?._id === userData?.userFound?._id
-              "
-            >
+            <div v-if="comment?.author_id?._id === userData?.userFound?._id">
+              <!-- <template v-if="this.userData?.userFound?.isAdmin"> -->
               <button v-on:click="deleteRuinComment(comment?._id)">🗑</button>
+              <!-- </template> -->
             </div>
           </div>
         </ul>
@@ -50,9 +46,8 @@
     <div>| <button v-on:click="ruinFavorites()">❤</button> |</div>
     <div>| <button v-on:click="ruinVisited()">📍</button> |</div>
 
-    <div v-if="this.userData.isAdmin">
+    <div v-if="this.userData?.isAdmin">
       <p>Soy admin</p>
-      <!-- <button v-on:click="deleteRuinById()">🗑</button> -->
       |
       <router-link :to="`/ruinUpdate/${this.idRuina}`">
         <a>Actualizar datos</a>
@@ -153,7 +148,6 @@ export default defineComponent({
     console.log(this.userData?.userFound?.isAdmin, 'SI ES ADMIN EN RUIN DATA O NO');
     console.log(this.userData, 'ID DEL MINITO');
     console.log(
-      // eslint-disable-next-line no-underscore-dangle
       this.ruinDetails?.comments[11],
 
       'SI ES AUTOR DEL COMENTARIO EN RUIN DATA O NO',
@@ -165,9 +159,6 @@ export default defineComponent({
     this.getRuinDetails(id);
     console.log(this.getRuinDetails(id));
 
-    // this.ruinInfo.prueba = this.listOfRuinsData;
-    // console.log(this.ruinInfo.prueba, 'PRUEBA listof');
-    // eslint-disable-next-line no-underscore-dangle
     const foundRuin = this.listOfRuinsData?.find((e: any) => e._id === id);
 
     this.ruinInfo = foundRuin;

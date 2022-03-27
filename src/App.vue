@@ -3,12 +3,12 @@
   <nav>
     <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
     <router-link to="/register">Register</router-link> |
-    <!-- <router-link to="/login">Login</router-link> | -->
+
     <router-link to="/ruins">List of Ruins</router-link> |
 
-    <template v-if="this.$store?._state.data.account.status === false">
+    <template v-if="this.$store?._state.data.account.status === {}">
       <button v-on:click="showState()">Hola mundo</button>
-      <!-- <p>{{ showState() }}</p> -->
+
       <router-link to="/login">
         <img
           class="profile_image"
@@ -24,11 +24,6 @@
           alt="RomanBust"
       /></router-link>
     </template>
-
-    <!-- | <router-link to="/addRuin">Add new ruin</router-link> | -->
-
-    <!-- <router-link to="/ruinDetails">Ruin Details</router-link> |
-    <router-link to="/ruinUpdate">Update Ruin</router-link> | -->
   </nav>
   <router-view />
   <main></main>
@@ -49,10 +44,11 @@ export default {
   },
 
   mounted() {
-    if (localStorage.getItem('token') !== null) {
-      const tokenUser = localStorage.getItem('token');
-      this.loginWithToken(tokenUser);
-    }
+    // console.log(localStorage.getItem('token'), ' token de local storage en app');
+    // if (localStorage.getItem('token')) {
+    //   const tokenUser = localStorage.getItem('token');
+    //   this.loginWithToken(tokenUser);
+    // }
   },
 
   methods: {

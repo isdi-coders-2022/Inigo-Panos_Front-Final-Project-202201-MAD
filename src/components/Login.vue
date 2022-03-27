@@ -30,7 +30,6 @@
       </div>
       <div class="form-group">
         <button class="btn btn-primary btn-login" type="submit">Login</button>
-        <!-- v-if="!isLoggedIn" to="/login"><button>Login</button> -->
 
         <router-link to="/register" class="btn btn-link">Register</router-link>
       </div>
@@ -57,7 +56,6 @@ export default defineComponent({
   mounted() {
     const id = localStorage.getItem('id');
     localStorage.setItem('id', '');
-    // this.$emit('reset-id-event', id);
 
     console.log('Se llama a logout', id, ' y queda este id');
   },

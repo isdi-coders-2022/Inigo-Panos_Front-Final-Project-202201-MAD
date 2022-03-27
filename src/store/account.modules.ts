@@ -108,10 +108,6 @@ const mutations = {
     state.userInformation = user;
 
     console.log(state.userInformation, ' estado del usuario ya logeado');
-
-    // state.user.token = localStorage.getItem('token');
-    // state.user.userId = localStorage.getItem('id');
-    // state.user.userId = JSON.parse(state.user.userId);
   },
 
   loginRequest(state: any, user: any) {
