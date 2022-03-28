@@ -1,6 +1,6 @@
 import Vuex from 'vuex';
 
-import { shallowMount, mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import Login from '@/components/Login.vue';
 
 export const store = new Vuex.Store({
@@ -29,7 +29,7 @@ describe('LoginPage.vue', () => {
 
   describe('When userName and password are introduced', () => {
     test('It calls login function from modules', async () => {
-      const wrapper = mount(Login, {
+      const wrapper = shallowMount(Login, {
         global: {
           plugins: [store],
         },

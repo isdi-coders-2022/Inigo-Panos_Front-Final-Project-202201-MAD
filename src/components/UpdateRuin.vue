@@ -2,7 +2,7 @@
   <div>
     <h2>Modifique la ruina {{ this.payload?.ruin?.name }} con id {{ this.payload?.idRuina }}</h2>
 
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="handleSubmit" v-if="ruinDetails">
       <div class="form-group">
         <li>Nombre: {{ ruinDetails?.name }}</li>
         <label for="name">
@@ -87,11 +87,12 @@ export default defineComponent({
     handleSubmit() {
       this.submitted = true;
       this.payload.ruin = this.ruinDetails;
+      this.payload.idRuina = this.ruinDetails._id;
 
       console.log(this.payload, 'PAYLOAD EN UPDATERUIN');
 
       this.modifyExistingRuin(this.payload);
-      console.log('Se llama a createNewRuin desde el componente CreateRuin.vue');
+      console.log('Se llama a modifyExisitingRuin desde el componente CreateRuin.vue');
     },
   },
 
@@ -101,10 +102,9 @@ export default defineComponent({
   },
 
   mounted() {
-    // const route = useRoute();
-    // const { id } = route.params;
-    // this.payload.idRuina = id as string;
-    const id = this.ruinDetails?._id;
+    const route = useRoute();
+    const { id } = route.params;
+
     console.log(id, 'id en updateruin');
 
     this.getRuinDetails(id);

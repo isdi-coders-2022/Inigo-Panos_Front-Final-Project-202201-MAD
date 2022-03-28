@@ -21,7 +21,7 @@ function getToken() {
 
 function updateRuin(payload: any) {
   console.log(payload, ' Payload recibido en updateRuin, servicio de ruinas');
-  return axios.patch(`${RUINS_API}/${payload.idRuina}`, payload.ruin, {
+  return axios.patch(`${RUINS_API}/${payload.ruin._id}`, payload.ruin, {
     headers: {
       Authorization: `Bearer ${getToken()}`,
     },

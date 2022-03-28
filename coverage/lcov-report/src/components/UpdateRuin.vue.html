@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">23.07% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/13</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">23.07% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/13</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -191,8 +191,7 @@
 <a name='L126'></a><a href='#L126'>126</a>
 <a name='L127'></a><a href='#L127'>127</a>
 <a name='L128'></a><a href='#L128'>128</a>
-<a name='L129'></a><a href='#L129'>129</a>
-<a name='L130'></a><a href='#L130'>130</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L129'></a><a href='#L129'>129</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -252,12 +251,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -279,15 +278,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -297,13 +294,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -325,7 +323,7 @@
   &lt;div&gt;
     &lt;h2&gt;Modifique la ruina {{ this.payload?.ruin?.name }} con id {{ this.payload?.idRuina }}&lt;/h2&gt;
 &nbsp;
-    &lt;form @submit.prevent="handleSubmit"&gt;
+    &lt;form @submit.prevent="handleSubmit" v-if="ruinDetails"&gt;
       &lt;div class="form-group"&gt;
         &lt;li&gt;Nombre: {{ ruinDetails?.name }}&lt;/li&gt;
         &lt;label for="name"&gt;
@@ -385,8 +383,8 @@ import { useRoute } from 'vue-router';
 &nbsp;
 export default defineComponent({
   name: 'update-form',
-  data<span class="fstat-no" title="function not covered" >() {</span>
-<span class="cstat-no" title="statement not covered" >    return {</span>
+  data() {
+    return {
       payload: {
         ruin: {
           name: '',
@@ -407,14 +405,14 @@ export default defineComponent({
   methods: {
     ...mapActions('ruins', ['modifyExistingRuin', 'getRuinDetails']),
 &nbsp;
-    handleSubmit<span class="fstat-no" title="function not covered" >() {</span>
-<span class="cstat-no" title="statement not covered" >      this.s</span>ubmitted = true;
-<span class="cstat-no" title="statement not covered" >      this.p</span>ayload.ruin = this.ruinDetails;
+    handleSubmit() {
+      this.submitted = true;
+      this.payload.ruin = this.ruinDetails;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      console.</span>log(this.payload, 'PAYLOAD EN UPDATERUIN');
+      console.log(this.payload, 'PAYLOAD EN UPDATERUIN');
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      this.m</span>odifyExistingRuin(this.payload);
-<span class="cstat-no" title="statement not covered" >      console.</span>log('Se llama a createNewRuin desde el componente CreateRuin.vue');
+      this.modifyExistingRuin(this.payload);
+      console.log('Se llama a modifyExisitingRuin desde el componente CreateRuin.vue');
     },
   },
 &nbsp;
@@ -423,16 +421,15 @@ export default defineComponent({
     ...mapGetters('account', ['userData']),
   },
 &nbsp;
-  mounted<span class="fstat-no" title="function not covered" >() {</span>
-    // const route = useRoute();
-    // const { id } = route.params;
-    // this.payload.idRuina = id as string;
-    const id = <span class="cstat-no" title="statement not covered" >this.ruinDetails?._id;</span>
-<span class="cstat-no" title="statement not covered" >    console.</span>log(id, 'id en updateruin');
+  mounted() {
+    const route = useRoute();
+    const { id } = route.params;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    this.g</span>etRuinDetails(id);
+    console.log(id, 'id en updateruin');
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    console.</span>log('DATOS QUE HAY EN UPDATERUIN', this.ruinDetails);
+    this.getRuinDetails(id);
+&nbsp;
+    console.log('DATOS QUE HAY EN UPDATERUIN', this.ruinDetails);
   },
 });
 &lt;/script&gt;
@@ -457,7 +454,7 @@ export default defineComponent({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sun Mar 27 2022 23:28:21 GMT+0200 (hora de verano de Europa central)
+                at Mon Mar 28 2022 14:09:32 GMT+0200 (hora de verano de Europa central)
             </div>
         <script src="../../prettify.js"></script>
         <script>

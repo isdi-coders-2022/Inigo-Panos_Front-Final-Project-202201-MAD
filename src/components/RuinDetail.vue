@@ -67,7 +67,7 @@
     <div v-if="this.userData?.userFound?.isAdmin">
       <p>Soy admin</p>
       |
-      <router-link :to="`/ruinUpdate/${this?.idRuina}`">
+      <router-link :to="`/ruinUpdate/${this?.ruinDetails?._id}`">
         <a>Actualizar datos</a>
       </router-link>
     </div>
@@ -94,7 +94,7 @@ export default defineComponent({
         comments: [],
         isAdmin: false,
         isAuthor: false,
-        idRuina: '',
+
         prueba: '',
       },
       newComment: '',
@@ -177,9 +177,9 @@ export default defineComponent({
     this.getRuinDetails(id);
     console.log(this.getRuinDetails(id));
 
-    const foundRuin = this.listOfRuinsData?.find((e: any) => e._id === id);
+    // const foundRuin = this.listOfRuinsData?.find((e: any) => e._id === id);
 
-    this.ruinInfo = foundRuin;
+    // this.ruinInfo = foundRuin;
   },
 });
 </script>
