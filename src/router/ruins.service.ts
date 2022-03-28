@@ -76,6 +76,8 @@ function createNewRuin(ruin: CreateRuinI) {
 }
 
 function deleteRuin(id: string) {
+  console.log('Se llama a deleteRuin con: ', `${RUINS_API}/${id}`);
+
   return axios.delete(`${RUINS_API}/${id}`, {
     headers: {
       Authorization: `Bearer ${getToken()}`,

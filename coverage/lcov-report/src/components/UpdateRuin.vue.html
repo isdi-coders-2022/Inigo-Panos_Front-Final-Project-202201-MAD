@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">30.76% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/13</span>
+                <span class='fraction'>4/13</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">30.76% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/13</span>
+                <span class='fraction'>4/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -245,16 +245,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -273,27 +271,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -375,8 +375,8 @@ import { useRoute } from 'vue-router';
 &nbsp;
 export default defineComponent({
   name: 'update-form',
-  data() {
-    return {
+  data<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
       payload: {
         ruin: {
           name: '',
@@ -396,11 +396,11 @@ export default defineComponent({
   methods: {
     ...mapActions('ruins', ['modifyExistingRuin', 'getRuinDetails']),
 &nbsp;
-    handleSubmit() {
-      this.submitted = true;
-      this.payload.ruin = this.ruinDetails;
+    handleSubmit<span class="fstat-no" title="function not covered" >() {</span>
+<span class="cstat-no" title="statement not covered" >      this.s</span>ubmitted = true;
+<span class="cstat-no" title="statement not covered" >      this.p</span>ayload.ruin = this.ruinDetails;
 &nbsp;
-      this.modifyExistingRuin(this.payload);
+<span class="cstat-no" title="statement not covered" >      this.m</span>odifyExistingRuin(this.payload);
     },
   },
 &nbsp;
@@ -409,15 +409,15 @@ export default defineComponent({
     ...mapGetters('account', ['userData']),
   },
 &nbsp;
-  mounted() {
-    const route = useRoute();
-    const { id } = route.params;
+  mounted<span class="fstat-no" title="function not covered" >() {</span>
+    const route = <span class="cstat-no" title="statement not covered" >useRoute();</span>
+    const { id } = <span class="cstat-no" title="statement not covered" >route.params;</span>
 &nbsp;
-    console.log(id, 'id en updateruin');
+<span class="cstat-no" title="statement not covered" >    console.</span>log(id, 'id en updateruin');
 &nbsp;
-    this.getRuinDetails(id);
+<span class="cstat-no" title="statement not covered" >    this.g</span>etRuinDetails(id);
 &nbsp;
-    console.log('DATOS QUE HAY EN UPDATERUIN', this.ruinDetails);
+<span class="cstat-no" title="statement not covered" >    console.</span>log('DATOS QUE HAY EN UPDATERUIN', this.ruinDetails);
   },
 });
 &lt;/script&gt;
@@ -442,7 +442,7 @@ export default defineComponent({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Mar 28 2022 15:43:37 GMT+0200 (hora de verano de Europa central)
+                at Mon Mar 28 2022 16:52:34 GMT+0200 (hora de verano de Europa central)
             </div>
         <script src="../../prettify.js"></script>
         <script>

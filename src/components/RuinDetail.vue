@@ -5,17 +5,17 @@
   </div>
 
   <main>
-    <ul v-if="this.ruinInfo">
-      <li><span class="bold">Nombre:</span> {{ ruinInfo?.name }}</li>
-      <li><span class="bold">Localización:</span> {{ ruinInfo?.location }}</li>
-      <li><span class="bold">Descripción:</span> {{ ruinInfo?.description }}</li>
+    <ul v-if="this.ruinDetails">
+      <li><span class="bold">Nombre:</span> {{ ruinDetails?.name }}</li>
+      <li><span class="bold">Localización:</span> {{ ruinDetails?.location }}</li>
+      <li><span class="bold">Descripción:</span> {{ ruinDetails?.description }}</li>
       <li>
-        <span class="bold">Score: {{ ruinInfo?.score }}</span>
+        <span class="bold">Score: {{ ruinDetails?.score }}</span>
       </li>
 
       <li class="ruinImage">
         <span class="bold">Imágenes:</span>
-        <img v-bind:src="ruinInfo?.images" alt="" />
+        <img v-bind:src="ruinDetails?.images" alt="" />
       </li>
 
       <template v-if="this.ruinDetails">
@@ -45,7 +45,13 @@
             -- | --
 
             <div v-if="comment?.author_id?._id === userData?.userFound?._id">
-              <button v-on:click="deleteRuinComment(comment?._id)">🗑</button>
+              <button
+                type="button"
+                class="deleteCommentButton"
+                v-on:click="deleteRuinComment(comment?._id)"
+              >
+                🗑
+              </button>
             </div>
           </div>
           <form @submit.prevent="handleSubmit">
@@ -60,8 +66,12 @@
       </template>
     </ul>
     <div class="icons-container">
-      <div class="icons-container__icon">| <button v-on:click="ruinFavorites()">❤</button> |</div>
-      <div class="icons-container__icon">| <button v-on:click="ruinVisited()">📍</button> |</div>
+      <div class="icons-container__icon">
+        | <button type="button" class="favoriteButton" v-on:click="ruinFavorites()">❤</button> |
+      </div>
+      <div class="icons-container__icon">
+        | <button type="button" class="visitedButton" v-on:click="ruinVisited()">📍</button> |
+      </div>
     </div>
 
     <div v-if="this.userData?.userFound?.isAdmin">
@@ -70,6 +80,8 @@
       <router-link :to="`/ruinUpdate/${this?.ruinDetails?._id}`">
         <a>Actualizar datos</a>
       </router-link>
+      |
+      <button type="button" class="deleteRuinButton" v-on:click="deleteRuinById">🗑</button>
     </div>
   </main>
 </template>
@@ -94,7 +106,6 @@ export default defineComponent({
         comments: [],
         isAdmin: false,
         isAuthor: false,
-
         prueba: '',
       },
       newComment: '',
@@ -120,32 +131,25 @@ export default defineComponent({
     ...mapActions('account', ['getUserData']),
 
     deleteRuinById() {
-      this.deleteRuin(this.ruinInfo._id);
+      console.log(this.ruinDetails._id, '_id de la ruina a borrar');
+      this.deleteRuin(this.ruinDetails._id);
     },
 
     ruinFavorites() {
-      this.addRuinToFavorites(this.ruinInfo._id);
-      console.log(this.ruinInfo._id, ' mandado a fruinFavorites desde <ruinDetails></ruinDetails>');
+      this.addRuinToFavorites(this.ruinDetails._id);
     },
 
     ruinVisited() {
-      this.addRuinToVisited(this.ruinInfo._id);
-      console.log(this.ruinInfo._id, ' mandado a fruinFavorites desde <ruinDetails></ruinDetails>');
+      this.addRuinToVisited(this.ruinDetails._id);
     },
 
     deleteRuinComment(id: string) {
-      console.log(this.ruinInfo, ' RUIN INFO POR FAVOR');
       const payloadComment = {
-        ruinId: this.ruinInfo?._id,
+        ruinId: this.ruinDetails?._id,
         commentId: id,
       };
 
-      console.log(this.ruinInfo);
-
       this.deleteCommentFromRuin(payloadComment);
-      console.log('MANDADO A BORRAR EL COMENTARIO', payloadComment);
-
-      //  this.$router.go(0);
     },
 
     handleSubmit() {
@@ -154,32 +158,19 @@ export default defineComponent({
       const payload = {
         author_id: idUsuario,
         // eslint-disable-next-line no-underscore-dangle
-        ruin_id: this.ruinInfo._id,
+        ruin_id: this.ruinDetails._id,
         text: this.newComment,
       };
-      console.log(payload);
       this.addCommentToRuin(payload);
     },
   },
 
   mounted() {
-    console.log(this.userData?.userFound?.isAdmin, 'SI ES ADMIN EN RUIN DATA O NO');
-    console.log(this.userData, 'ID DEL MINITO');
-    console.log(
-      this.ruinDetails?.comments[11],
-
-      'SI ES AUTOR DEL COMENTARIO EN RUIN DATA O NO',
-    );
-
     const route = useRoute();
     const { id } = route.params;
-    this.getAllRuins();
+    console.log(id, 'id ruina');
     this.getRuinDetails(id);
-    console.log(this.getRuinDetails(id));
-
-    // const foundRuin = this.listOfRuinsData?.find((e: any) => e._id === id);
-
-    // this.ruinInfo = foundRuin;
+    this.getAllRuins();
   },
 });
 </script>

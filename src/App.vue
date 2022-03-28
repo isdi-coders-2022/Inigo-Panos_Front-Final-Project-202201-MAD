@@ -5,6 +5,7 @@
       <nav>
         <!-- <p>Hola soy los datos: {{ this.$store.state.account }}</p> -->
         <router-link to="/ruins">List de ruinas</router-link> |
+        <router-link to="/addRuin">Crear Ruinas</router-link> |
         <div v-if="this.userLoggedStatus?.loggedIn === true">
           <router-link to="/userData">
             <img

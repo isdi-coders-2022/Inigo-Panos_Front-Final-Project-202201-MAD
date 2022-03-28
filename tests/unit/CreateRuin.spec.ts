@@ -10,13 +10,13 @@ export const store = new Vuex.Store({
       state: {},
       getters: {
         userData: jest.fn(),
+        userInformation: jest.fn(),
       },
     },
     ruins: {
       state: { Ruinname: 'NombreRuina' },
       actions: {
         createNewRuin: jest.fn(),
-        getRuinDetails: jest.fn(),
       },
       getters: {
         ruinDetails: jest.fn().mockReturnValue({ testR: 'test' }),
@@ -30,16 +30,13 @@ const router = createRouter({
   routes,
 });
 
-describe('CreateRuin.vue', () => {
+describe('On mounted.vue', () => {
   test('Test test', () => {
-    const mockedCreateRuin = jest.fn();
     const wrapper = shallowMount(CreateRuin, {
       global: { plugins: [store, router] },
-      methods: { getRuinDetails: mockedCreateRuin },
     });
 
     expect(wrapper.vm).toBeDefined();
-    expect(mockedCreateRuin).toHaveBeenCalled();
   });
   test('Test that function is called on handleSubmit', () => {
     const wrapper = shallowMount(CreateRuin, {
