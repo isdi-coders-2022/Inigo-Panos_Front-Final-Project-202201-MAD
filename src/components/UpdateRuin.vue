@@ -72,7 +72,6 @@ export default defineComponent({
           images: [],
           score: 5,
         },
-        idRuina: '',
       },
 
       isAdmin: false,
@@ -87,12 +86,8 @@ export default defineComponent({
     handleSubmit() {
       this.submitted = true;
       this.payload.ruin = this.ruinDetails;
-      this.payload.idRuina = this.ruinDetails._id;
-
-      console.log(this.payload, 'PAYLOAD EN UPDATERUIN');
 
       this.modifyExistingRuin(this.payload);
-      console.log('Se llama a modifyExisitingRuin desde el componente CreateRuin.vue');
     },
   },
 
