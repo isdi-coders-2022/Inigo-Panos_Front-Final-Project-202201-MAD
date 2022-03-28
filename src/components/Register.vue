@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Register</h2>
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="handleSubmit" class="register-card">
       <div class="form-group">
         <label for="userName">
           <input type="text" v-model="user.userName" id="userName" name="userName" />Username
@@ -61,3 +61,22 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss">
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+  // width: 100%;
+  // height: 100%;
+}
+
+.register-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>

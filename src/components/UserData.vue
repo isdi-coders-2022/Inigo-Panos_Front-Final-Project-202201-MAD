@@ -21,24 +21,28 @@
       </li>
       <p>Comentarios:</p>
       <ul>
-        <!-- <li>Comentarios: {{ userData.comments }}</li> -->
+        <!-- <p>{{ userData?.userFound?.comments }}</p> -->
         <li
           v-for="comment in userData?.userFound?.comments"
           :key="comment.text"
-          class="comment-text"
+          class="userData_comment-card"
         >
-          Has comentado: <span class="userData_comment__text">{{ comment.text }}</span
-          >, en la ruina <span class="userData_comment__name">{{ comment.ruin_id.name }}</span>
+          <router-link :to="`/ruinDetails/${comment?.ruin_id._id}`">
+            Has comentado: <br />
+            <span class="userData_comment-card__text">{{ comment.text }},</span> <br />
+            en la ruina <span class="userData_comment-card__name">{{ comment.ruin_id.name }}</span>
+          </router-link>
         </li>
       </ul>
     </ul>
+    <p>{{ this.status }}, Hola paco!</p>
     <router-link @click="this.resetStorage()" to="/login" class="btn btn-link">Logout</router-link>
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapState } from 'vuex';
 
 export default defineComponent({
   name: 'user-data',
@@ -54,12 +58,13 @@ export default defineComponent({
 
   computed: {
     ...mapGetters('account', ['userData']),
+    ...mapState(['state']),
   },
 
   mounted() {
-    console.log('MOUNTTTTTTTTTTTTTING');
     console.log(this.userData, 'userData en UserData');
-    if (localStorage.getItem('token') !== null) {
+
+    if (localStorage.getItem('token')) {
       const tokenUser = localStorage.getItem('token');
       this.loginWithToken(tokenUser);
     }
@@ -70,10 +75,10 @@ export default defineComponent({
     resetStorage() {
       this.userData = {};
       if (localStorage.getItem('token') !== '') {
-        localStorage.setItem('token', '');
+        localStorage.removeItem('token');
         console.log('Deslogeado con éxito!');
       }
-
+      console.log('Se llama a logout en userData');
       this.logout();
     },
   },
@@ -81,10 +86,21 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.userData_comment__text {
-  font-weight: bold;
-}
-.userData_comment__name {
-  font-weight: bold;
+.userData_comment-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-right: 4rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+
+  &__text {
+    font-weight: bold;
+  }
+  &__name {
+    font-weight: bold;
+  }
 }
 </style>

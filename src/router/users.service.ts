@@ -11,41 +11,20 @@ export const usersService = {
   loginUsingToken,
 };
 
-// let token = localStorage.getItem('token');
-// token = token === null ? null : token;
-
 function getToken() {
   return localStorage.getItem('token');
 }
 
-function handleResponse(response: any) {
-  return response.text().then((text: string) => {
-    const data = text && JSON.parse(text);
-    if (!response.ok) {
-      if (response.status === 401) {
-        // auto logout if 401 response returned from api
-        logout();
-        location.reload();
-      }
-
-      const error = (data && data.message) || response.statusText;
-      return Promise.reject(error);
-    }
-
-    return data;
-  });
-}
-
-function register(user: UserRegisterI) {
+export function register(user: UserRegisterI) {
   return axios.post(`${USERS_API}/users/register`, user);
 }
 
-function login(user: UserLoginI) {
+export function login(user: UserLoginI) {
   console.log(user, 'USUARIO EN LOGIN SERVICIO DE USUARIO');
   return axios.post(`${USERS_API}/users/login`, user);
 }
 
-function loginUsingToken(token: any) {
+export function loginUsingToken(token: any) {
   console.log('Se llama a loginUsingToken con el token: ', token);
   return axios.post(
     `${USERS_API}/users/login/token`,
@@ -58,12 +37,11 @@ function loginUsingToken(token: any) {
   );
 }
 
-function logout() {
-  // remove user from local storage to log user out. Yo tengo id?
-  localStorage.removeItem('user');
+export function logout() {
+  localStorage.removeItem('token');
 }
 
-function getData(id: any) {
+export function getData(id: any) {
   console.log(
     'Se ha llamado a getData de users.services con la dirección',
     `${USERS_API}/users/${id}`,

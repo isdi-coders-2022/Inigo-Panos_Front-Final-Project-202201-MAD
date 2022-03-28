@@ -49,8 +49,19 @@ describe('UpdateRuin.vue', () => {
     jest.spyOn(wrapper.vm, 'modifyExistingRuin');
 
     wrapper.vm.handleSubmit();
-    console.log(wrapper.vm);
     expect(wrapper.vm).toBeDefined();
     expect(wrapper.vm.modifyExistingRuin).toHaveBeenCalled();
   });
+  //  test('Test test 3', () => {
+  //    const wrapper = shallowMount(UpdateRuin, {
+  //      global: { plugins: [store, router] },
+  //    });
+
+  //    jest.spyOn(wrapper.vm, 'functionInsidePepeWatch');
+
+  //    wrapper.vm.pepe = "newPepeValue"
+
+  //    expect(wrapper.vm).toBeDefined();
+  //    expect(wrapper.vm.functionInsidePepeWatch).toHaveBeenCalled();
+  //  });
 });

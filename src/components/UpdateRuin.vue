@@ -1,8 +1,8 @@
 <template>
   <div>
     <h2>Modifique la ruina {{ this.payload?.ruin?.name }} con id {{ this.payload?.idRuina }}</h2>
-    <p>{{ this.ruinDetails }}</p>
-    <form @submit.prevent="handleSubmit">
+
+    <form @submit.prevent="handleSubmit" v-if="ruinDetails">
       <div class="form-group">
         <li>Nombre: {{ ruinDetails?.name }}</li>
         <label for="name">
@@ -26,11 +26,17 @@
         /></label>
       </div>
 
-      <div class="form-group">
-        <li>Imágenes: {{ ruinDetails?.images }}</li>
+      <div class="ruinImage">
+        <li>Imagen</li>
 
+        <img v-bind:src="ruinDetails?.images" alt="ruin" />
         <label for="images">
-          <input type="images" v-model="ruinDetails.images" name="images"
+          <input
+            type="file"
+            accept="image/*"
+            @change="handleImageChange"
+            name="images"
+            placeholder="Imágenes"
         /></label>
       </div>
 
@@ -66,7 +72,6 @@ export default defineComponent({
           images: [],
           score: 5,
         },
-        idRuina: '',
       },
 
       isAdmin: false,
@@ -82,10 +87,7 @@ export default defineComponent({
       this.submitted = true;
       this.payload.ruin = this.ruinDetails;
 
-      console.log(this.payload, 'PAYLOAD EN UPDATERUIN');
-
       this.modifyExistingRuin(this.payload);
-      console.log('Se llama a createNewRuin desde el componente CreateRuin.vue');
     },
   },
 
@@ -97,7 +99,8 @@ export default defineComponent({
   mounted() {
     const route = useRoute();
     const { id } = route.params;
-    this.payload.idRuina = id as string;
+
+    console.log(id, 'id en updateruin');
 
     this.getRuinDetails(id);
 
@@ -105,3 +108,17 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss">
+.ruinImage {
+  width: 95%;
+  height: auto;
+  margin: 0 auto;
+
+  img {
+    margin: 0 auto;
+    width: 50%;
+    height: 50%;
+  }
+}
+</style>

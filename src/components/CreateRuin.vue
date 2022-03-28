@@ -103,23 +103,11 @@ export default defineComponent({
       uploadBytes(newRef, this.fileToUpload as any).then(() => {
         getDownloadURL(newRef).then((url: string) => {
           console.log(url, 'URL DE CREATERUIN');
-          this.ruin.images = url as string;
+          this.ruin.images = url;
           console.log(this.ruin.images, 'IMAGEN YA HECHA URL');
           this.createNewRuin(this.ruin);
         });
       });
-
-      // if (
-      //   (this.ruin.name && this.ruin.location && this.ruin.description && this.ruin.images) !==
-      //   undefined
-      // ) {
-      //   console.log(
-      //     this.ruin.images,
-      //     'Se llama a createNewRuin desde el componente CreateRuin.vue',
-      //   );
-      // } else {
-      //   console.log(`Algún campo no está rellenado`);
-      // }
     },
     handleImageChange(e: any) {
       // eslint-disable-next-line prefer-destructuring

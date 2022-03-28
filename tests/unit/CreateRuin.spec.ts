@@ -1,45 +1,59 @@
 import Vuex from 'vuex';
-
 import { shallowMount, mount } from '@vue/test-utils';
+import { createRouter, createWebHistory } from 'vue-router';
+import { routes } from '@/router';
 import CreateRuin from '@/components/CreateRuin.vue';
 
 export const store = new Vuex.Store({
   modules: {
     account: {
-      state: {
-        ruinData: {},
+      state: {},
+      getters: {
+        userData: jest.fn(),
+        userInformation: jest.fn(),
       },
     },
     ruins: {
-      state: { ruinName: 'Ruina' },
+      state: { Ruinname: 'NombreRuina' },
       actions: {
         createNewRuin: jest.fn(),
+      },
+      getters: {
+        ruinDetails: jest.fn().mockReturnValue({ testR: 'test' }),
       },
     },
   },
 });
 
-export const storeMock = Object.freeze({
-  state: {},
-  actions: {},
-  getters: {
-    'account/userData': {
-      token:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Ik1lbCIsInVzZXJJZCI6IjYyMzIxMzk4MDA4MWRhMjk0NmRlMmJmZCIsImlhdCI6MTY0ODI5MjAxMH0.24rKKqK-tuqka_g6bbA5PO8MeXzmIXIbTxtv3S5SF6Q',
-      userFound: { userName: 'Mel', isAdmin: true },
-    },
-  },
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
 });
 
-const route = {
-  path: '/',
-  hash: '',
-  params: { id: '123' },
-};
+describe('On mounted.vue', () => {
+  test('Test test', () => {
+    const wrapper = shallowMount(CreateRuin, {
+      global: { plugins: [store, router] },
+    });
 
-describe('RuinList.vue', () => {
-  it('renders props.msg when passed', () => {
-    const wrapper = mount(CreateRuin, { global: { mocks: [route, storeMock], plugins: [store] } });
+    expect(wrapper.vm).toBeDefined();
+  });
+  test('Test that function is called on handleSubmit', () => {
+    const wrapper = shallowMount(CreateRuin, {
+      global: { plugins: [store, router] },
+    });
+
+    jest.spyOn(wrapper.vm, 'createNewRuin');
+
+    wrapper.vm.handleSubmit();
+    expect(wrapper.vm).toBeDefined();
+    expect(wrapper.vm.createNewRuin).toHaveBeenCalled();
+  });
+
+  test('renders props.msg when passed', () => {
+    const wrapper = shallowMount(CreateRuin, {
+      global: { plugins: [store, router] },
+    });
     expect(wrapper.text()).toMatch('Añada una nueva localización');
   });
 });

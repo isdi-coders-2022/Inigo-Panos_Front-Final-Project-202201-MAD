@@ -64,6 +64,7 @@ const actions = {
   },
 
   modifyExistingRuin({ dispatch, commit }: { dispatch: any; commit: any }, payload: any) {
+    console.log('HOLA');
     ruinsServices.updateRuin(payload).then(
       (listOfRuinsData: any) => {
         commit('modifyRuinSuccess', listOfRuinsData);
@@ -124,7 +125,6 @@ const actions = {
       (ruinDetails: any) => {
         commit('addCommentToRuinSuccess', ruinDetails);
         dispatch('alert/success', 'Comment creation successful', { root: true });
-        // location.reload();
       },
       (error) => {
         commit('createNewRuinFailure', error);
@@ -139,7 +139,6 @@ const actions = {
         commit('removedCommentFromRuinSuccess', ruinDetails);
         dispatch('alert/success', 'Comment deletion successful', { root: true });
         console.log('Se ha borrado el comentario con éxito!');
-        // location.reload();
       },
       (error) => {
         commit('createNewRuinFailure', error);
@@ -160,16 +159,16 @@ const mutations = {
 
   removedCommentFromRuinSuccess(state: any, ruinDetails: any) {
     console.log('Se ha borrado el comentario de forma exitosa');
-    const newRuinData = ruinDetails.data.resposne;
+    const newRuinData = ruinDetails.data.response;
     state.ruin = newRuinData;
     console.log(newRuinData, 'TRAS BORRAR COMENTARIO');
   },
 
   addCommentToRuinSuccess(state: any, ruinDetails: any) {
-    console.log('Se ha añadido el comentario de forma exitosa');
+    console.log('Se ha añadido el comentario de forma exitosa: ', ruinDetails.data.response);
 
     state.ruin = ruinDetails.data.response;
-    console.log('Datos de la ruina, ', state.ruin);
+    console.log('Datos de la ruina, ', state.ruin); // No están populados los datos
   },
 
   getAllRuinsSucess(state: any, listOfRuinsData: any) {
@@ -185,8 +184,8 @@ const mutations = {
   },
 
   getRuinDetailsSuccess(state: any, ruinDetails: any) {
-    // console.log(ruinDetails, ' detalles de ruina en mutación');
     state.ruin = ruinDetails.data;
+    console.log('Datos de getRuinDetailsSuccess: ', state.ruin);
   },
 
   deleteRuinSuccess(state: any, listOfRuinsData: any) {
@@ -205,11 +204,10 @@ const mutations = {
   },
   createNewRuinFailure(state: any) {
     console.log(state.status);
-    state.status = {};
   },
 
   modifyRuinSuccess(state: any, listOfRuinsData: any) {
-    state.allRuinsData = [];
+    state.listOfRuinsData = [];
   },
 };
 
