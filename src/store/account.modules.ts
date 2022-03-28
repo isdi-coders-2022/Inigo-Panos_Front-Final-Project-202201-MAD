@@ -95,19 +95,21 @@ const mutations = {
     state.user.userId = localStorage.getItem('id');
     state.user.userId = JSON.parse(state.user.userId);
 
-    console.log(
-      state.userInformation,
-      ' y ',
-      state.user,
-      ' datos de un usuario traídos de getUsers',
-    );
+    // console.log(
+    //   state.userInformation,
+    //   ' y ',
+    //   state.user,
+    //   ' datos de un usuario traídos de getUsers',
+    // );
   },
 
   loginSuccess(state: any, user: any) {
     state.status = { loggedIn: true };
-    state.userInformation = user;
 
+    state.userInformation = user;
+    state.userLoggedStatus = { loggedIn: true };
     console.log(state.userInformation, ' estado del usuario ya logeado');
+    console.log(state.userLoggedStatus, ' estatus del login');
   },
 
   loginRequest(state: any, user: any) {
@@ -130,6 +132,8 @@ const mutations = {
     state.status = {};
     state.user = null;
     state.userInformation = {};
+    state.userLoggedStatus = { loggedIn: false };
+    console.log(state.userLoggedStatus, ' estatus del logout');
   },
   registerRequest(state: any) {
     console.log(state.status);
@@ -151,6 +155,9 @@ const getters = {
   },
   userData(state: any) {
     return state.userInformation;
+  },
+  userLoggedStatus(state: any) {
+    return state.userLoggedStatus;
   },
 };
 

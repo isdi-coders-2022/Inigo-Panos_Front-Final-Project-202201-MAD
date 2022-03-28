@@ -71,3 +71,20 @@ export default defineComponent({
   },
 });
 </script>
+<style lang="scss">
+h2 {
+  text-align: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .form-group {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+  }
+}
+</style>

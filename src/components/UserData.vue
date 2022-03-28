@@ -35,13 +35,14 @@
         </li>
       </ul>
     </ul>
+    <p>{{ this.status }}, Hola paco!</p>
     <router-link @click="this.resetStorage()" to="/login" class="btn btn-link">Logout</router-link>
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapState } from 'vuex';
 
 export default defineComponent({
   name: 'user-data',
@@ -57,10 +58,12 @@ export default defineComponent({
 
   computed: {
     ...mapGetters('account', ['userData']),
+    ...mapState(['state']),
   },
 
   mounted() {
     console.log(this.userData, 'userData en UserData');
+
     if (localStorage.getItem('token')) {
       const tokenUser = localStorage.getItem('token');
       this.loginWithToken(tokenUser);
@@ -75,7 +78,7 @@ export default defineComponent({
         localStorage.removeItem('token');
         console.log('Deslogeado con éxito!');
       }
-
+      console.log('Se llama a logout en userData');
       this.logout();
     },
   },

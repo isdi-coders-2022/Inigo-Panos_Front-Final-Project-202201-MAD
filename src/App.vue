@@ -3,26 +3,25 @@
   <body>
     <div ref="" class="app-template">
       <nav>
+        <!-- <p>Hola soy los datos: {{ this.$store.state.account }}</p> -->
         <router-link to="/ruins">List de ruinas</router-link> |
-
-        <div v-if="!this.state">
-          <router-link to="/login">
-            <button v-on:click="resetData()">
-              <img
-                class="profile_image"
-                src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
-                alt="RomanBust"
-              /></button
-          ></router-link>
-        </div>
-
-        <div v-if="this.$store?._state.data?.account?.status === true">
+        <div v-if="this.userLoggedStatus?.loggedIn === true">
           <router-link to="/userData">
             <img
               class="profile_image"
               src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
               alt="RomanBust"
           /></router-link>
+        </div>
+        <div v-else>
+          <button v-on:click="logOutUser()">
+            <router-link to="/login">
+              <img
+                class="profile_image"
+                src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
+                alt="RomanBust"
+            /></router-link>
+          </button>
         </div>
       </nav>
       <router-view />
@@ -33,7 +32,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters, mapState } from 'vuex';
 
 export default {
   data() {
@@ -43,22 +42,15 @@ export default {
   },
 
   computed: {
-    ...mapGetters('account', ['userInfo', 'userData']),
-  },
-
-  mounted() {
-    // console.log(localStorage.getItem('token'), ' token de local storage en app');
-    // if (localStorage.getItem('token')) {
-    //   const tokenUser = localStorage.getItem('token');
-    //   this.loginWithToken(tokenUser);
-    // }
+    ...mapState('account', ['']),
+    ...mapGetters('account', ['userInfo', 'userData', 'userLoggedStatus']),
   },
 
   methods: {
-    ...mapActions('account', ['loginWithToken']),
+    ...mapActions('account', ['loginWithToken', 'logout']),
 
-    resetData() {
-      this.$router.go(0);
+    logOutUser() {
+      this.logout();
     },
   },
 };
