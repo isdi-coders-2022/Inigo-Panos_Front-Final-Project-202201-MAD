@@ -81,7 +81,7 @@
         <a>Actualizar datos</a>
       </router-link>
       |
-      <button type="button" class="deleteRuinButton" v-on:click="deleteRuinById">🗑</button>
+      <button type="button" id="deleteRuinButton" v-on:click="deleteRuinById">🗑</button>
     </div>
   </main>
 </template>

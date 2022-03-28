@@ -1,4 +1,5 @@
 import Vuex from 'vuex';
+import Vue from 'vue';
 import { shallowMount, mount } from '@vue/test-utils';
 import { createRouter, createWebHistory } from 'vue-router';
 import { routes } from '@/router';
@@ -74,7 +75,7 @@ describe('RuinDetail.vue', () => {
     const wrapper = shallowMount(RuinDetail, {
       global: { plugins: [store, router] },
     });
-    expect(wrapper.text()).toMatch('Nombre:');
+    expect(wrapper.text()).toMatch('Detalles de la ruina | ❤ |  | 📍 |:');
     expect(wrapper.text()).toMatch('Localización:');
     expect(wrapper.text()).toMatch('Imágenes:');
     expect(wrapper.text()).toMatch('Descripción:');
@@ -112,17 +113,44 @@ describe('RuinDetails.vue -> buttons', () => {
     expect(wrapper.vm).toBeDefined();
     expect(wrapper.vm.ruinVisited).toHaveBeenCalled();
   });
-  it('Calls delete comment function', async () => {
+  it('Calls deleteRuin function', async () => {
     const wrapper = shallowMount(RuinDetail, {
       global: { plugins: [store, router] },
     });
 
-    jest.spyOn(wrapper.vm, 'deleteRuinComment');
+    jest.spyOn(wrapper.vm, 'deleteRuinById');
     expect(wrapper.find('button').exists()).toBe(true);
-    const button = wrapper.find('.deleteCommentButton');
+    const button = wrapper.find('#deleteRuinButton');
 
+    expect(wrapper.find('#deleteRuinButton').isVisible()).toBe(true);
     await button.trigger('click');
-    // expect(wrapper.vm).toBeDefined();
-    expect(wrapper.vm.deleteRuinComment).toHaveBeenCalled();
+    expect(wrapper.vm).toBeDefined();
+    expect(wrapper.vm.deleteRuinById).toHaveBeenCalled();
   });
+  // it('Calls delete comment function', async () => {
+  //   const wrapper = shallowMount(RuinDetail, {
+  //     global: { plugins: [store, router] },
+  //   });
+
+  //   jest.spyOn(wrapper.vm, 'deleteRuinComment');
+  //   expect(wrapper.find('button').exists()).toBe(true);
+  //   const button = wrapper.find('.deleteCommentButton');
+
+  //   await button.trigger('click');
+  //   expect(wrapper.vm).toBeDefined();
+
+  //   const vm = new Vue({
+  //   template: `<div v-if="comment?.author_id?._id === userData?.userFound?._id">
+  //             <button
+  //               type="button"
+  //               class="deleteCommentButton"
+  //               v-on:click="deleteRuinComment(comment?._id)"
+  //             >`,
+  //   data:
+  //   }).$mount()
+  //   expect(vm.$el.innerHTML).toBe('<span>hello</span>')
+  // })
+
+  //   expect(wrapper.vm.deleteRuinComment).toHaveBeenCalled();
+  // });
 });

@@ -15,11 +15,11 @@ export const ruinsServices = {
   deleteComment,
 };
 
-function getToken() {
+export function getToken() {
   return localStorage.getItem('token');
 }
 
-function updateRuin(payload: any) {
+export function updateRuin(payload: any) {
   console.log(payload, ' Payload recibido en updateRuin, servicio de ruinas');
   return axios.patch(`${RUINS_API}/${payload.ruin._id}`, payload.ruin, {
     headers: {
@@ -28,7 +28,7 @@ function updateRuin(payload: any) {
   });
 }
 
-function newCommentOnRuin(payload: any) {
+export function newCommentOnRuin(payload: any) {
   console.log(payload, ' Payload recibido en addComment, servicio de ruinas');
   return axios.patch(`${RUINS_API}/${payload.ruinId}/comment`, payload, {
     headers: {
@@ -37,7 +37,7 @@ function newCommentOnRuin(payload: any) {
   });
 }
 
-function deleteComment(payload: any) {
+export function deleteComment(payload: any) {
   console.log('Payload en deleteComment: ', payload);
   return axios.delete(`${RUINS_API}/${payload.ruinId}/comment/${payload.commentId}`, {
     headers: {
@@ -46,14 +46,14 @@ function deleteComment(payload: any) {
   });
 }
 
-function addToFavoritesToggle(id: string) {
+export function addToFavoritesToggle(id: string) {
   return axios.patch(`${RUINS_API}/${id}/user/favorites`, id, {
     headers: {
       Authorization: `Bearer ${getToken()}`,
     },
   });
 }
-function addToVisitedToggle(id: string) {
+export function addToVisitedToggle(id: string) {
   return axios.patch(`${RUINS_API}/${id}/user/visited`, id, {
     headers: {
       Authorization: `Bearer ${getToken()}`,
@@ -61,7 +61,7 @@ function addToVisitedToggle(id: string) {
   });
 }
 
-function createNewRuin(ruin: CreateRuinI) {
+export function createNewRuin(ruin: CreateRuinI) {
   console.log(
     'Se ha llamado a createNewRuin de ruin.services con la dirección',
     `${RUINS_API}/add`,
@@ -75,7 +75,7 @@ function createNewRuin(ruin: CreateRuinI) {
   });
 }
 
-function deleteRuin(id: string) {
+export function deleteRuin(id: string) {
   console.log('Se llama a deleteRuin con: ', `${RUINS_API}/${id}`);
 
   return axios.delete(`${RUINS_API}/${id}`, {
@@ -85,12 +85,12 @@ function deleteRuin(id: string) {
   });
 }
 
-function getAllRuins() {
+export function getAllRuins() {
   console.log('Se ha llamado a getData de ruins.service con la dirección', `${RUINS_API}`);
   return axios.get(`${RUINS_API}`);
 }
 
-function getRuinDetails(id: string) {
+export function getRuinDetails(id: string) {
   console.log('Se ha llamado a getData de ruins.service con la dirección', `${RUINS_API}`);
   return axios.get(`${RUINS_API}/${id}`);
 }
