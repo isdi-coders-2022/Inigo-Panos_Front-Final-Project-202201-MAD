@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/20</span>
+                <span class='fraction'>0/21</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/20</span>
+                <span class='fraction'>0/21</span>
             </div>
         
             
@@ -130,19 +130,12 @@
 <a name='L65'></a><a href='#L65'>65</a>
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -159,7 +152,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,12 +170,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -218,9 +210,6 @@ export const <span class="cstat-no" title="statement not covered" >usersService 
   loginUsingToken,
 };
 &nbsp;
-// let token = localStorage.getItem('token');
-// token = token === null ? null : token;
-&nbsp;
 function <span class="fstat-no" title="function not covered" >getToken(</span>) {
 <span class="cstat-no" title="statement not covered" >  return l</span>ocalStorage.getItem('token');
 }
@@ -230,7 +219,6 @@ function <span class="fstat-no" title="function not covered" >handleResponse(r</
     const data = <span class="cstat-no" title="statement not covered" >text &amp;&amp; JSON.</span>parse(text);
 <span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (!response.ok) {</span>
 <span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (response.status === 401) {</span>
-        // auto logout if 401 response returned from api
 <span class="cstat-no" title="statement not covered" >        logout();</span>
 <span class="cstat-no" title="statement not covered" >        location.</span>reload();
       }
@@ -248,6 +236,7 @@ function <span class="fstat-no" title="function not covered" >register(u</span>s
 }
 &nbsp;
 function <span class="fstat-no" title="function not covered" >login(u</span>ser: UserLoginI) {
+<span class="cstat-no" title="statement not covered" >  console.</span>log(user, 'USUARIO EN LOGIN SERVICIO DE USUARIO');
 <span class="cstat-no" title="statement not covered" >  return a</span>xios.post(`${USERS_API}/users/login`, user);
 }
 &nbsp;
@@ -265,8 +254,7 @@ function <span class="fstat-no" title="function not covered" >loginUsingToken(t<
 }
 &nbsp;
 function <span class="fstat-no" title="function not covered" >logout(</span>) {
-  // remove user from local storage to log user out. Yo tengo id?
-<span class="cstat-no" title="statement not covered" >  localStorage.</span>removeItem('user');
+<span class="cstat-no" title="statement not covered" >  localStorage.</span>removeItem('token');
 }
 &nbsp;
 function <span class="fstat-no" title="function not covered" >getData(i</span>d: any) {
@@ -283,7 +271,7 @@ function <span class="fstat-no" title="function not covered" >getData(i</span>d:
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat Mar 26 2022 17:25:45 GMT+0100 (hora estándar de Europa central)
+                at Sun Mar 27 2022 23:28:21 GMT+0200 (hora de verano de Europa central)
             </div>
         <script src="../../prettify.js"></script>
         <script>

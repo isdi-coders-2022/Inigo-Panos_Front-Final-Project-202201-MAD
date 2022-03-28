@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/64</span>
+                <span class='fraction'>0/66</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/64</span>
+                <span class='fraction'>0/66</span>
             </div>
         
             
@@ -224,12 +224,7 @@
 <a name='L159'></a><a href='#L159'>159</a>
 <a name='L160'></a><a href='#L160'>160</a>
 <a name='L161'></a><a href='#L161'>161</a>
-<a name='L162'></a><a href='#L162'>162</a>
-<a name='L163'></a><a href='#L163'>163</a>
-<a name='L164'></a><a href='#L164'>164</a>
-<a name='L165'></a><a href='#L165'>165</a>
-<a name='L166'></a><a href='#L166'>166</a>
-<a name='L167'></a><a href='#L167'>167</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L162'></a><a href='#L162'>162</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -248,21 +243,20 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -340,10 +334,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -409,6 +399,7 @@ const actions = <span class="cstat-no" title="statement not covered" >{</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    usersService.l</span>ogin(user).then(
       (<span class="fstat-no" title="function not covered" >userData) =&gt; </span>{
+<span class="cstat-no" title="statement not covered" >        console.</span>log('USER DATA DE LOGIN NORMAL Y CORRIENTE', userData);
 <span class="cstat-no" title="statement not covered" >        localStorage.</span>setItem('id', JSON.stringify(userData.data.userId));
 <span class="cstat-no" title="statement not covered" >        localStorage.</span>setItem('token', userData.data.token);
 <span class="cstat-no" title="statement not covered" >        commit(</span>'loginSuccess', userData.data);
@@ -423,12 +414,10 @@ const actions = <span class="cstat-no" title="statement not covered" >{</span>
   },
 &nbsp;
 <span class="fstat-no" title="function not covered" >  loginWithToken(</span>{ dispatch, commit }: { dispatch: any; commit: any }, token: any) {
-    // console.log(token, ' token enviado desde loginWithToken');
 <span class="cstat-no" title="statement not covered" >    usersService.l</span>oginUsingToken(token).then(
       (<span class="fstat-no" title="function not covered" >userData) =&gt; </span>{
-        // console.log(userData, ' USERDATA de loginWithToken');
+<span class="cstat-no" title="statement not covered" >        console.</span>log('USER DATA DE LOGIN POR TOKEN Y &lt;PUTO&gt;&lt;/PUTO&gt;', userData);
 <span class="cstat-no" title="statement not covered" >        commit(</span>'loginSuccess', userData.data);
-        // console.log('UserData tras hacer login', userData.data);
       },
       (<span class="fstat-no" title="function not covered" >error) =&gt; </span>{
 <span class="cstat-no" title="statement not covered" >        commit(</span>'loginFailureToken', error);
@@ -506,10 +495,6 @@ const mutations = <span class="cstat-no" title="statement not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >    state.</span>userInformation = user;
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    console.</span>log(state.userInformation, ' estado del usuario ya logeado');
-&nbsp;
-    // state.user.token = localStorage.getItem('token');
-    // state.user.userId = localStorage.getItem('id');
-    // state.user.userId = JSON.parse(state.user.userId);
   },
 &nbsp;
 <span class="fstat-no" title="function not covered" >  loginRequest(</span>state: any, user: any) {
@@ -568,7 +553,7 @@ export const <span class="cstat-no" title="statement not covered" >account = {</
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat Mar 26 2022 17:25:45 GMT+0100 (hora estándar de Europa central)
+                at Sun Mar 27 2022 23:28:21 GMT+0200 (hora de verano de Europa central)
             </div>
         <script src="../../prettify.js"></script>
         <script>

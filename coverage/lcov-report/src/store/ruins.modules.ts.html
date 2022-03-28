@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/81</span>
+                <span class='fraction'>0/85</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/81</span>
+                <span class='fraction'>0/85</span>
             </div>
         
             
@@ -286,7 +286,13 @@
 <a name='L221'></a><a href='#L221'>221</a>
 <a name='L222'></a><a href='#L222'>222</a>
 <a name='L223'></a><a href='#L223'>223</a>
-<a name='L224'></a><a href='#L224'>224</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L224'></a><a href='#L224'>224</a>
+<a name='L225'></a><a href='#L225'>225</a>
+<a name='L226'></a><a href='#L226'>226</a>
+<a name='L227'></a><a href='#L227'>227</a>
+<a name='L228'></a><a href='#L228'>228</a>
+<a name='L229'></a><a href='#L229'>229</a>
+<a name='L230'></a><a href='#L230'>230</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -325,7 +331,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -353,13 +358,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -422,6 +430,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -444,10 +453,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -484,7 +497,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -548,7 +560,6 @@ const actions = <span class="cstat-no" title="statement not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >    ruinsServices.g</span>etRuinDetails(id).then(
       (<span class="fstat-no" title="function not covered" >ruinsDetails) =&gt; </span>{
 <span class="cstat-no" title="statement not covered" >        commit(</span>'getRuinDetailsSuccess', ruinsDetails);
-<span class="cstat-no" title="statement not covered" >        console.</span>log(ruinsDetails, ' listOfRuinsData en ruin.modules');
       },
 &nbsp;
       (<span class="fstat-no" title="function not covered" >error) =&gt; </span>{
@@ -576,10 +587,13 @@ const actions = <span class="cstat-no" title="statement not covered" >{</span>
   },
 &nbsp;
 <span class="fstat-no" title="function not covered" >  modifyExistingRuin(</span>{ dispatch, commit }: { dispatch: any; commit: any }, payload: any) {
+<span class="cstat-no" title="statement not covered" >    console.</span>log('HOLA');
 <span class="cstat-no" title="statement not covered" >    ruinsServices.u</span>pdateRuin(payload).then(
       (<span class="fstat-no" title="function not covered" >listOfRuinsData: any) =&gt; </span>{
 <span class="cstat-no" title="statement not covered" >        commit(</span>'modifyRuinSuccess', listOfRuinsData);
 <span class="cstat-no" title="statement not covered" >        router.p</span>ush('/ruins');
+<span class="cstat-no" title="statement not covered" >        location.</span>reload();
+&nbsp;
         // dispatch('alert/success', 'Ruin modification successful', { root: true });
       },
       (<span class="fstat-no" title="function not covered" >error) =&gt; </span>{
@@ -633,7 +647,7 @@ const actions = <span class="cstat-no" title="statement not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >    ruinsServices.n</span>ewCommentOnRuin(payload).then(
       (<span class="fstat-no" title="function not covered" >ruinDetails: any) =&gt; </span>{
 <span class="cstat-no" title="statement not covered" >        commit(</span>'addCommentToRuinSuccess', ruinDetails);
-<span class="cstat-no" title="statement not covered" >        dispatch(</span>'alert/success', 'Ruin creation successful', { root: true });
+<span class="cstat-no" title="statement not covered" >        dispatch(</span>'alert/success', 'Comment creation successful', { root: true });
       },
       (<span class="fstat-no" title="function not covered" >error) =&gt; </span>{
 <span class="cstat-no" title="statement not covered" >        commit(</span>'createNewRuinFailure', error);
@@ -644,13 +658,14 @@ const actions = <span class="cstat-no" title="statement not covered" >{</span>
 &nbsp;
 <span class="fstat-no" title="function not covered" >  deleteCommentFromRuin(</span>{ dispatch, commit }: { dispatch: any; commit: any }, payload: any) {
 <span class="cstat-no" title="statement not covered" >    ruinsServices.d</span>eleteComment(payload).then(
-      (<span class="fstat-no" title="function not covered" >ruinData: any) =&gt; </span>{
-<span class="cstat-no" title="statement not covered" >        commit(</span>'removedCommentFromRuinSuccess', ruinData);
+      (<span class="fstat-no" title="function not covered" >ruinDetails: any) =&gt; </span>{
+<span class="cstat-no" title="statement not covered" >        commit(</span>'removedCommentFromRuinSuccess', ruinDetails);
+<span class="cstat-no" title="statement not covered" >        dispatch(</span>'alert/success', 'Comment deletion successful', { root: true });
 <span class="cstat-no" title="statement not covered" >        console.</span>log('Se ha borrado el comentario con éxito!');
       },
       (<span class="fstat-no" title="function not covered" >error) =&gt; </span>{
+<span class="cstat-no" title="statement not covered" >        commit(</span>'createNewRuinFailure', error);
 <span class="cstat-no" title="statement not covered" >        dispatch(</span>'alert/error', error, { root: true });
-<span class="cstat-no" title="statement not covered" >        console.</span>log('Se ha añadido/quitado de visitados con éxito!');
       },
     );
   },
@@ -665,14 +680,18 @@ const mutations = <span class="cstat-no" title="statement not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >    console.</span>log('Se ha modificado el visitado de forma exitosa');
   },
 &nbsp;
-<span class="fstat-no" title="function not covered" >  removedCommentFromRuinSuccess(</span>state: any, ruinData: any) {
+<span class="fstat-no" title="function not covered" >  removedCommentFromRuinSuccess(</span>state: any, ruinDetails: any) {
 <span class="cstat-no" title="statement not covered" >    console.</span>log('Se ha borrado el comentario de forma exitosa');
+    const newRuinData = <span class="cstat-no" title="statement not covered" >ruinDetails.data.response;</span>
+<span class="cstat-no" title="statement not covered" >    state.</span>ruin = newRuinData;
+<span class="cstat-no" title="statement not covered" >    console.</span>log(newRuinData, 'TRAS BORRAR COMENTARIO');
   },
 &nbsp;
 <span class="fstat-no" title="function not covered" >  addCommentToRuinSuccess(</span>state: any, ruinDetails: any) {
-<span class="cstat-no" title="statement not covered" >    console.</span>log('Se ha añadido el comentario de forma exitosa', ruinDetails);
-<span class="cstat-no" title="statement not covered" >    console.</span>log('Datos de la ruina, ', ruinDetails.data.response);
+<span class="cstat-no" title="statement not covered" >    console.</span>log('Se ha añadido el comentario de forma exitosa: ', ruinDetails.data.response);
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    state.</span>ruin = ruinDetails.data.response;
+<span class="cstat-no" title="statement not covered" >    console.</span>log('Datos de la ruina, ', state.ruin); // No están populados los datos
   },
 &nbsp;
 <span class="fstat-no" title="function not covered" >  getAllRuinsSucess(</span>state: any, listOfRuinsData: any) {
@@ -688,8 +707,8 @@ const mutations = <span class="cstat-no" title="statement not covered" >{</span>
   },
 &nbsp;
 <span class="fstat-no" title="function not covered" >  getRuinDetailsSuccess(</span>state: any, ruinDetails: any) {
-<span class="cstat-no" title="statement not covered" >    console.</span>log(ruinDetails, ' detalles de ruina en mutación');
 <span class="cstat-no" title="statement not covered" >    state.</span>ruin = ruinDetails.data;
+<span class="cstat-no" title="statement not covered" >    console.</span>log('Datos de getRuinDetailsSuccess: ', state.ruin);
   },
 &nbsp;
 <span class="fstat-no" title="function not covered" >  deleteRuinSuccess(</span>state: any, listOfRuinsData: any) {
@@ -708,11 +727,10 @@ const mutations = <span class="cstat-no" title="statement not covered" >{</span>
   },
 <span class="fstat-no" title="function not covered" >  createNewRuinFailure(</span>state: any) {
 <span class="cstat-no" title="statement not covered" >    console.</span>log(state.status);
-<span class="cstat-no" title="statement not covered" >    state.</span>status = {};
   },
 &nbsp;
 <span class="fstat-no" title="function not covered" >  modifyRuinSuccess(</span>state: any, listOfRuinsData: any) {
-<span class="cstat-no" title="statement not covered" >    state.</span>allRuinsData = [];
+<span class="cstat-no" title="statement not covered" >    state.</span>listOfRuinsData = [];
   },
 };
 &nbsp;
@@ -739,7 +757,7 @@ export const <span class="cstat-no" title="statement not covered" >ruins = {</sp
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat Mar 26 2022 17:25:45 GMT+0100 (hora estándar de Europa central)
+                at Sun Mar 27 2022 23:28:21 GMT+0200 (hora de verano de Europa central)
             </div>
         <script src="../../prettify.js"></script>
         <script>

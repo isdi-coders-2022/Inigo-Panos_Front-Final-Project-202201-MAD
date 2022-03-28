@@ -55,7 +55,7 @@ const actions = {
   logout({ commit }: { commit: any }) {
     localStorage.setItem('id', '');
     usersService.logout();
-    commit('logout');
+    commit('logout', {});
   },
 
   register({ dispatch, commit }: { dispatch: any; commit: any }, user: any) {
@@ -129,6 +129,7 @@ const mutations = {
   logout(state: any) {
     state.status = {};
     state.user = null;
+    state.userInformation = {};
   },
   registerRequest(state: any) {
     console.log(state.status);

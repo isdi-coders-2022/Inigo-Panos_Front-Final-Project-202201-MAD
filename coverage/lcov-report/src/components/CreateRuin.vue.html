@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30.43% </span>
+                <span class="strong">47.82% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/23</span>
+                <span class='fraction'>11/23</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30.43% </span>
+                <span class="strong">47.82% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/23</span>
+                <span class='fraction'>11/23</span>
             </div>
         
             
@@ -189,19 +189,7 @@
 <a name='L124'></a><a href='#L124'>124</a>
 <a name='L125'></a><a href='#L125'>125</a>
 <a name='L126'></a><a href='#L126'>126</a>
-<a name='L127'></a><a href='#L127'>127</a>
-<a name='L128'></a><a href='#L128'>128</a>
-<a name='L129'></a><a href='#L129'>129</a>
-<a name='L130'></a><a href='#L130'>130</a>
-<a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a>
-<a name='L133'></a><a href='#L133'>133</a>
-<a name='L134'></a><a href='#L134'>134</a>
-<a name='L135'></a><a href='#L135'>135</a>
-<a name='L136'></a><a href='#L136'>136</a>
-<a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a>
-<a name='L139'></a><a href='#L139'>139</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L127'></a><a href='#L127'>127</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -272,7 +260,7 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -314,27 +302,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -409,8 +385,8 @@ import { storage } from '@/firebase';
 &nbsp;
 export default defineComponent({
   name: 'register-form',
-  data<span class="fstat-no" title="function not covered" >() {</span>
-<span class="cstat-no" title="statement not covered" >    return {</span>
+  data() {
+    return {
       ruin: {
         name: '',
         location: '',
@@ -444,23 +420,11 @@ export default defineComponent({
 <span class="cstat-no" title="statement not covered" >      uploadBytes(n</span>ewRef, this.fileToUpload as any).then(<span class="fstat-no" title="function not covered" >() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        getDownloadURL(n</span>ewRef).then(<span class="fstat-no" title="function not covered" >(u</span>rl: string) =&gt; {
 <span class="cstat-no" title="statement not covered" >          console.</span>log(url, 'URL DE CREATERUIN');
-<span class="cstat-no" title="statement not covered" >          this.</span>ruin.images = url as string;
+<span class="cstat-no" title="statement not covered" >          this.</span>ruin.images = url;
 <span class="cstat-no" title="statement not covered" >          console.</span>log(this.ruin.images, 'IMAGEN YA HECHA URL');
 <span class="cstat-no" title="statement not covered" >          this.</span>createNewRuin(this.ruin);
         });
       });
-&nbsp;
-      // if (
-      //   (this.ruin.name &amp;&amp; this.ruin.location &amp;&amp; this.ruin.description &amp;&amp; this.ruin.images) !==
-      //   undefined
-      // ) {
-      //   console.log(
-      //     this.ruin.images,
-      //     'Se llama a createNewRuin desde el componente CreateRuin.vue',
-      //   );
-      // } else {
-      //   console.log(`Algún campo no está rellenado`);
-      // }
     },
 <span class="fstat-no" title="function not covered" >    handleImageChange(</span>e: any) {
       // eslint-disable-next-line prefer-destructuring
@@ -468,11 +432,11 @@ export default defineComponent({
     },
   },
 &nbsp;
-<span class="fstat-no" title="function not covered" >  mounted(</span>) {
-<span class="cstat-no" title="statement not covered" >    console.</span>log(this.userData, 'info de USUARIO EN CREATERUIN');
+  mounted() {
+    console.log(this.userData, 'info de USUARIO EN CREATERUIN');
 &nbsp;
-    const route = <span class="cstat-no" title="statement not covered" >useRoute();</span>
-    const { id } = <span class="cstat-no" title="statement not covered" >route.params;</span>
+    const route = useRoute();
+    const { id } = route.params;
 <span class="cstat-no" title="statement not covered" >    this.i</span>dRuina = id as string;
   },
 });
@@ -484,7 +448,7 @@ export default defineComponent({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat Mar 26 2022 17:25:45 GMT+0100 (hora estándar de Europa central)
+                at Sun Mar 27 2022 23:28:21 GMT+0200 (hora de verano de Europa central)
             </div>
         <script src="../../prettify.js"></script>
         <script>

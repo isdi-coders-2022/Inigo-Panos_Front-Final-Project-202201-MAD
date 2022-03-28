@@ -3,28 +3,27 @@
   <body>
     <div ref="" class="app-template">
       <nav>
-        <router-link to="/register">Register</router-link> |
+        <router-link to="/ruins">List de ruinas</router-link> |
 
-        <router-link to="/ruins">List of Ruins</router-link> |
-
-        <template v-if="this.$store?._state.data.account.status === {}">
-          <button v-on:click="showState()">Hola mundo</button>
-
+        <div v-if="!this.state">
           <router-link to="/login">
-            <img
-              class="profile_image"
-              src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
-              alt="RomanBust"
-          /></router-link>
-        </template>
-        <template v-else-if="this.$store?._state.data.account.status">
+            <button v-on:click="resetData()">
+              <img
+                class="profile_image"
+                src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
+                alt="RomanBust"
+              /></button
+          ></router-link>
+        </div>
+
+        <div v-if="this.$store?._state.data?.account?.status === true">
           <router-link to="/userData">
             <img
               class="profile_image"
               src="https://vignette.wikia.nocookie.net/spqr-series/images/1/17/Augustus.png/revision/latest?cb=20140205212909"
               alt="RomanBust"
           /></router-link>
-        </template>
+        </div>
       </nav>
       <router-view />
       <main></main>
@@ -57,6 +56,10 @@ export default {
 
   methods: {
     ...mapActions('account', ['loginWithToken']),
+
+    resetData() {
+      this.$router.go(0);
+    },
   },
 };
 </script>
