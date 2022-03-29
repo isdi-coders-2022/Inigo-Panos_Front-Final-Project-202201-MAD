@@ -120,6 +120,7 @@ describe('RuinDetails.vue -> buttons', () => {
   });
   it('Calls deleteRuin function', async () => {
     const wrapper = mount(RuinDetail, {
+      global: { plugins: [store, router] },
       data() {
         return {
           userData: {
@@ -156,24 +157,13 @@ describe('RuinDetails.vue -> buttons', () => {
       },
     });
 
-    console.log(wrapper.vm.ruinDetails.comments, wrapper.vm.userData.userFound._id);
-
     jest.spyOn(wrapper.vm, 'deleteRuinComment');
 
-    console.log(wrapper.html());
     expect(wrapper.find('.deleteCommentButton').exists()).toBe(true);
-    // // expect(wrapper.find('button').exists()).toBe(true);
 
     const button = wrapper.find('.deleteCommentButton');
 
     await button.trigger('click');
-
-    // const payloadComment = {
-    //   ruinId: '1111',
-    //   commentId: '2222',
-    // };
-    // const id = '1111';
-    // console.log(payloadComment, 'payloadComment en test');
 
     expect(wrapper.vm).toBeDefined();
     expect(wrapper.vm.deleteRuinComment).toHaveBeenCalled();

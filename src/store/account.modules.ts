@@ -2,9 +2,6 @@ import { UserI } from '@/_helpers/interfaces';
 import { usersService } from '../router/users.service';
 import router from '../router/index';
 
-// const user = JSON.parse(localStorage.getItem('user')!);
-// const state = user ? { status: { loggedIn: true }, user } : { status: {}, user: null };
-
 const actions = {
   login({ dispatch, commit }: { dispatch: any; commit: any }, user: UserI) {
     commit('loginRequest', {});
@@ -12,11 +9,9 @@ const actions = {
 
     usersService.login(user).then(
       (userData) => {
-        console.log('USER DATA DE LOGIN NORMAL Y CORRIENTE', userData);
         localStorage.setItem('id', JSON.stringify(userData.data.userId));
         localStorage.setItem('token', userData.data.token);
         commit('loginSuccess', userData.data);
-        console.log('UserData tras hacer login', userData.data);
         router.push('/userData');
       },
       (error) => {
@@ -29,7 +24,6 @@ const actions = {
   loginWithToken({ dispatch, commit }: { dispatch: any; commit: any }, token: any) {
     usersService.loginUsingToken(token).then(
       (userData) => {
-        console.log('USER DATA DE LOGIN POR TOKEN Y <PUTO></PUTO>', userData);
         commit('loginSuccess', userData.data);
       },
       (error) => {
@@ -43,7 +37,6 @@ const actions = {
     usersService.getData(id).then(
       (userData) => {
         commit('getUserSuccess', userData);
-        console.log(userData, ' userData en accountModules');
       },
 
       (error) => {
@@ -59,7 +52,6 @@ const actions = {
   },
 
   register({ dispatch, commit }: { dispatch: any; commit: any }, user: any) {
-    console.log('Usuario llegado a register en account.modules: ', user);
     commit('registerRequest', user);
 
     usersService.register(user).then(
@@ -81,8 +73,6 @@ const actions = {
 
 const mutations = {
   getUserSuccess(state: any, user: any) {
-    console.log(user, ' user');
-
     state.userInformation = {
       userName: user.data.userName,
       favorites: user.data.favorites,
@@ -94,13 +84,6 @@ const mutations = {
     state.user.token = localStorage.getItem('token');
     state.user.userId = localStorage.getItem('id');
     state.user.userId = JSON.parse(state.user.userId);
-
-    // console.log(
-    //   state.userInformation,
-    //   ' y ',
-    //   state.user,
-    //   ' datos de un usuario traídos de getUsers',
-    // );
   },
 
   loginSuccess(state: any, user: any) {
@@ -108,23 +91,18 @@ const mutations = {
 
     state.userInformation = user;
     state.userLoggedStatus = { loggedIn: true };
-    console.log(state.userInformation, ' estado del usuario ya logeado');
-    console.log(state.userLoggedStatus, ' estatus del login');
   },
 
   loginRequest(state: any, user: any) {
-    console.log(state.status, 'estado login request');
     state.status = { loggingIn: true };
     state.user = user;
   },
 
   loginFailure(state: any) {
-    console.log(state.status, 'estado login failure');
     state.status = {};
     state.user = null;
   },
   loginFailureToken(state: any) {
-    console.log(state.status, 'estado login failure tras llamar con token');
     state.status = {};
     state.user = null;
   },
@@ -133,18 +111,14 @@ const mutations = {
     state.user = null;
     state.userInformation = {};
     state.userLoggedStatus = { loggedIn: false };
-    console.log(state.userLoggedStatus, ' estatus del logout');
   },
   registerRequest(state: any) {
-    console.log(state.status);
     state.status = { registering: true };
   },
   registerSuccess(state: any) {
-    console.log(state.status);
     state.status = {};
   },
   registerFailure(state: any) {
-    console.log(state.status);
     state.status = {};
   },
 };

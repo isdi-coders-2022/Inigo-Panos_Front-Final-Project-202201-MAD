@@ -20,12 +20,10 @@ export function register(user: UserRegisterI) {
 }
 
 export function login(user: UserLoginI) {
-  console.log(user, 'USUARIO EN LOGIN SERVICIO DE USUARIO');
   return axios.post(`${USERS_API}/users/login`, user);
 }
 
 export function loginUsingToken(token: any) {
-  console.log('Se llama a loginUsingToken con el token: ', token);
   return axios.post(
     `${USERS_API}/users/login/token`,
     {},
@@ -42,9 +40,5 @@ export function logout() {
 }
 
 export function getData(id: any) {
-  console.log(
-    'Se ha llamado a getData de users.services con la dirección',
-    `${USERS_API}/users/${id}`,
-  );
   return axios.get(`${USERS_API}/users/${id}`);
 }

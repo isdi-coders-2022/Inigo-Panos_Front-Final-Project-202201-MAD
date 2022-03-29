@@ -189,8 +189,11 @@ describe('Given the service api', () => {
         description: 'Mock',
       };
       id = '1111';
+      // const result = api.request.handlers[0].fulfilled({ headers: {} });
+
       return api.getRuinDetails(id as string).then((data) => {
         expect(data).toEqual(ruin);
+        // expect(result.headers).toHaveProperty('Authorization');
       });
     });
   });

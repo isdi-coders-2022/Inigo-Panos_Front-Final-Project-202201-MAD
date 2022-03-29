@@ -49,7 +49,7 @@ describe('UpdateRuin.vue', () => {
     jest.spyOn(wrapper.vm, 'modifyExistingRuin');
 
     wrapper.vm.handleSubmit();
-    console.log(wrapper.vm);
+
     expect(wrapper.vm).toBeDefined();
     expect(wrapper.vm.modifyExistingRuin).toHaveBeenCalled();
   });

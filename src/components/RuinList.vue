@@ -34,7 +34,6 @@ export default defineComponent({
 
   mounted() {
     this.getAllRuins();
-    console.log(this.listOfRuinsData, 'ALLRUINSDATA EN RUINS LIST');
   },
 
   methods: {

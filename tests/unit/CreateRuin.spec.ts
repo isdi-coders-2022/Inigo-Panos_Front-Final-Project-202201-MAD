@@ -4,6 +4,14 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { routes } from '@/router';
 import CreateRuin from '@/components/CreateRuin.vue';
 
+jest.mock('firebase/storage', () => ({
+  ...jest.requireActual('firebase/storage'),
+  ref: jest.fn().mockReturnValue({}),
+  uploadBytes: jest.fn().mockResolvedValue({}),
+  getDownloadURL: jest.fn().mockResolvedValue('test.com/pepe.jpg'),
+  handleImageChange: jest.fn(),
+}));
+
 export const store = new Vuex.Store({
   modules: {
     account: {
@@ -43,10 +51,10 @@ describe('On mounted.vue', () => {
       global: { plugins: [store, router] },
     });
 
-    jest.spyOn(wrapper.vm, 'createNewRuin');
-
     wrapper.vm.handleSubmit();
+    jest.spyOn(wrapper.vm, 'createNewRuin');
     expect(wrapper.vm).toBeDefined();
+
     expect(wrapper.vm.createNewRuin).toHaveBeenCalled();
   });
 

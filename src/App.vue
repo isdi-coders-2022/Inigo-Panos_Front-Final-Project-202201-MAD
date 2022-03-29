@@ -3,7 +3,6 @@
   <body>
     <div ref="" class="app-template">
       <nav>
-        <!-- <p>Hola soy los datos: {{ this.$store.state.account }}</p> -->
         <router-link to="/ruins">List de ruinas</router-link> |
         <router-link to="/addRuin">Crear Ruinas</router-link>
         <div v-if="this.userLoggedStatus?.loggedIn === true">
@@ -63,8 +62,6 @@ export default {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
   text-decoration: none;
   list-style-type: none;
 }

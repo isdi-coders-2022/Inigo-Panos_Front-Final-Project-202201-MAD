@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30.76% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30.76% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -245,16 +245,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -273,27 +271,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -317,14 +317,14 @@
 &nbsp;
     &lt;form @submit.prevent="handleSubmit" v-if="ruinDetails"&gt;
       &lt;div class="form-group"&gt;
-        &lt;li&gt;Nombre: {{ ruinDetails?.name }}&lt;/li&gt;
+        &lt;p&gt;Nombre: {{ ruinDetails?.name }}&lt;/p&gt;
         &lt;label for="name"&gt;
           &lt;input type="text" id="name" v-model="ruinDetails.name" name="name" /&gt;
         &lt;/label&gt;
       &lt;/div&gt;
 &nbsp;
       &lt;div class="form-group"&gt;
-        &lt;li&gt;Localización: {{ ruinDetails?.location }}&lt;/li&gt;
+        &lt;p&gt;Localización: {{ ruinDetails?.location }}&lt;/p&gt;
 &nbsp;
         &lt;label for="location"&gt;
           &lt;input type="location" v-model="ruinDetails.location" name="location"
@@ -332,7 +332,7 @@
       &lt;/div&gt;
 &nbsp;
       &lt;div class="form-group"&gt;
-        &lt;li&gt;Descripción: {{ ruinDetails?.description }}&lt;/li&gt;
+        &lt;p&gt;Descripción: {{ ruinDetails?.description }}&lt;/p&gt;
 &nbsp;
         &lt;label for="description"&gt;
           &lt;input type="description" v-model="ruinDetails.description" name="description"
@@ -340,7 +340,7 @@
       &lt;/div&gt;
 &nbsp;
       &lt;div class="ruinImage"&gt;
-        &lt;li&gt;Imagen&lt;/li&gt;
+        &lt;p&gt;Imagen&lt;/p&gt;
 &nbsp;
         &lt;img v-bind:src="ruinDetails?.images" alt="ruin" /&gt;
         &lt;label for="images"&gt;
@@ -354,7 +354,7 @@
       &lt;/div&gt;
 &nbsp;
       &lt;div class="form-group"&gt;
-        &lt;li&gt;Puntuación: {{ ruinDetails?.score }}&lt;/li&gt;
+        &lt;p&gt;Puntuación: {{ ruinDetails?.score }}&lt;/p&gt;
 &nbsp;
         &lt;label for="score"&gt; &lt;input type="score" v-model="ruinDetails.score" name="score" /&gt;&lt;/label&gt;
       &lt;/div&gt;
@@ -375,8 +375,8 @@ import { useRoute } from 'vue-router';
 &nbsp;
 export default defineComponent({
   name: 'update-form',
-  data<span class="fstat-no" title="function not covered" >() {</span>
-<span class="cstat-no" title="statement not covered" >    return {</span>
+  data() {
+    return {
       payload: {
         ruin: {
           name: '',
@@ -396,11 +396,11 @@ export default defineComponent({
   methods: {
     ...mapActions('ruins', ['modifyExistingRuin', 'getRuinDetails']),
 &nbsp;
-    handleSubmit<span class="fstat-no" title="function not covered" >() {</span>
-<span class="cstat-no" title="statement not covered" >      this.s</span>ubmitted = true;
-<span class="cstat-no" title="statement not covered" >      this.p</span>ayload.ruin = this.ruinDetails;
+    handleSubmit() {
+      this.submitted = true;
+      this.payload.ruin = this.ruinDetails;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      this.m</span>odifyExistingRuin(this.payload);
+      this.modifyExistingRuin(this.payload);
     },
   },
 &nbsp;
@@ -409,15 +409,15 @@ export default defineComponent({
     ...mapGetters('account', ['userData']),
   },
 &nbsp;
-  mounted<span class="fstat-no" title="function not covered" >() {</span>
-    const route = <span class="cstat-no" title="statement not covered" >useRoute();</span>
-    const { id } = <span class="cstat-no" title="statement not covered" >route.params;</span>
+  mounted() {
+    const route = useRoute();
+    const { id } = route.params;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    console.</span>log(id, 'id en updateruin');
+    console.log(id, 'id en updateruin');
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    this.g</span>etRuinDetails(id);
+    this.getRuinDetails(id);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    console.</span>log('DATOS QUE HAY EN UPDATERUIN', this.ruinDetails);
+    console.log('DATOS QUE HAY EN UPDATERUIN', this.ruinDetails);
   },
 });
 &lt;/script&gt;
@@ -442,7 +442,7 @@ export default defineComponent({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Mar 29 2022 13:54:00 GMT+0200 (hora de verano de Europa central)
+                at Tue Mar 29 2022 18:13:35 GMT+0200 (hora de verano de Europa central)
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -9,9 +9,6 @@
       <li><span class="bold">Nombre:</span> {{ ruinDetails?.name }}</li>
       <li><span class="bold">Localización:</span> {{ ruinDetails?.location }}</li>
       <li><span class="bold">Descripción:</span> {{ ruinDetails?.description }}</li>
-      <li>
-        <span class="bold">Score: {{ ruinDetails?.score }}</span>
-      </li>
 
       <li class="ruinImage">
         <span class="bold">Imágenes:</span>
@@ -149,7 +146,6 @@ export default defineComponent({
     ...mapActions('account', ['getUserData']),
 
     deleteRuinById() {
-      console.log(this.ruinDetails._id, '_id de la ruina a borrar');
       this.deleteRuin(this.ruinDetails._id);
     },
 

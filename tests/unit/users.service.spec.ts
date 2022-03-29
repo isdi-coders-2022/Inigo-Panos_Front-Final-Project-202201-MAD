@@ -75,7 +75,15 @@ describe('Given the service api', () => {
       });
     });
   });
-
+  describe('Testing logout', () => {
+    test('Logout', () => {
+      // window.localStorage.removeItem('token');
+      jest.spyOn(global.localStorage, 'removeItem');
+      global.localStorage.removeItem = jest.fn();
+      expect(localStorage.removeItem).toHaveBeenCalled();
+      // expect(window.localStorage.getItem('token')).toBe(null);
+    });
+  });
   describe('Testing loginWithToken', () => {
     beforeEach(() => {
       user = {

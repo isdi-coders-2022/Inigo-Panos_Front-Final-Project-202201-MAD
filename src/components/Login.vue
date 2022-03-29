@@ -56,8 +56,6 @@ export default defineComponent({
   mounted() {
     const id = localStorage.getItem('id');
     localStorage.setItem('id', '');
-
-    console.log('Se llama a logout', id, ' y queda este id');
   },
   methods: {
     ...mapActions('account', ['login', 'logout']),
