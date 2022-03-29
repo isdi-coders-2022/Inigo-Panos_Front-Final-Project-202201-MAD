@@ -23,17 +23,22 @@ export const store = new Vuex.Store({
         deleteCommentFromRuin: jest.fn(),
       },
       getters: {
-        ruinDetails: jest.fn(),
+        ruinDetails: jest.fn().mockReturnValue({ comments: [{ author_id: { _id: '11111' } }] }),
         listOfRuinsData: jest.fn(),
       },
     },
     account: {
+      namespaced: true,
       state: {},
       actions: {
         getUserData: jest.fn(),
       },
       getters: {
-        userData: jest.fn(),
+        userData: jest.fn().mockReturnValue({
+          userFound: {
+            _id: '11111',
+          },
+        }),
       },
     },
   },
@@ -65,6 +70,7 @@ describe('RuinDetail.vue', () => {
     jest.spyOn(wrapper.vm, 'addCommentToRuin');
 
     wrapper.vm.handleSubmit();
+
     expect(wrapper.vm).toBeDefined();
     expect(wrapper.vm.addCommentToRuin).toHaveBeenCalled();
   });
@@ -75,10 +81,7 @@ describe('RuinDetail.vue', () => {
     const wrapper = shallowMount(RuinDetail, {
       global: { plugins: [store, router] },
     });
-    expect(wrapper.text()).toMatch('Detalles de la ruina | ❤ |  | 📍 |:');
-    expect(wrapper.text()).toMatch('Localización:');
-    expect(wrapper.text()).toMatch('Imágenes:');
-    expect(wrapper.text()).toMatch('Descripción:');
+    expect(wrapper.text()).toMatch('Detalles de la ruina');
   });
   it('has a button', () => {
     const wrapper = shallowMount(RuinDetail, {
@@ -110,12 +113,22 @@ describe('RuinDetails.vue -> buttons', () => {
     expect(wrapper.find('button').exists()).toBe(true);
     const button = wrapper.find('.visitedButton');
     await button.trigger('click');
+
+    const _id = jest.fn().mockResolvedValue('1111');
     expect(wrapper.vm).toBeDefined();
     expect(wrapper.vm.ruinVisited).toHaveBeenCalled();
   });
   it('Calls deleteRuin function', async () => {
-    const wrapper = shallowMount(RuinDetail, {
-      global: { plugins: [store, router] },
+    const wrapper = mount(RuinDetail, {
+      data() {
+        return {
+          userData: {
+            userFound: {
+              isAdmin: true,
+            },
+          },
+        };
+      },
     });
 
     jest.spyOn(wrapper.vm, 'deleteRuinById');
@@ -127,30 +140,42 @@ describe('RuinDetails.vue -> buttons', () => {
     expect(wrapper.vm).toBeDefined();
     expect(wrapper.vm.deleteRuinById).toHaveBeenCalled();
   });
-  // it('Calls delete comment function', async () => {
-  //   const wrapper = shallowMount(RuinDetail, {
-  //     global: { plugins: [store, router] },
-  //   });
+  it('Calls deleteCommentFromRuin function', async () => {
+    const wrapper = mount(RuinDetail, {
+      global: { plugins: [store, router] },
+      data() {
+        return {
+          ruinInfo: {
+            comments: {
+              author_id: { _id: '11111' },
+              ruin_id: '2222',
+              text: 'Hola',
+            },
+          },
+        };
+      },
+    });
 
-  //   jest.spyOn(wrapper.vm, 'deleteRuinComment');
-  //   expect(wrapper.find('button').exists()).toBe(true);
-  //   const button = wrapper.find('.deleteCommentButton');
+    console.log(wrapper.vm.ruinDetails.comments, wrapper.vm.userData.userFound._id);
 
-  //   await button.trigger('click');
-  //   expect(wrapper.vm).toBeDefined();
+    jest.spyOn(wrapper.vm, 'deleteRuinComment');
 
-  //   const vm = new Vue({
-  //   template: `<div v-if="comment?.author_id?._id === userData?.userFound?._id">
-  //             <button
-  //               type="button"
-  //               class="deleteCommentButton"
-  //               v-on:click="deleteRuinComment(comment?._id)"
-  //             >`,
-  //   data:
-  //   }).$mount()
-  //   expect(vm.$el.innerHTML).toBe('<span>hello</span>')
-  // })
+    console.log(wrapper.html());
+    expect(wrapper.find('.deleteCommentButton').exists()).toBe(true);
+    // // expect(wrapper.find('button').exists()).toBe(true);
 
-  //   expect(wrapper.vm.deleteRuinComment).toHaveBeenCalled();
-  // });
+    const button = wrapper.find('.deleteCommentButton');
+
+    await button.trigger('click');
+
+    // const payloadComment = {
+    //   ruinId: '1111',
+    //   commentId: '2222',
+    // };
+    // const id = '1111';
+    // console.log(payloadComment, 'payloadComment en test');
+
+    expect(wrapper.vm).toBeDefined();
+    expect(wrapper.vm.deleteRuinComment).toHaveBeenCalled();
+  });
 });
