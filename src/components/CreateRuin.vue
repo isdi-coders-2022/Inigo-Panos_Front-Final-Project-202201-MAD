@@ -1,7 +1,6 @@
 <template>
   <div>
     <h2>Añada una nueva localización</h2>
-    <!-- <p>{{ this.userData }}</p> -->
     <form @submit.prevent="handleSubmit">
       <div class="form-group">
         <label for="name">
@@ -98,13 +97,10 @@ export default defineComponent({
       this.submitted = true;
 
       const newRef = ref(storage, uuid() + this.fileToUpload.fileName);
-      console.log(newRef, ' creado en CreateRuin');
 
       uploadBytes(newRef, this.fileToUpload as any).then(() => {
         getDownloadURL(newRef).then((url: string) => {
-          console.log(url, 'URL DE CREATERUIN');
           this.ruin.images = url;
-          console.log(this.ruin.images, 'IMAGEN YA HECHA URL');
           this.createNewRuin(this.ruin);
         });
       });
@@ -116,8 +112,6 @@ export default defineComponent({
   },
 
   mounted() {
-    console.log(this.userData, 'info de USUARIO EN CREATERUIN');
-
     const route = useRoute();
     const { id } = route.params;
     this.idRuina = id as string;

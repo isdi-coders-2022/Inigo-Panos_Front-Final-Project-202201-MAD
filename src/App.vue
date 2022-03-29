@@ -3,9 +3,8 @@
   <body>
     <div ref="" class="app-template">
       <nav>
-        <!-- <p>Hola soy los datos: {{ this.$store.state.account }}</p> -->
         <router-link to="/ruins">List de ruinas</router-link> |
-        <router-link to="/addRuin">Crear Ruinas</router-link> |
+        <router-link to="/addRuin">Crear Ruinas</router-link>
         <div v-if="this.userLoggedStatus?.loggedIn === true">
           <router-link to="/userData">
             <img
@@ -25,6 +24,7 @@
           </button>
         </div>
       </nav>
+
       <router-view />
       <main></main>
       <footer>Hola soy un footer</footer>
@@ -62,14 +62,12 @@ export default {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
   text-decoration: none;
   list-style-type: none;
 }
 #app {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 
   position: relative;
   nav {

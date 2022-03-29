@@ -9,9 +9,6 @@
       <li><span class="bold">Nombre:</span> {{ ruinDetails?.name }}</li>
       <li><span class="bold">Localización:</span> {{ ruinDetails?.location }}</li>
       <li><span class="bold">Descripción:</span> {{ ruinDetails?.description }}</li>
-      <li>
-        <span class="bold">Score: {{ ruinDetails?.score }}</span>
-      </li>
 
       <li class="ruinImage">
         <span class="bold">Imágenes:</span>
@@ -50,7 +47,11 @@
                 class="deleteCommentButton"
                 v-on:click="deleteRuinComment(comment?._id)"
               >
-                🗑
+                <img
+                  class="delete-button"
+                  src="https://firebasestorage.googleapis.com/v0/b/inig-panos-pfinal.appspot.com/o/trash.png?alt=media&token=5fd16359-53ca-41d4-975d-39c97d73f975"
+                  alt="trash-icon"
+                />
               </button>
             </div>
           </div>
@@ -67,21 +68,35 @@
     </ul>
     <div class="icons-container">
       <div class="icons-container__icon">
-        | <button type="button" class="favoriteButton" v-on:click="ruinFavorites()">❤</button> |
+        <button type="button" class="favoriteButton" v-on:click="ruinFavorites()">
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/inig-panos-pfinal.appspot.com/o/heart.png?alt=media&token=fe00aee2-c848-4302-8d09-de9f19742d6d"
+            alt="empty-heart-icon"
+          />
+        </button>
       </div>
       <div class="icons-container__icon">
-        | <button type="button" class="visitedButton" v-on:click="ruinVisited()">📍</button> |
+        <button type="button" class="visitedButton" v-on:click="ruinVisited()">
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/inig-panos-pfinal.appspot.com/o/thumbtack.png?alt=media&token=d589e556-9ac6-4c96-95e2-755b125763d5"
+            alt="visited-icon"
+          />
+        </button>
       </div>
     </div>
 
-    <div v-if="this.userData?.userFound?.isAdmin">
-      <p>Soy admin</p>
-      |
+    <div v-if="this.userData?.userFound?.isAdmin" class="update-delete">
       <router-link :to="`/ruinUpdate/${this?.ruinDetails?._id}`">
         <a>Actualizar datos</a>
       </router-link>
       |
-      <button type="button" id="deleteRuinButton" v-on:click="deleteRuinById">🗑</button>
+      <button type="button" id="deleteRuinButton" v-on:click="deleteRuinById()">
+        <img
+          class="delete-button"
+          src="https://firebasestorage.googleapis.com/v0/b/inig-panos-pfinal.appspot.com/o/trash.png?alt=media&token=5fd16359-53ca-41d4-975d-39c97d73f975"
+          alt="trash-icon"
+        />
+      </button>
     </div>
   </main>
 </template>
@@ -131,7 +146,6 @@ export default defineComponent({
     ...mapActions('account', ['getUserData']),
 
     deleteRuinById() {
-      console.log(this.ruinDetails._id, '_id de la ruina a borrar');
       this.deleteRuin(this.ruinDetails._id);
     },
 
@@ -175,6 +189,13 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
+button {
+  all: unset;
+}
+.update-delete {
+  display: flex;
+  justify-content: space-around;
+}
 h1 {
   font-size: 25px;
   margin: 0 auto;
@@ -194,7 +215,11 @@ h1 {
     height: 100%;
   }
 }
-
+.delete-button {
+  margin-top: 0.4rem;
+  width: 20px;
+  height: 20px;
+}
 .icons-container {
   display: flex;
   justify-content: center;
@@ -206,7 +231,7 @@ h1 {
     width: 90%;
     margin: 10px auto;
     padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-bottom: 1rem;
 
     border-radius: 30px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

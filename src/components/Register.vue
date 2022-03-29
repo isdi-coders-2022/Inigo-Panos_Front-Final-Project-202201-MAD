@@ -4,23 +4,31 @@
     <form @submit.prevent="handleSubmit" class="register-card">
       <div class="form-group">
         <label for="userName">
-          <input type="text" v-model="user.userName" id="userName" name="userName" />Username
+          <input type="text" v-model="user.userName" id="userName" name="userName" />Nombre de
+          usuario
         </label>
-        <div v-show="submitted && !userName" class="invalid-feedback">userName is required</div>
+        <div v-show="submitted && !userName" class="invalid-feedback">Campo requerido</div>
       </div>
 
       <div class="form-group">
         <label for="password">
-          <input type="password" v-model="user.password" name="password" />Password</label
+          <input type="password" v-model="user.password" name="password" />Contraseña</label
         >
-        <div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
+        <div v-show="submitted && !password" class="invalid-feedback">Campo requerido</div>
       </div>
 
       <div class="form-group">
-        <button class="btn btn-primary">Register</button>
+        <label for="isAdmin">
+          <input type="text" v-model="user.isAdmin" id="isAdmin" name="isAdmin" />Administrador
+        </label>
+        <div v-show="submitted && !isAdmin" class="invalid-feedback">Campo requerido</div>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary">Registro</button>
         |
         <router-link to="/login" class="btn btn-link">Login</router-link> |
-        <router-link to="/" class="btn btn-link">Cancel</router-link>
+        <router-link to="/" class="btn btn-link">Cancelar</router-link>
       </div>
     </form>
   </div>
@@ -37,6 +45,7 @@ export default defineComponent({
       user: {
         userName: '',
         password: '',
+        isAdmin: false,
       },
       submitted: false,
     };
@@ -48,14 +57,8 @@ export default defineComponent({
     ...mapActions('account', ['register']),
     handleSubmit() {
       this.submitted = true;
-      console.log(this.user.userName, this.user.password);
       if (this.user.userName !== undefined && this.user.password !== undefined) {
         this.register(this.user);
-        console.log('Se llama a register');
-      } else {
-        console.log(
-          `UserName (${this.user.userName}) o password (${this.user.password}) incorrecto`,
-        );
       }
     },
   },
@@ -66,8 +69,7 @@ export default defineComponent({
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+
   text-decoration: none;
   list-style-type: none;
   // width: 100%;

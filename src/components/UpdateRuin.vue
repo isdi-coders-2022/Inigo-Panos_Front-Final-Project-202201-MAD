@@ -4,14 +4,14 @@
 
     <form @submit.prevent="handleSubmit" v-if="ruinDetails">
       <div class="form-group">
-        <li>Nombre: {{ ruinDetails?.name }}</li>
+        <p>Nombre: {{ ruinDetails?.name }}</p>
         <label for="name">
           <input type="text" id="name" v-model="ruinDetails.name" name="name" />
         </label>
       </div>
 
       <div class="form-group">
-        <li>Localización: {{ ruinDetails?.location }}</li>
+        <p>Localización: {{ ruinDetails?.location }}</p>
 
         <label for="location">
           <input type="location" v-model="ruinDetails.location" name="location"
@@ -19,7 +19,7 @@
       </div>
 
       <div class="form-group">
-        <li>Descripción: {{ ruinDetails?.description }}</li>
+        <p>Descripción: {{ ruinDetails?.description }}</p>
 
         <label for="description">
           <input type="description" v-model="ruinDetails.description" name="description"
@@ -27,7 +27,7 @@
       </div>
 
       <div class="ruinImage">
-        <li>Imagen</li>
+        <p>Imagen</p>
 
         <img v-bind:src="ruinDetails?.images" alt="ruin" />
         <label for="images">
@@ -41,7 +41,7 @@
       </div>
 
       <div class="form-group">
-        <li>Puntuación: {{ ruinDetails?.score }}</li>
+        <p>Puntuación: {{ ruinDetails?.score }}</p>
 
         <label for="score"> <input type="score" v-model="ruinDetails.score" name="score" /></label>
       </div>
@@ -99,12 +99,7 @@ export default defineComponent({
   mounted() {
     const route = useRoute();
     const { id } = route.params;
-
-    console.log(id, 'id en updateruin');
-
     this.getRuinDetails(id);
-
-    console.log('DATOS QUE HAY EN UPDATERUIN', this.ruinDetails);
   },
 });
 </script>
