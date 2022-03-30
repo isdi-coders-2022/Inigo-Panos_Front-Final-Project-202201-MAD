@@ -59,7 +59,9 @@
             <div class="form-group">
               <label for="comment">
                 <input type="comment" v-model="this.newComment" name="comment" /> |
-                <button type="button" v-on:click="handleSubmit">Enviar comentario</button>
+                <button class="comment-button" type="button" v-on:click="handleSubmit">
+                  Enviar comentario
+                </button>
               </label>
             </div>
           </form>

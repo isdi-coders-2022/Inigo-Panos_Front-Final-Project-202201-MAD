@@ -1,5 +1,4 @@
 import { CreateRuinI } from '@/_helpers/interfaces';
-import { callWithErrorHandling } from 'vue';
 import { ruinsServices } from '../router/ruins.service';
 import router from '../router/index';
 
