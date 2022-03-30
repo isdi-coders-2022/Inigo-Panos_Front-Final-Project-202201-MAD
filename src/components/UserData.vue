@@ -101,9 +101,10 @@ ul {
 
     margin-top: 2rem;
     margin-bottom: 2rem;
-    margin-right: 4rem;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+
+    padding: 2rem 3rem;
+    border-radius: 30px;
+    background-color: rgb(165, 158, 158);
 
     &__text {
       font-weight: bold;

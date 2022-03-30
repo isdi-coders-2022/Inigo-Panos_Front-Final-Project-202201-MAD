@@ -77,6 +77,7 @@ export default {
   box-sizing: border-box;
   text-decoration: none;
   list-style-type: none;
+  line-height: 1.5;
 }
 #app {
   width: 100%;
@@ -86,6 +87,7 @@ export default {
   nav {
     display: flex;
     justify-content: center;
+    align-items: center;
 
     a {
       padding-left: 0.5rem;
@@ -106,7 +108,7 @@ export default {
     bottom: 0px;
     left: 0px;
     z-index: -1;
-    opacity: 0.25;
+    opacity: 0.18;
   }
 
   footer {
