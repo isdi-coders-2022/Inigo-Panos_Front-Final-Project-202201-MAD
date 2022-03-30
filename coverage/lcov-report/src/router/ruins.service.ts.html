@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>31/31</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>31/31</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
@@ -146,20 +146,7 @@
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a>
-<a name='L86'></a><a href='#L86'>86</a>
-<a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a>
-<a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a>
-<a name='L96'></a><a href='#L96'>96</a>
-<a name='L97'></a><a href='#L97'>97</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -182,7 +169,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -191,14 +177,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -227,18 +211,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -248,10 +224,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -277,7 +251,6 @@ export function getToken() {
 }
 &nbsp;
 export function updateRuin(payload: any) {
-  console.log(payload, ' Payload recibido en updateRuin, servicio de ruinas');
   return axios.patch(`${RUINS_API}/${payload.ruin._id}`, payload.ruin, {
     headers: {
       Authorization: `Bearer ${getToken()}`,
@@ -286,7 +259,6 @@ export function updateRuin(payload: any) {
 }
 &nbsp;
 export function newCommentOnRuin(payload: any) {
-  console.log(payload, ' Payload recibido en addComment, servicio de ruinas');
   return axios.patch(`${RUINS_API}/${payload.ruinId}/comment`, payload, {
     headers: {
       Authorization: `Bearer ${getToken()}`,
@@ -295,7 +267,6 @@ export function newCommentOnRuin(payload: any) {
 }
 &nbsp;
 export function deleteComment(payload: any) {
-  console.log('Payload en deleteComment: ', payload);
   return axios.delete(`${RUINS_API}/${payload.ruinId}/comment/${payload.commentId}`, {
     headers: {
       Authorization: `Bearer ${getToken()}`,
@@ -319,12 +290,6 @@ export function addToVisitedToggle(id: string) {
 }
 &nbsp;
 export function createNewRuin(ruin: CreateRuinI) {
-  console.log(
-    'Se ha llamado a createNewRuin de ruin.services con la dirección',
-    `${RUINS_API}/add`,
-  );
-  console.log(ruin);
-&nbsp;
   return axios.post(`${RUINS_API}/add`, ruin, {
     headers: {
       Authorization: `Bearer ${getToken()}`,
@@ -333,8 +298,6 @@ export function createNewRuin(ruin: CreateRuinI) {
 }
 &nbsp;
 export function deleteRuin(id: string) {
-  console.log('Se llama a deleteRuin con: ', `${RUINS_API}/${id}`);
-&nbsp;
   return axios.delete(`${RUINS_API}/${id}`, {
     headers: {
       Authorization: `Bearer ${getToken()}`,
@@ -343,12 +306,10 @@ export function deleteRuin(id: string) {
 }
 &nbsp;
 export function getAllRuins() {
-  console.log('Se ha llamado a getData de ruins.service con la dirección', `${RUINS_API}`);
   return axios.get(`${RUINS_API}`);
 }
 &nbsp;
 export function getRuinDetails(id: string) {
-  console.log('Se ha llamado a getData de ruins.service con la dirección', `${RUINS_API}`);
   return axios.get(`${RUINS_API}/${id}`);
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -358,7 +319,7 @@ export function getRuinDetails(id: string) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Mar 29 2022 18:13:35 GMT+0200 (hora de verano de Europa central)
+                at Wed Mar 30 2022 16:28:51 GMT+0200 (hora de verano de Europa central)
             </div>
         <script src="../../prettify.js"></script>
         <script>

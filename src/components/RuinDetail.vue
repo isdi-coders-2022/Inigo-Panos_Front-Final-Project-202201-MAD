@@ -5,7 +5,7 @@
   </div>
 
   <main>
-    <ul v-if="this.ruinDetails">
+    <ul v-if="this.ruinDetails" class="ul-ruin-details">
       <li><span class="bold">Nombre:</span> {{ ruinDetails?.name }}</li>
       <li><span class="bold">Localización:</span> {{ ruinDetails?.location }}</li>
       <li><span class="bold">Descripción:</span> {{ ruinDetails?.description }}</li>
@@ -16,7 +16,7 @@
       </li>
 
       <template v-if="this.ruinDetails">
-        <span class="bold"> Comentarios:</span>
+        <span class="bold" v-if="ruinDetails.comments > 1"> Comentarios:</span>
         <ul class="ruin-details__comment-card-container">
           <div
             v-for="comment in ruinDetails?.comments"
@@ -59,7 +59,9 @@
             <div class="form-group">
               <label for="comment">
                 <input type="comment" v-model="this.newComment" name="comment" /> |
-                <button type="button" v-on:click="handleSubmit">Enviar comentario</button>
+                <button class="comment-button" type="button" v-on:click="handleSubmit">
+                  Enviar comentario
+                </button>
               </label>
             </div>
           </form>
@@ -194,6 +196,8 @@ button {
 }
 .update-delete {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-around;
 }
 h1 {
@@ -204,60 +208,74 @@ h1 {
 .bold {
   font-weight: bold;
 }
-.ruinImage {
-  width: 95%;
-  height: auto;
-  margin: 0 auto;
-
-  img {
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
-  }
-}
 .delete-button {
   margin-top: 0.4rem;
   width: 20px;
   height: 20px;
 }
 .icons-container {
+  margin: 1rem 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
-.ruin-details {
-  &__comment-card-container {
-    background-color: rgb(165, 158, 158);
 
-    width: 90%;
-    margin: 10px auto;
-    padding-top: 3rem;
-    padding-bottom: 1rem;
+.ul-ruin-details {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-right: 2rem;
+  padding-left: 2rem;
 
-    border-radius: 30px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
+  li {
+    margin: 1rem 0;
+  }
 
-    .form-group {
-      display: flex;
-      justify-content: center;
-    }
+  .ruinImage {
+    width: 95%;
+    height: auto;
+    margin: 0 auto;
 
-    &__div {
-      background-color: rgb(197, 188, 188);
-      border-color: black 10px;
-
-      padding: 0.5rem;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      width: 90%;
+    img {
       margin: 0 auto;
-      margin-bottom: 1rem;
-      &__userName {
-        font-weight: bold;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .ruin-details {
+    &__comment-card-container {
+      background-color: rgb(165, 158, 158);
+
+      width: 90%;
+      margin: 10px auto;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+
+      border-radius: 30px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+
+      .form-group {
+        display: flex;
+        justify-content: center;
       }
 
-      &__image {
-        height: 15px;
-        width: 15px;
+      &__div {
+        background-color: rgb(197, 188, 188);
+        border-color: black 10px;
+
+        padding: 0.5rem;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        width: 90%;
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        &__userName {
+          font-weight: bold;
+        }
+
+        &__image {
+          height: 15px;
+          width: 15px;
+        }
       }
     }
   }

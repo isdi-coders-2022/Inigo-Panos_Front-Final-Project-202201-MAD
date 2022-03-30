@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/10</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/10</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
@@ -144,7 +144,18 @@
 <a name='L79'></a><a href='#L79'>79</a>
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
-<a name='L82'></a><a href='#L82'>82</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -193,15 +204,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -231,23 +237,31 @@
     &lt;form @submit.prevent="handleSubmit" class="register-card"&gt;
       &lt;div class="form-group"&gt;
         &lt;label for="userName"&gt;
-          &lt;input type="text" v-model="user.userName" id="userName" name="userName" /&gt;Username
+          &lt;input type="text" v-model="user.userName" id="userName" name="userName" /&gt;Nombre de
+          usuario
         &lt;/label&gt;
-        &lt;div v-show="submitted &amp;&amp; !userName" class="invalid-feedback"&gt;userName is required&lt;/div&gt;
+        &lt;div v-show="submitted &amp;&amp; !userName" class="invalid-feedback"&gt;Campo requerido&lt;/div&gt;
       &lt;/div&gt;
 &nbsp;
       &lt;div class="form-group"&gt;
         &lt;label for="password"&gt;
-          &lt;input type="password" v-model="user.password" name="password" /&gt;Password&lt;/label
+          &lt;input type="password" v-model="user.password" name="password" /&gt;Contraseña&lt;/label
         &gt;
-        &lt;div v-show="submitted &amp;&amp; !password" class="invalid-feedback"&gt;Password is required&lt;/div&gt;
+        &lt;div v-show="submitted &amp;&amp; !password" class="invalid-feedback"&gt;Campo requerido&lt;/div&gt;
       &lt;/div&gt;
 &nbsp;
       &lt;div class="form-group"&gt;
-        &lt;button class="btn btn-primary"&gt;Register&lt;/button&gt;
+        &lt;label for="isAdmin"&gt;
+          &lt;input type="text" v-model="user.isAdmin" id="isAdmin" name="isAdmin" /&gt;Administrador
+        &lt;/label&gt;
+        &lt;div v-show="submitted &amp;&amp; !isAdmin" class="invalid-feedback"&gt;Campo requerido&lt;/div&gt;
+      &lt;/div&gt;
+&nbsp;
+      &lt;div class="form-group"&gt;
+        &lt;button class="btn btn-primary"&gt;Registro&lt;/button&gt;
         |
         &lt;router-link to="/login" class="btn btn-link"&gt;Login&lt;/router-link&gt; |
-        &lt;router-link to="/" class="btn btn-link"&gt;Cancel&lt;/router-link&gt;
+        &lt;router-link to="/" class="btn btn-link"&gt;Cancelar&lt;/router-link&gt;
       &lt;/div&gt;
     &lt;/form&gt;
   &lt;/div&gt;
@@ -264,6 +278,7 @@ export default defineComponent({
       user: {
         userName: '',
         password: '',
+        isAdmin: false,
       },
       submitted: false,
     };
@@ -275,14 +290,8 @@ export default defineComponent({
     ...mapActions('account', ['register']),
     handleSubmit() {
       this.submitted = true;
-      console.log(this.user.userName, this.user.password);
       if (this.user.userName !== undefined &amp;&amp; this.user.password !== undefined) {
         this.register(this.user);
-        console.log('Se llama a register');
-      } else <span class="missing-if-branch" title="else path not taken" >E</span>{
-<span class="cstat-no" title="statement not covered" >        console.</span>log(
-          `UserName (${this.user.userName}) o password (${this.user.password}) incorrecto`,
-        );
       }
     },
   },
@@ -313,7 +322,7 @@ export default defineComponent({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Mar 29 2022 18:13:35 GMT+0200 (hora de verano de Europa central)
+                at Wed Mar 30 2022 16:28:51 GMT+0200 (hora de verano de Europa central)
             </div>
         <script src="../../prettify.js"></script>
         <script>

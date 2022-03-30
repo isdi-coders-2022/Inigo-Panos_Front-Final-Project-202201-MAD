@@ -1,12 +1,17 @@
 {
   "name": "proyecto-final-front-inigo-panos",
   "version": "0.1.0",
+  "jest": {
+    "testPathIgnorePatterns": [
+      "src/registerServiceWorker.ts"
+    ]
+  },
   "private": true,
   "scripts": {
     "build": "webpack --mode production",
     "serve": "vue-cli-service serve",
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e",
+    "test:e2e": "vue-cli-service serve http://127.0.0.1:5050/ 'cypress open'",
     "test:moi": "jest --coverage --watchAll",
     "lint": "vue-cli-service lint"
   },

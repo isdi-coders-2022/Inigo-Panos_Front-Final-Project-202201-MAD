@@ -54,6 +54,8 @@ ul {
   // margin: 3rem, 2rem, 3rem, 2rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
+  padding-right: 6rem;
+  padding-left: 6rem;
 
   background-color: rgba(243, 208, 208, 1);
   opacity: 0.8;

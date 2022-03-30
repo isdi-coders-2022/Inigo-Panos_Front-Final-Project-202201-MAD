@@ -110,7 +110,6 @@ export default defineComponent({
       this.fileToUpload = e.target.files[0];
     },
   },
-
   mounted() {
     const route = useRoute();
     const { id } = route.params;

@@ -38,7 +38,6 @@ export function loginUsingToken(token: any) {
 export function logout() {
   localStorage.removeItem('token');
 }
-
 export function getData(id: any) {
   return axios.get(`${USERS_API}/users/${id}`);
 }

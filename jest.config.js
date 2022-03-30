@@ -3,6 +3,9 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     'src/**/**.{ts,vue}',
-    '!src/main.ts', // No need to cover bootstrap file
+    '!src/main.ts',
+    '!src/registerServiceWorker.ts', // No need to cover bootstrap file
+    '!src/store/**',
   ],
+  // modulePathIgnorePatterns: ['!src/store', '!src/registerServiceWorker.ts'],
 };

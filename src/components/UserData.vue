@@ -19,7 +19,7 @@
           <a class="visited-name">{{ visited.name }}</a>
         </router-link>
       </li>
-      <p>Comentarios:</p>
+      <p v-if="userData?.userFound?.comments.length > 0">Comentarios:</p>
       <ul>
         <li
           v-for="comment in userData?.userFound?.comments"
@@ -33,9 +33,10 @@
           </router-link>
         </li>
       </ul>
+      <router-link @click="this.resetStorage()" to="/login" class="btn btn-link logout"
+        >Logout</router-link
+      >
     </ul>
-    <p>{{ this.status }}, Hola paco!</p>
-    <router-link @click="this.resetStorage()" to="/login" class="btn btn-link">Logout</router-link>
   </main>
 </template>
 
@@ -81,21 +82,36 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.userData_comment-card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-
+.logout {
   margin-top: 2rem;
-  margin-bottom: 2rem;
-  margin-right: 4rem;
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-
-  &__text {
-    font-weight: bold;
+}
+ul {
+  margin-top: 2rem;
+  p {
+    margin-top: 1rem;
   }
-  &__name {
-    font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .userData_comment-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+    padding: 2rem 3rem;
+    border-radius: 30px;
+    background-color: rgb(165, 158, 158);
+
+    &__text {
+      font-weight: bold;
+    }
+    &__name {
+      font-weight: bold;
+    }
   }
 }
 </style>
